@@ -1,4 +1,4 @@
-﻿CREATE DATABASE DatabaseEnglishCenter
+﻿
 
 USE DatabaseEnglishCenter
 GO
@@ -193,3 +193,7 @@ INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUE
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (6, 1, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (7, 1, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (8, 1, '2022-3-5', 700000, 1)
+
+select * from Students
+select * from Classes
+select * from Case_study
