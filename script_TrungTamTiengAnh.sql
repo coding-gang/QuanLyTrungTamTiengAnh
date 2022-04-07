@@ -40,7 +40,7 @@ CREATE TABLE Classes (
    id int IDENTITY(1,1) NOT NULL,
    course_id int  NOT NULL,
    case_id int  NOT NULL,
-   teacher_id varchar(6)  NOT NULL,
+   teacher_id varchar(6)  NULL,
    branch_id int  NOT NULL,
    room int  NOT NULL,
    start_date date  NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Courses (
 -- Table: Case
 CREATE TABLE Case_study (
    id int IDENTITY(1,1) NOT NULL,
-   name varchar(50)  NOT NULL,
+   name nvarchar(50)  NOT NULL,
    start_time varchar(50)  NOT NULL,
    date_study varchar(50)  NOT NULL,
    CONSTRAINT Group_Day_pk PRIMARY KEY  (id)
@@ -161,24 +161,30 @@ INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC cơ bản', 60, 500
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC nâng cao', 90, 1000000)
 
 -- Case *********************
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', 'Thứ 2 - Thứ 4')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '7:00', 'Thứ 3 - Thứ 5')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '7:00', 'Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 4', '7:00', 'Thứ 5 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 5', '7:00', 'Thứ 2 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 6', '7:00', 'Thứ 3 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 7', '15:00', 'Thứ 2 - Thứ 4')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 8', '15:00', 'Thứ 3 - Thứ 5')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 9', '15:00', 'Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 10', '15:00', 'Thứ 5 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 11', '15:00', 'Thứ 2 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 12', '15:00', 'Thứ 3 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 13', '19:00', 'Thứ 2 - Thứ 4')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 14', '19:00', 'Thứ 3 - Thứ 5')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 15', '19:00', 'Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 16', '19:00', 'Thứ 5 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 17', '19:00', 'Thứ 2 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 18', '19:00', 'Thứ 3 - Thứ 7')
+select * from Case_study
+delete from Case_study
+select * from Classes
+delete from Classes
+delete from Registers
+
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 2 - Thứ 4')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 2 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 3 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 2 - Thứ 4')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 2 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', N'Thứ 3 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 2 - Thứ 4')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 2 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 3 - Thứ 7')
 
 -- Employee
 INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
@@ -231,28 +237,39 @@ INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualificat
 VALUES ('GV013', 2, N'Phạm Thanh Thủy', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
 
 SELECT * FROM Employees
+select * from Classes
 
+select * from Branches
 -- Class
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1, 1, 1, 5, '2022-3-11')
+VALUES (1,31,'GV001',1,5,'2022-3-11',4,1)
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1, 2, 1, 2, '2022-3-11')
+VALUES (1,32,'GV002',1,6,'2022-3-11',4,1)
 
+INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
+VALUES (1,32,'GV005',2,6,'2022-3-11',4,1)
+
+
+select * from Employees
+
+delete from Employees
+
+Alter Table Employees alter column full_name nvarchar(50);
 -- Register
-<<<<<<< HEAD:update_script_QLTrungTamTiengAnh.sql
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (1, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (2, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (3, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (4, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (5, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (6, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (7, 1, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (8, 1, '2022-3-5', 700000, 1)
+
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (1, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (2, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (3, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (4, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (5, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (6, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (7, 7, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (8, 7, '2022-3-5', 700000, 1)
 
 select * from Students
 select * from Classes
 select * from Case_study
-=======
+
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 1)
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 2)
->>>>>>> 0c185e0d95014b04d9f8052105191354feb59e28:script_TrungTamTiengAnh.sql
+
