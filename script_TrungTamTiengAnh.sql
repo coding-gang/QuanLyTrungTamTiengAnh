@@ -25,7 +25,7 @@ CREATE TABLE Branches (
 CREATE TABLE Employees (
    id varchar(6)  NOT NULL,
    branch_id int  NOT NULL,
-   full_name varchar(50)  NOT NULL,
+   full_name nvarchar(50)  NOT NULL,
    date_of_birth datetime  NOT NULL,
    phone varchar(15)  NOT NULL,
    qualification nvarchar(30),
@@ -54,7 +54,7 @@ CREATE TABLE Registers (
    id int IDENTITY(1,1) NOT NULL,
    student_id int  NOT NULL,
    class_id int  NOT NULL,
-   register_date datetime  NOT NULL,
+   payment_date datetime  NOT NULL,
    amount money  NOT NULL,
    status bit  NOT NULL,
    CONSTRAINT Registers_pk PRIMARY KEY  (id)
@@ -162,29 +162,84 @@ INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC nâng cao', 90, 100
 
 -- Case *********************
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', 'Thứ 2 - Thứ 4')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '7:00', 'Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '7:00', 'Thứ 2 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 4', '7:00', 'Thứ 3 - Thứ 5')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 5', '7:00', 'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '7:00', 'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '7:00', 'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 4', '7:00', 'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 5', '7:00', 'Thứ 2 - Thứ 6')
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 6', '7:00', 'Thứ 3 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', 'Thứ 2 - Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 2', '15:00', 'Thứ 2 - Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', 'Thứ 2 - Thứ 4 - Thứ 6')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 4', '7:00', 'Thứ 3 - Thứ 5 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 5', '15:00', 'Thứ 3 - Thứ 5 - Thứ 7')
-INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 6', '19:00', 'Thứ 3 - Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 7', '15:00', 'Thứ 2 - Thứ 4')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 8', '15:00', 'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 9', '15:00', 'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 10', '15:00', 'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 11', '15:00', 'Thứ 2 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 12', '15:00', 'Thứ 3 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 13', '19:00', 'Thứ 2 - Thứ 4')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 14', '19:00', 'Thứ 3 - Thứ 5')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 15', '19:00', 'Thứ 4 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 16', '19:00', 'Thứ 5 - Thứ 7')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 17', '19:00', 'Thứ 2 - Thứ 6')
+INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 18', '19:00', 'Thứ 3 - Thứ 7')
 
 -- Employee
 INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
 VALUES ('GV001', 1, N'Nguyễn Xuân Nam', '1993-3-11', '0912384732', N'Đại học', N'Việt Nam', N'Giáo viên', 4200000)
 INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
 VALUES ('GV002', 1, N'Trần Như Ngọc', '1995-3-11', '0912332442', N'Cao đẳng', N'Việt Nam', N'Giáo viên', 3700000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV003', 1, N'Phan Thu Anh', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 3000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV004', 1, N'Phạm Thị Ngân', '1997-8-23', '0439853485', N'Đại học', N'Việt Nam', N'Giáo viên', 4000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV005', 2, N'Trần Thanh Nhàn', '2000-8-23', '0934238743', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV006', 2, N'Phan Nguyễn Huệ', '2000-8-23', '0916758493', N'Cao Đẳng', N'Việt Nam', N'Giáo viên', 3000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV001', 1, N'Nguyễn Đặng Minh', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Kế toán', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV002', 1, N'Vũ Thanh Hải', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Lễ tân', 7000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV007', 2, N'Phan Thái Tài', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 4000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV008', 2, N'Trần Minh Phương', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV009', 2, N'Nguyễn Thị Bảy', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV003', 1, N'Nguyễn Bảo Khánh', '2000-8-23', '0916758493', N'Cao đẳng', N'Việt Nam', N'Bảo vệ', 3000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV004', 1, N'Phạm Thanh Hoàng', '2000-8-23', '0916758493', N'', N'Việt Nam', N'Bảo vệ', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV005', 1, N'Phan Thanh Thanh', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Bảo vệ', 7000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV014', 1, N'Phạm Thị Trang', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV006', 2, N'Trần Thanh Quyết', '2000-8-23', '0916758493', N'Cao đẳng', N'Việt Nam', N'Kế toán', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV007', 2, N'Phan Nguyễn Phương', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Lễ tân', 7000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV010', 1, N'Nguyễn Nhật Đăng', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV011', 1, N'Vũ Thanh Thúy', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 7000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV008', 2, N'Phan Thái Thịnh', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Kế toán', 3000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV009', 2, N'Trần Minh Quân', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Bảo vệ', 4000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('NV010', 2, N'Nguyễn Thị Hoa', '2000-8-23', '0916758493', N'', N'Việt Nam', N'Bảo vệ', 4000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV012', 2, N'Nguyễn Bảo Ngọc', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
+VALUES ('GV013', 2, N'Phạm Thanh Thủy', '2000-8-23', '0916758493', N'Đại học', N'Việt Nam', N'Giáo viên', 5000000)
+
+SELECT * FROM Employees
 
 -- Class
-INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active) VALUES (1, 1, 'GV001', 1, 1, '2022-3-11', 4, 1)
-INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active) VALUES (2, 2, 'GV002', 1, 1, '2022-3-11', 4, 1)
+INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
+VALUES (1, 1, 1, 5, '2022-3-11')
+INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
+VALUES (1, 2, 1, 2, '2022-3-11')
 
 -- Register
+<<<<<<< HEAD:update_script_QLTrungTamTiengAnh.sql
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (1, 1, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (2, 1, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (3, 1, '2022-3-5', 700000, 1)
@@ -197,3 +252,7 @@ INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUE
 select * from Students
 select * from Classes
 select * from Case_study
+=======
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 2)
+>>>>>>> 0c185e0d95014b04d9f8052105191354feb59e28:script_TrungTamTiengAnh.sql
