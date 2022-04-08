@@ -1,0 +1,2 @@
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.AssemblyReference.cache
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache

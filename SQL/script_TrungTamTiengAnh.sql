@@ -40,7 +40,7 @@ CREATE TABLE Classes (
    id int IDENTITY(1,1) NOT NULL,
    course_id int  NOT NULL,
    case_id int  NOT NULL,
-   teacher_id varchar(6)  NULL,
+   teacher_id varchar(6) NULL,
    branch_id int  NOT NULL,
    room int  NOT NULL,
    start_date date  NOT NULL,
@@ -72,9 +72,9 @@ CREATE TABLE Courses (
 -- Table: Case
 CREATE TABLE Case_study (
    id int IDENTITY(1,1) NOT NULL,
-   name nvarchar(50)  NOT NULL,
+   name varchar(50)  NOT NULL,
    start_time varchar(50)  NOT NULL,
-   date_study varchar(50)  NOT NULL,
+   date_study nvarchar(50)  NOT NULL,
    CONSTRAINT Group_Day_pk PRIMARY KEY  (id)
 );
 
@@ -161,11 +161,6 @@ INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC cơ bản', 60, 500
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC nâng cao', 90, 1000000)
 
 -- Case *********************
-select * from Case_study
-delete from Case_study
-select * from Classes
-delete from Classes
-delete from Registers
 
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 2 - Thứ 4')
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 3 - Thứ 5')
@@ -250,9 +245,7 @@ INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date,
 VALUES (1,32,'GV005',2,6,'2022-3-11',4,1)
 
 
-select * from Employees
 
-delete from Employees
 
 Alter Table Employees alter column full_name nvarchar(50);
 -- Register
@@ -266,9 +259,6 @@ INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUE
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (7, 7, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (8, 7, '2022-3-5', 700000, 1)
 
-select * from Students
-select * from Classes
-select * from Case_study
 
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 1)
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 2)

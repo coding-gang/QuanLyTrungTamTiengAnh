@@ -13,7 +13,6 @@ alter table Classes alter column teacher_id varchar(6) null;
   select * from Classes
   select * from Employees
    
-
    drop Procedure Update_Branch_Emp
    /*Chuyen GV  chi nhanh khac- GV*/
   Create Procedure Update_Branch_Emp @branchCurrentId int,@branchExchangeId int ,@EmpId varchar(6)
