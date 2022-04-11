@@ -1,2 +1,11 @@
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.AssemblyReference.cache
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Core.dll
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Core.pdb
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\DAL.dll
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\DAL.pdb
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.AssemblyReference.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CopyComplete
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.dll
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.pdb
