@@ -29,23 +29,13 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Location = new System.Drawing.Point(110, 139);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(90, 25);
-            this.kryptonButton1.TabIndex = 0;
-            this.kryptonButton1.Values.Text = "kryptonButton1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.kryptonButton1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -53,8 +43,6 @@ namespace UI
         }
 
         #endregion
-
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }
 

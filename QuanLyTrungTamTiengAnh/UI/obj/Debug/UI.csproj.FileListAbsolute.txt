@@ -1,0 +1,16 @@
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.exe.config
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.exe
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.pdb
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Krypton.Toolkit.dll
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Krypton.Toolkit.xml
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.AssemblyReference.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.SuggestedBindingRedirects.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.Form1.resources
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.Properties.Resources.resources
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.GenerateResource.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CopyComplete
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.exe
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.pdb
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\FontAwesome.Sharp.dll
+D:\Github\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.frmHome.resources
