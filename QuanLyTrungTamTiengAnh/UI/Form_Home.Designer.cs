@@ -49,13 +49,13 @@
             this.tlbNhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tc1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpHocvien = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpDangky = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tpKhoahoc = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -66,9 +66,9 @@
             this.kryptonStatusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tc1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tpHocvien.SuspendLayout();
+            this.tpDangky.SuspendLayout();
+            this.tpKhoahoc.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -271,9 +271,9 @@
             // 
             // tc1
             // 
-            this.tc1.Controls.Add(this.tabPage1);
-            this.tc1.Controls.Add(this.tabPage2);
-            this.tc1.Controls.Add(this.tabPage3);
+            this.tc1.Controls.Add(this.tpHocvien);
+            this.tc1.Controls.Add(this.tpDangky);
+            this.tc1.Controls.Add(this.tpKhoahoc);
             this.tc1.Controls.Add(this.tabPage4);
             this.tc1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tc1.Location = new System.Drawing.Point(0, 0);
@@ -282,17 +282,17 @@
             this.tc1.Size = new System.Drawing.Size(800, 368);
             this.tc1.TabIndex = 0;
             // 
-            // tabPage1
+            // tpHocvien
             // 
-            this.tabPage1.Controls.Add(this.panel7);
-            this.tabPage1.Controls.Add(this.panel8);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 342);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpHocvien.Controls.Add(this.panel7);
+            this.tpHocvien.Controls.Add(this.panel8);
+            this.tpHocvien.Location = new System.Drawing.Point(4, 22);
+            this.tpHocvien.Name = "tpHocvien";
+            this.tpHocvien.Padding = new System.Windows.Forms.Padding(3);
+            this.tpHocvien.Size = new System.Drawing.Size(792, 342);
+            this.tpHocvien.TabIndex = 0;
+            this.tpHocvien.Text = "Học viên";
+            this.tpHocvien.UseVisualStyleBackColor = true;
             // 
             // panel7
             // 
@@ -310,17 +310,17 @@
             this.panel8.Size = new System.Drawing.Size(393, 336);
             this.panel8.TabIndex = 2;
             // 
-            // tabPage2
+            // tpDangky
             // 
-            this.tabPage2.Controls.Add(this.panel5);
-            this.tabPage2.Controls.Add(this.panel6);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 342);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpDangky.Controls.Add(this.panel5);
+            this.tpDangky.Controls.Add(this.panel6);
+            this.tpDangky.Location = new System.Drawing.Point(4, 22);
+            this.tpDangky.Name = "tpDangky";
+            this.tpDangky.Padding = new System.Windows.Forms.Padding(3);
+            this.tpDangky.Size = new System.Drawing.Size(792, 342);
+            this.tpDangky.TabIndex = 1;
+            this.tpDangky.Text = "Đăng ký";
+            this.tpDangky.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -338,17 +338,17 @@
             this.panel6.Size = new System.Drawing.Size(393, 336);
             this.panel6.TabIndex = 2;
             // 
-            // tabPage3
+            // tpKhoahoc
             // 
-            this.tabPage3.Controls.Add(this.panel4);
-            this.tabPage3.Controls.Add(this.panel3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(792, 342);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tpKhoahoc.Controls.Add(this.panel4);
+            this.tpKhoahoc.Controls.Add(this.panel3);
+            this.tpKhoahoc.Location = new System.Drawing.Point(4, 22);
+            this.tpKhoahoc.Name = "tpKhoahoc";
+            this.tpKhoahoc.Padding = new System.Windows.Forms.Padding(3);
+            this.tpKhoahoc.Size = new System.Drawing.Size(792, 342);
+            this.tpKhoahoc.TabIndex = 2;
+            this.tpKhoahoc.Text = "Khóa học";
+            this.tpKhoahoc.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -416,9 +416,9 @@
             this.kryptonStatusStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tc1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
+            this.tpHocvien.ResumeLayout(false);
+            this.tpDangky.ResumeLayout(false);
+            this.tpKhoahoc.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -448,12 +448,12 @@
         private System.Windows.Forms.ToolStripStatusLabel tlbNhom;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabControl tc1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tpDangky;
+        private System.Windows.Forms.TabPage tpKhoahoc;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpHocvien;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel5;
