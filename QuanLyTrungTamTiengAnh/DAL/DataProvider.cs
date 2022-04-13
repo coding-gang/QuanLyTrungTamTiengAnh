@@ -23,7 +23,7 @@ namespace DAL
 
         }
 
-        private readonly string strCon = @"";
+        private readonly string strCon = @"server=DESKTOP-UPDAPIH\MSSQLSERVER01;database=DatabaseEnglishCenter;integrated security=true";
         private void hasParameter(SqlCommand cmd, string query, object[] para = null)
         {
             int i = 0;

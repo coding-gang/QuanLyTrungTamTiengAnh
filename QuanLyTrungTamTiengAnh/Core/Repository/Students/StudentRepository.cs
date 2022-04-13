@@ -12,7 +12,9 @@ namespace Core.Repository.Students
 {
    public class StudentRepository : GenericRepository, IStudentRepository
     {
-     
+        public string query { get; set; }
+        public object[] para { get; set; }
+
         public StudentRepository():base()
         {   
                   
@@ -20,12 +22,14 @@ namespace Core.Repository.Students
 
         public  IEnumerable<Student> GetAll()
         {
+         
             query = "Select * from Students";
             List<Student> Students = new List<Student>();
             DataTable dataTable = dataProvider.ExcuteDataReader(query);
             var NameColumn = dataTable.InitNameColumn();
             foreach (DataRow row in dataTable.Rows)
             {
+               
                 listRow = new List<string>();
                 var data = row.GetValueRow(listRow, NameColumn);
                 var student = new Student(Id: int.Parse(data[0]),
@@ -42,17 +46,18 @@ namespace Core.Repository.Students
         }
         public bool Add(Student item)
         {
-            return Command(item);
+            return Command(query,para);
         }
 
         public bool Delete(object id)
         {
-            return Command(id);
+            return Command(query,para);
         }
 
         public bool Update(object id)
         {
-            return Command(id);
+           
+            return Command(query,para);
         }
 
        

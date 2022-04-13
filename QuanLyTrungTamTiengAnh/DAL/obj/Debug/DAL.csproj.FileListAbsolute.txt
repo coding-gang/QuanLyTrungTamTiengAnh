@@ -4,3 +4,9 @@ E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csproj.Assemb
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.dll
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.pdb
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\bin\Debug\DAL.dll
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\bin\Debug\DAL.pdb
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.dll
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.pdb

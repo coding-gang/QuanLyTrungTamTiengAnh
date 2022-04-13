@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 namespace Core.GenericRepositorys
 {
    public interface IGenericRepository<T> where T : class
-    { 
-       IEnumerable<T> GetAll();
+    {
+         string query { get; set; }
+
+         object[] para { get; set; }
+        IEnumerable<T> GetAll();
        T GetById(object id);
        bool Add(T item);
        bool Update(object id);
