@@ -12,8 +12,8 @@ namespace test
     {
         static void Main(string[] args)
         {
-            var studentDLL = new StudentBLL();
-            studentDLL.unitOfWork.studentRepository.GetAll();
+            var EmployeeBLL = new EmployeeBLL();
+            EmployeeBLL.unitOfWork.employeeRepository.GetAll();
         }
     }
 }

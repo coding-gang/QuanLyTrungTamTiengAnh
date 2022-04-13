@@ -19,7 +19,6 @@ namespace Core.GenericRepositorys
      
         public virtual bool Command(string query, object[] para=null)
         {
-
             try
             {
                 bool result = this.dataProvider.ExcuteNonQuery(query, para);

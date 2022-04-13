@@ -9,7 +9,6 @@ namespace Core.GenericRepositorys
    public interface IGenericRepository<T> where T : class
     {
          string query { get; set; }
-
          object[] para { get; set; }
         IEnumerable<T> GetAll();
        T GetById(object id);

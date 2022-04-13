@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Extension
+namespace DAL.Extensions
 {
-    public static class GetRowDataTable
+    public static class GenericExtention
     {
         private static List<string> NameCol { get; set; }
-        static GetRowDataTable()
+        static GenericExtention()
         {
             NameCol = new List<string>();
         }
@@ -30,6 +30,20 @@ namespace Core.Extension
                 rowValue.Add(row[nameCol[i]].ToString());
             }
             return rowValue;
+        }
+
+        public static List<List<string>> GetRows(this DataTable dataTable, List<string> listRow)
+        {
+            var collecttionRowData = new List<List<string>>();
+            var NameColumn = dataTable.InitNameColumn();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                listRow = new List<string>();
+                var data = row.GetValueRow(listRow, NameColumn);
+                collecttionRowData.Add(data);
+            }
+            return collecttionRowData;
+
         }
     }
 }

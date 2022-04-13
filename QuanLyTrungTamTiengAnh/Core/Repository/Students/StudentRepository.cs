@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.GenericRepositorys;
-using Core.Extension;
 using DAL.Entities;
+using DAL.Extensions;
 
 namespace Core.Repository.Students
 {
