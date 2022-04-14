@@ -13,7 +13,7 @@ namespace test
         static void Main(string[] args)
         {
             var EmployeeBLL = new EmployeeBLL();
-            EmployeeBLL.unitOfWork.employeeRepository.GetAll();
+            EmployeeBLL.unitOfWork.employeeRepository.GetById("GV001");
         }
     }
 }

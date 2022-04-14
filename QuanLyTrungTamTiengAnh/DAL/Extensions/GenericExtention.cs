@@ -31,7 +31,17 @@ namespace DAL.Extensions
             }
             return rowValue;
         }
-
+        public static List<string> GetRow(this DataTable dataTable,List<string> listRow)
+        {
+            var nameCol = dataTable.InitNameColumn();
+            listRow = new List<string>();
+            
+            foreach (DataRow row in dataTable.Rows)
+            {
+                 listRow= row.GetValueRow(listRow, nameCol);
+            }
+            return listRow;
+        }
         public static List<List<string>> GetRows(this DataTable dataTable, List<string> listRow)
         {
             var collecttionRowData = new List<List<string>>();

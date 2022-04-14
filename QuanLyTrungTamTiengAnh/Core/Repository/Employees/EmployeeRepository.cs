@@ -18,8 +18,6 @@ namespace Core.Repository.Employees
         public EmployeeRepository():base()
         {
 
-
-
         }
         public bool Add(Employee item)
         {
@@ -34,7 +32,7 @@ namespace Core.Repository.Employees
         public IEnumerable<Employee> GetAll()
         {
             query = "select * from Employees";
-            var employee = new List<Employee>();
+            var employees = new List<Employee>();
             var dataTable = DataProvider.Instance.ExcuteDataReader(query);
            var collectionRowData = dataTable.GetRows(listRow);
             foreach (var row in collectionRowData)
@@ -49,14 +47,28 @@ namespace Core.Repository.Employees
                 emp.Nation = row[6];
                 emp.Jobtitle = row[7];
                 emp.Salary = int.Parse(row[8]);
-                employee.Add(emp);
+                employees.Add(emp);
             }
-            return employee;
+            return employees;
         }
 
         public Employee GetById(object id)
         {
-            throw new NotImplementedException();
+            
+            query = $"select * from Employees where id ='{id}'";
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            var row = dataTable.GetRow(listRow);
+            var emp = new Employee();
+            emp.Id = row[0];
+            emp.BranhId = int.Parse(row[1]);
+            emp.FullName = row[2];
+            emp.DOB = DateTime.Parse(row[3]);
+            emp.Phone = row[4];
+            emp.Qualification = row[5];
+            emp.Nation = row[6];
+            emp.Jobtitle = row[7];
+            emp.Salary = int.Parse(row[8]);
+            return emp;
         }
 
         public bool Update(object id)
