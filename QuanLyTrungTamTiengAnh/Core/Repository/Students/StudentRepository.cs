@@ -12,7 +12,9 @@ namespace Core.Repository.Students
 {
    public class StudentRepository : GenericRepository, IStudentRepository
     {
-     
+        public string query { get; set; }
+        public object[] para { get; set; }
+
         public StudentRepository():base()
         {   
                   
@@ -42,17 +44,19 @@ namespace Core.Repository.Students
         }
         public bool Add(Student item)
         {
-            return Command(item);
+            query = "dbo.Add_Student @fullname , @dob , @phone , @address";
+            para = new object[] { item.FullName, item.DoB, item.Phone, item.Address};
+            return Command(query,para);
         }
 
         public bool Delete(object id)
         {
-            return Command(id);
+            return Command(query,para);
         }
 
         public bool Update(object id)
         {
-            return Command(id);
+            return Command(query,para);
         }
 
        
