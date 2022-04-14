@@ -9,11 +9,7 @@ namespace Core.GenericRepositorys
 {
     public class GenericRepository
     {
-        protected string query { get; set; }
-
-        protected object[] para { get; set; }
-
-
+   
         protected List<string> listRow { get; set; }
 
         protected DataProvider dataProvider { get; set; }
@@ -22,7 +18,7 @@ namespace Core.GenericRepositorys
             this.dataProvider = DataProvider.Instance;
         }
      
-        public virtual bool Command(object item)
+        public virtual bool Command(string query, object[] para =null )
         {
             try
             {

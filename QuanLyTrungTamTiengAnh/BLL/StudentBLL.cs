@@ -16,5 +16,10 @@ namespace BLL
             this.unitOfWork = unitOfWork;
         }
 
+        public StudentBLL()
+        {
+            this.unitOfWork = new UnitOfWork();
+        }
+
     }
 }
