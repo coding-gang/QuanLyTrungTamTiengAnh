@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL;
 using DAL;
+using DAL.Entities;
 
 namespace test
 {
@@ -13,7 +14,8 @@ namespace test
         static void Main(string[] args)
         {
             var EmployeeBLL = new EmployeeBLL();
-            EmployeeBLL.unitOfWork.employeeRepository.GetById("GV001");
+            var emp = new Employee();
+            EmployeeBLL.unitOfWork.employeeRepository.Add(emp);
         }
     }
 }

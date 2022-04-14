@@ -21,8 +21,41 @@ namespace Core.Repository.Employees
         }
         public bool Add(Employee item)
         {
-            throw new NotImplementedException();
+            var id = CreateIdEmp();
+
+            
+            Console.WriteLine(id);
+            query = $"[dbo].[Add_Employess] @id , @branch_id , @full_name , @dob "
+                                +", @phone , @qualification "
+								+", @nation , @jobtitle "
+								 +", @salary";
+            para = new object[]
+            {
+                id,
+                item.BranhId=2,
+                item.FullName="Nguyen Dinh Phat Trien",
+                item.DOB =DateTime.Parse("1999-9-3"),
+                item.Phone="0909190011",
+                item.Qualification="Dai Hoc",
+                item.Nation = "Viet Nam",
+                item.Jobtitle = "Giao Vien",
+                item.Salary =5000000
+            };
+            return Command(query,para);
+          
+            
+            
         }
+        public string CreateIdEmp()
+        {
+            string id = "";
+            query = "select count(*) from Employees";
+            int totalEmp = DataProvider.Instance.ExcuteScalar(query);
+            id = $"GV{totalEmp + 1}";
+            return id;
+        }
+        
+    
 
         public bool Delete(object id)
         {

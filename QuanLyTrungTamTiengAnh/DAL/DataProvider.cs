@@ -11,6 +11,14 @@ namespace DAL
    public class DataProvider
     {
         private static readonly DataProvider instance;
+        private const string id = "sa";
+        private const string password = "1234";
+        private const string SERVERNAMECN1 = @"DESKTOP-UPDAPIH\MSSQLSERVER01";
+        private const string SERVERNAMECN2 = @"DESKTOP-4N9II10";
+
+
+        private const string SERVERNAME = @"DESKTOP-6HQ6JE6";
+
 
         public static DataProvider Instance
 
@@ -23,14 +31,13 @@ namespace DAL
 
         }
 
-        private readonly string strCon = @"server=DESKTOP-UPDAPIH\MSSQLSERVER01;database=DatabaseEnglishCenter;integrated security=true";
+        private readonly string strCon = $@"server={SERVERNAME};database=DatabaseEnglishCenter;User id={id};password={password}";
         private void hasParameter(SqlCommand cmd, string query, object[] para = null)
         {
             int i = 0;
             foreach (string parameter in query.Split(' ').ToArray().Where(p => p.Contains('@')))
             {
                 cmd.Parameters.AddWithValue(parameter, para[i]);
-
                 i++;
             }
         }
@@ -102,8 +109,6 @@ namespace DAL
                     if (para != null)
                     {
                         hasParameter(cmd, query, para);
-
-
 
                     }
                     if (cmd.ExecuteScalar() == null)
