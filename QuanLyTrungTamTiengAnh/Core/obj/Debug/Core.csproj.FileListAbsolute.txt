@@ -1,9 +1,0 @@
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.AssemblyReference.cache
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Core.dll
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Core.pdb
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\DAL.dll
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\DAL.pdb
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CopyComplete
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.dll
-E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.pdb
