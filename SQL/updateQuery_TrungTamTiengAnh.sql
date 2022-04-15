@@ -49,7 +49,6 @@ alter table Classes alter column teacher_id varchar(6) null;
   VALUES (@fullname, @dob, @phone,@address)
  end
  exec Add_Student 'Nguyen Mau Tuan', '2000-03-06','0949238337', 'Phu Dong Thien Vuong' 
- 
  create procedure Update_Student @id int, @fullname nvarchar(90), @dob date,
 							  @phone varchar(15), @address nvarchar(100) 
  as
@@ -196,9 +195,7 @@ end
   Order by  [So hoc sinh] DESC) r 
   on r.id =cl.id
   end
-
   EXEC CaHocCoLopHocNhieuNhat
-
   create procedure Add_Employess @id nvarchar(6), @branch_id int,@full_name nvarchar(50),@dob datetime,
                                  @phone varchar(15), @qualification nvarchar(30),
 								 @nation nvarchar(30), @jobtitle nvarchar(30),

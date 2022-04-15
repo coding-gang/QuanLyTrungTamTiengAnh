@@ -46,6 +46,8 @@
     <Compile Include="GenericRepositorys\IGenericRepository.cs" />
     <Compile Include="IConfiguration\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Registers\IRegisterRepository.cs" />
+    <Compile Include="Repository\Registers\RegisterRepository.cs" />
     <Compile Include="Repository\Students\IStudentRepository.cs" />
     <Compile Include="Repository\Students\StudentRepository.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />

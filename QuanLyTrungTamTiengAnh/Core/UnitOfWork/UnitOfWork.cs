@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.IConfiguration;
+using Core.Repository.Registers;
 using Core.Repository.Students;
 
 namespace Core.UnitOfWork
@@ -12,9 +13,12 @@ namespace Core.UnitOfWork
     {
         public IStudentRepository studentRepository { get; private set; }
 
+        public IRegisterRepository registerRepository { get; private set; }
+
         public UnitOfWork()
         {
             this.studentRepository = new StudentRepository();
+            this.registerRepository = new RegisterRepository();
         }
 
     }

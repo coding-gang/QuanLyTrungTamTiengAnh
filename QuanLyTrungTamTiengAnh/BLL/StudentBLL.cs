@@ -11,7 +11,7 @@ namespace BLL
     public class StudentBLL
     {
         public IUnitOfWork unitOfWork { get; private set; }
-        public StudentBLL(UnitOfWork unitOfWork)
+        public StudentBLL(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
