@@ -59,7 +59,8 @@ namespace Core.Repository.Employees
 
         public bool Delete(object id)
         {
-            return Command(query, para);
+            query = $"Delete from Employees where id = '{id}'";
+            return Command(query);
         }
 
         public IEnumerable<Employee> GetAll()

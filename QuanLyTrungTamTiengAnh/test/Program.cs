@@ -15,7 +15,7 @@ namespace test
         {
             var EmployeeBLL = new EmployeeBLL();
             var emp = new Employee();
-            EmployeeBLL.unitOfWork.employeeRepository.Add(emp);
+            EmployeeBLL.unitOfWork.employeeRepository.Delete("NV010");
         }
     }
 }
