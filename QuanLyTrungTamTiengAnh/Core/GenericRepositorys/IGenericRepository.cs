@@ -13,7 +13,7 @@ namespace Core.GenericRepositorys
         IEnumerable<T> GetAll();
        T GetById(object id);
        bool Add(T item);
-       bool Update(object id);
+       bool Update(T item);
        bool Delete(object id);
     }
 }

@@ -105,9 +105,25 @@ namespace Core.Repository.Employees
             return emp;
         }
 
-        public bool Update(object id)
+        public bool Update(Employee item)
         {
-            return Command(query);
+            query =  $"dbo.update_Employee @id , @branch_id , @full_name , @dob "
+                                + ", @phone , @qualification "
+                                + ", @nation , @jobtitle "
+                                 + ", @salary";
+            para = new object[]
+          {
+                item.Id ="NV009",
+                item.BranhId=2,
+                item.FullName="Nguyen Dinh Phat Trien",
+                item.DOB =DateTime.Parse("1999-9-3"),
+                item.Phone="0909190011",
+                item.Qualification="Dai Hoc",
+                item.Nation = "Viet Nam",
+                item.Jobtitle = "Giao Vien",
+                item.Salary =5000000
+          };
+            return Command(query,para);
         }
     };
 }

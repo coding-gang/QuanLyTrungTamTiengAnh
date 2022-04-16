@@ -54,12 +54,15 @@ namespace Core.Repository.Students
             return Command(query,para);
         }
 
-        public bool Update(object id)
-        {
+        //public bool Update(object id)
+        //{
            
+        //    return Command(query,para);
+        //}
+
+        public bool Update(Student item)
+        {
             return Command(query,para);
         }
-
-       
     }
 }
