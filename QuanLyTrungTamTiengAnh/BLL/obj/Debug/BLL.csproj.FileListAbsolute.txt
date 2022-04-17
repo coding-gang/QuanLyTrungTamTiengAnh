@@ -9,3 +9,5 @@ E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.csproj.CoreCo
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.csproj.CopyComplete
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.dll
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Dtos.pdb

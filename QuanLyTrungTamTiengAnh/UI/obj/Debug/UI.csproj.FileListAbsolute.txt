@@ -19,3 +19,5 @@ E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CoreComp
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CopyComplete
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.exe
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Dtos.pdb

@@ -7,3 +7,5 @@ E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.Core
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.csproj.CopyComplete
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.dll
 E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\obj\Debug\Core.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Core\bin\Debug\Dtos.pdb

@@ -7,7 +7,7 @@ using Core.GenericRepositorys;
 using DAL.Entities;
 namespace Core.Repository.Registers
 {
-  public  interface IRegisterRepository : IGenericRepository<Register>
+  public  interface IRegisterRepository : IGenericRepository<Register> , IGenericRegister
     {
     }
 }

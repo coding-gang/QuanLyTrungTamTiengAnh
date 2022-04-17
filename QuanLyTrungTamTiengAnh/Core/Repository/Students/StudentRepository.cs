@@ -60,7 +60,5 @@ namespace Core.Repository.Students
             para = new object[] { id, item.FullName, item.DoB, item.Phone, item.Address };
             return Command(query,para);
         }
-
-       
     }
 }

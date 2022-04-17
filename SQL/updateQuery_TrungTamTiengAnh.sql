@@ -217,3 +217,46 @@ end
  end
 
  exec GvChuaDuocPhanCong
+
+
+ create procedure getInfoRegisterByIdCourses @idCourses int   
+ as
+ begin
+ select *
+ from Case_study ca
+ inner join(
+ Select case_id,id as 'idClass'
+ from Classes
+ where course_id = @idCourses) cl
+ on cl.case_id = ca.id
+ end
+
+ exec getInfoRegisterByIdCourses 1
+
+ select * from Courses
+ select * from Students
+ create view DetailRegister as
+ select r.id, r.student_id,r.class_id,r.register_date,r.amount,r.status,
+        stu.full_name as 'Student', c.lessons as 'Lessons',cs.name as 'CaseStudy',cs.date_study as'Date study',
+		emp.full_name as 'Teacher',
+		b.name as 'Branch',cl.room,cl.active
+ from Registers r
+ inner join Students stu on stu.id = r.student_id
+ inner join Classes cl on cl.id =r.class_id
+ inner join Employees emp on emp.id =cl.teacher_id
+ inner join Case_study cs on cs.id =cl.case_id
+ inner join Branches b on b.id =cl.branch_id
+ inner join Courses c on c.id = cl.course_id
+ 
+ Select * from DetailRegister
+
+ select * from Classes
+
+
+ create procedure Add_Register @studentId int, @classId int, @registerDate datetime,
+                               @amount money, @status bit
+ as
+ begin
+  INSERT INTO Registers(student_id, class_id, register_date, amount, status)
+  VALUES (@studentId, @classId, @registerDate, @amount, @status)
+ end

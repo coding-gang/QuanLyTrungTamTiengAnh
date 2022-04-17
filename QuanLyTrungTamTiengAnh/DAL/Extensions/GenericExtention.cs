@@ -10,12 +10,10 @@ namespace DAL.Extensions
    public static class GenericExtention
     {
         private static List<string> NameCol { get; set; }
-        static GenericExtention()
-        {
-            NameCol = new List<string>();
-        }
+      
         public static List<string> InitNameColumn(this DataTable dataTable)
         {
+            NameCol = new List<string>();
             foreach (DataColumn column in dataTable.Columns)
             {
                 NameCol.Add(column.ColumnName.ToString());
