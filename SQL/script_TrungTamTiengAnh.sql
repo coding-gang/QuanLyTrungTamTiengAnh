@@ -249,7 +249,6 @@ VALUES (1,16,'GV005',2,6,'2022-3-11',4,1)
 
 select * from Case_study
 
-
 Alter Table Employees alter column full_name nvarchar(50);
 -- Register
 
@@ -262,4 +261,28 @@ INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (7, 2, '2022-3-5', 700000, 1)
 INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (8, 3, '2022-3-5', 700000, 1)
 
-select * from Registers
+select * from Registers;
+
+select * from Employees
+
+create procedure dbo.update_Employee  
+@Id varchar(6),
+@branch_id int,
+@full_name nvarchar(50), 
+@dob datetime,
+@phone varchar(15),
+@qualification varchar(30),
+@nation nvarchar(30),
+@jobtitle nvarchar(30),
+@salary int
+as
+begin
+	update Employees
+	set branch_id = @branch_id,full_name = @full_name, date_of_birth= @dob,phone = @phone,qualification = @qualification,
+		nation = @nation, jobtitle = @jobtitle, salary = @salary
+	where id = @Id
+end
+
+select * from Employees where id ='NV009'
+exec dbo.update_Employee @id ='NV009', @branch_id=2 , @full_name= N'Trần Minh Quân Nhân', @dob='2000-08-23 00:00:00.000',
+@phone='0916758493' , @qualification= N'Đại học' , @nation= N'Việt Nam' , @jobtitle =N'Kế toán', @salary=4000000
