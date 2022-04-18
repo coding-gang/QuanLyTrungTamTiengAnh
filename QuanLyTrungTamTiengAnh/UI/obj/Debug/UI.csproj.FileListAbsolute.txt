@@ -1,0 +1,15 @@
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.exe.config
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.exe
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\UI.pdb
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\FontAwesome.Sharp.dll
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Krypton.Toolkit.dll
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\bin\Debug\Krypton.Toolkit.xml
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csprojAssemblyReference.cache
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.Form1.resources
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.frmHome.resources
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.Properties.Resources.resources
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.GenerateResource.cache
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.csproj.CopyComplete
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.exe
+D:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\UI\obj\Debug\UI.pdb

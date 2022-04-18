@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Core.Extension
 {
-   public static class GetRowDataTable
+    public static class GetRowDataTable
     {
         private static List<string> NameCol { get; set; }
-        static  GetRowDataTable()
+        static GetRowDataTable()
         {
             NameCol = new List<string>();
         }
@@ -23,8 +23,8 @@ namespace Core.Extension
             return NameCol;
         }
 
-        public static List<string> GetValueRow(this DataRow row,List<string> rowValue,List<string> nameCol)
-        {   
+        public static List<string> GetValueRow(this DataRow row, List<string> rowValue, List<string> nameCol)
+        {
             for (int i = 0; i < nameCol.Count; i++)
             {
                 rowValue.Add(row[nameCol[i]].ToString());

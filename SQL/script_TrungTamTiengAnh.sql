@@ -1,4 +1,4 @@
-﻿
+﻿create Database DatabaseEnglishCenter
 
 USE DatabaseEnglishCenter
 GO
@@ -12,6 +12,7 @@ CREATE TABLE Students (
    address nvarchar(100)  NOT NULL,
    CONSTRAINT Students_pk PRIMARY KEY  (id)
 );
+select * from Students
 
 -- Table: Branch
 CREATE TABLE Branches (
@@ -154,12 +155,13 @@ VALUES (N'Chế Nguyệt Mai', '2011-3-23', '0395384374', N'75 Phan Đình Phùn
 INSERT INTO Students(full_name, date_of_birth, phone, address) 
 VALUES (N'Đoàn Minh Minh', '2012-3-3', '0364383214', N'76 Nguyễn Công Trứ')
 
+select * from Students
 -- Course
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'IELTS cơ bản', 60, 700000)
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'IELTS nâng cao', 90, 1200000)
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC cơ bản', 60, 500000)
 INSERT INTO Courses(lessons, duration, cost) VALUES (N'TOEIC nâng cao', 90, 1000000)
-
+select * from Case_study
 -- Case *********************
 
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 1', '7:00', N'Thứ 2 - Thứ 4')
@@ -182,6 +184,7 @@ INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'
 INSERT INTO Case_study(Name, start_time, date_study) VALUES ('Ca 3', '19:00', N'Thứ 3 - Thứ 7')
 
 -- Employee
+select * from Employees
 INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
 VALUES ('GV001', 1, N'Nguyễn Xuân Nam', '1993-3-11', '0912384732', N'Đại học', N'Việt Nam', N'Giáo viên', 4200000)
 INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary)
@@ -237,29 +240,49 @@ select * from Classes
 select * from Branches
 -- Class
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1,31,'GV001',1,5,'2022-3-11',4,1)
+VALUES (1,18,'GV001',1,5,'2022-3-11',4,1)
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1,32,'GV002',1,6,'2022-3-11',4,1)
+VALUES (1,17,'GV002',1,6,'2022-3-11',4,1)
 
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1,32,'GV005',2,6,'2022-3-11',4,1)
+VALUES (1,16,'GV005',2,6,'2022-3-11',4,1)
 
-
-
+select * from Case_study
 
 Alter Table Employees alter column full_name nvarchar(50);
 -- Register
 
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (1, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (2, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (3, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (4, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (5, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (6, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (7, 7, '2022-3-5', 700000, 1)
-INSERT INTO Registers(student_id, class_id, register_date, amount, status) VALUES (8, 7, '2022-3-5', 700000, 1)
+select * from Registers
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 4, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (2, 5, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (3, 1, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (5, 4, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (6, 4, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (7, 2, '2022-3-5', 700000, 1)
+INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (8, 3, '2022-3-5', 700000, 1)
 
+select * from Registers;
 
-INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 1)
-INSERT INTO Registers(student_id, class_id, payment_date, amount, status) VALUES (1, 2)
+select * from Employees
 
+create procedure dbo.update_Employee  
+@Id varchar(6),
+@branch_id int,
+@full_name nvarchar(50), 
+@dob datetime,
+@phone varchar(15),
+@qualification varchar(30),
+@nation nvarchar(30),
+@jobtitle nvarchar(30),
+@salary int
+as
+begin
+	update Employees
+	set branch_id = @branch_id,full_name = @full_name, date_of_birth= @dob,phone = @phone,qualification = @qualification,
+		nation = @nation, jobtitle = @jobtitle, salary = @salary
+	where id = @Id
+end
+
+select * from Employees where id ='NV009'
+exec dbo.update_Employee @id ='NV009', @branch_id=2 , @full_name= N'Trần Minh Quân Nhân', @dob='2000-08-23 00:00:00.000',
+@phone='0916758493' , @qualification= N'Đại học' , @nation= N'Việt Nam' , @jobtitle =N'Kế toán', @salary=4000000

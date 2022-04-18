@@ -1,3 +1,7 @@
+-- cqrs
+-- git flow
+-- facade
+use DatabaseEnglishCenter
 alter table Classes alter column teacher_id varchar(6) null;
  /*Chuyen lop cung chi nhanh hoac khac*/
   Create Procedure Update_Register @classId int, @studentId int
