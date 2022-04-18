@@ -49,10 +49,10 @@
             this.tpDangky = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.gbThongTinDK = new System.Windows.Forms.GroupBox();
             this.dtgDangky = new Krypton.Toolkit.KryptonDataGridView();
             this.panel20 = new System.Windows.Forms.Panel();
             this.btnSuadk = new FontAwesome.Sharp.IconButton();
-            this.btnTimkiemdk = new FontAwesome.Sharp.IconButton();
             this.txbMahocvien = new Krypton.Toolkit.KryptonTextBox();
             this.btnXoadk = new FontAwesome.Sharp.IconButton();
             this.btnXuathoadondk = new FontAwesome.Sharp.IconButton();
@@ -130,7 +130,13 @@
             this.mnuBaocao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHotro = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHome = new System.Windows.Forms.MenuStrip();
-            this.gbThongTinDK = new System.Windows.Forms.GroupBox();
+            this.txtLesson = new Krypton.Toolkit.KryptonLabel();
+            this.txtDuration = new Krypton.Toolkit.KryptonLabel();
+            this.txtInfoDuration = new Krypton.Toolkit.KryptonLabel();
+            this.txtInfoLesson = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel8 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel9 = new Krypton.Toolkit.KryptonLabel();
+            this.tbTuition = new Krypton.Toolkit.KryptonTextBox();
             this.panel2.SuspendLayout();
             this.tc1.SuspendLayout();
             this.tpHocvien.SuspendLayout();
@@ -144,6 +150,7 @@
             this.tpDangky.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.gbThongTinDK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDangky)).BeginInit();
             this.panel20.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -168,7 +175,6 @@
             this.panel15.SuspendLayout();
             this.kryptonStatusStrip1.SuspendLayout();
             this.mnuHome.SuspendLayout();
-            this.gbThongTinDK.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -387,6 +393,17 @@
             this.panel13.Size = new System.Drawing.Size(776, 171);
             this.panel13.TabIndex = 1;
             // 
+            // gbThongTinDK
+            // 
+            this.gbThongTinDK.Controls.Add(this.dtgDangky);
+            this.gbThongTinDK.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbThongTinDK.Location = new System.Drawing.Point(0, 41);
+            this.gbThongTinDK.Name = "gbThongTinDK";
+            this.gbThongTinDK.Size = new System.Drawing.Size(776, 130);
+            this.gbThongTinDK.TabIndex = 14;
+            this.gbThongTinDK.TabStop = false;
+            this.gbThongTinDK.Text = "Thông tin đăng ký";
+            // 
             // dtgDangky
             // 
             this.dtgDangky.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -395,11 +412,14 @@
             this.dtgDangky.Name = "dtgDangky";
             this.dtgDangky.Size = new System.Drawing.Size(770, 111);
             this.dtgDangky.TabIndex = 0;
+            this.dtgDangky.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgDangky_CellBeginEdit);
+            this.dtgDangky.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDangky_CellContentClick);
+            this.dtgDangky.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDangky_CellEndEdit);
             // 
             // panel20
             // 
+            this.panel20.Controls.Add(this.kryptonLabel8);
             this.panel20.Controls.Add(this.btnSuadk);
-            this.panel20.Controls.Add(this.btnTimkiemdk);
             this.panel20.Controls.Add(this.txbMahocvien);
             this.panel20.Controls.Add(this.btnXoadk);
             this.panel20.Controls.Add(this.btnXuathoadondk);
@@ -421,24 +441,14 @@
             this.btnSuadk.Text = "Sửa";
             this.btnSuadk.UseVisualStyleBackColor = true;
             // 
-            // btnTimkiemdk
-            // 
-            this.btnTimkiemdk.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnTimkiemdk.IconColor = System.Drawing.Color.Black;
-            this.btnTimkiemdk.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTimkiemdk.Location = new System.Drawing.Point(693, 6);
-            this.btnTimkiemdk.Name = "btnTimkiemdk";
-            this.btnTimkiemdk.Size = new System.Drawing.Size(75, 23);
-            this.btnTimkiemdk.TabIndex = 12;
-            this.btnTimkiemdk.Text = "Tìm kiếm";
-            this.btnTimkiemdk.UseVisualStyleBackColor = true;
-            // 
             // txbMahocvien
             // 
-            this.txbMahocvien.Location = new System.Drawing.Point(514, 6);
+            this.txbMahocvien.Location = new System.Drawing.Point(616, 6);
             this.txbMahocvien.Name = "txbMahocvien";
             this.txbMahocvien.Size = new System.Drawing.Size(154, 23);
             this.txbMahocvien.TabIndex = 11;
+            this.txbMahocvien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbMahocvien_KeyPress);
+            this.txbMahocvien.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbMahocvien_KeyUp);
             // 
             // btnXoadk
             // 
@@ -505,6 +515,8 @@
             // 
             // panel21
             // 
+            this.panel21.Controls.Add(this.tbTuition);
+            this.panel21.Controls.Add(this.kryptonLabel9);
             this.panel21.Controls.Add(this.tbCost);
             this.panel21.Controls.Add(this.cbbCourses);
             this.panel21.Controls.Add(this.lblHocvien);
@@ -531,7 +543,7 @@
             this.tbCost.Location = new System.Drawing.Point(86, 55);
             this.tbCost.Name = "tbCost";
             this.tbCost.ReadOnly = true;
-            this.tbCost.Size = new System.Drawing.Size(194, 23);
+            this.tbCost.Size = new System.Drawing.Size(116, 23);
             this.tbCost.TabIndex = 15;
             // 
             // cbbCourses
@@ -556,6 +568,8 @@
             // 
             // cbbHocvien
             // 
+            this.cbbHocvien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbHocvien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbHocvien.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cbbHocvien.DropDownWidth = 209;
             this.cbbHocvien.IntegralHeight = false;
@@ -600,7 +614,7 @@
             // 
             // tbStartTime
             // 
-            this.tbStartTime.Location = new System.Drawing.Point(289, 115);
+            this.tbStartTime.Location = new System.Drawing.Point(289, 112);
             this.tbStartTime.Name = "tbStartTime";
             this.tbStartTime.ReadOnly = true;
             this.tbStartTime.Size = new System.Drawing.Size(100, 23);
@@ -669,6 +683,10 @@
             // grbThanhtoanhocphi
             // 
             this.grbThanhtoanhocphi.AutoSize = true;
+            this.grbThanhtoanhocphi.Controls.Add(this.txtInfoLesson);
+            this.grbThanhtoanhocphi.Controls.Add(this.txtInfoDuration);
+            this.grbThanhtoanhocphi.Controls.Add(this.txtDuration);
+            this.grbThanhtoanhocphi.Controls.Add(this.txtLesson);
             this.grbThanhtoanhocphi.Controls.Add(this.tbMoney);
             this.grbThanhtoanhocphi.Controls.Add(this.nmrConno);
             this.grbThanhtoanhocphi.Controls.Add(this.btnThanhtoandk);
@@ -687,7 +705,7 @@
             // 
             // tbMoney
             // 
-            this.tbMoney.Location = new System.Drawing.Point(117, 48);
+            this.tbMoney.Location = new System.Drawing.Point(117, 112);
             this.tbMoney.Name = "tbMoney";
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(253, 23);
@@ -695,22 +713,29 @@
             // 
             // nmrConno
             // 
-            this.nmrConno.Location = new System.Drawing.Point(119, 93);
+            this.nmrConno.Location = new System.Drawing.Point(119, 148);
+            this.nmrConno.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
             this.nmrConno.Name = "nmrConno";
             this.nmrConno.Size = new System.Drawing.Size(151, 20);
             this.nmrConno.TabIndex = 19;
             // 
             // btnThanhtoandk
             // 
-            this.btnThanhtoandk.Location = new System.Drawing.Point(289, 92);
+            this.btnThanhtoandk.Location = new System.Drawing.Point(289, 147);
             this.btnThanhtoandk.Name = "btnThanhtoandk";
             this.btnThanhtoandk.Size = new System.Drawing.Size(83, 25);
             this.btnThanhtoandk.TabIndex = 17;
             this.btnThanhtoandk.Values.Text = "Thanh toán";
+            this.btnThanhtoandk.Visible = false;
+            this.btnThanhtoandk.Click += new System.EventHandler(this.btnThanhtoandk_Click);
             // 
             // lblConno
             // 
-            this.lblConno.Location = new System.Drawing.Point(8, 93);
+            this.lblConno.Location = new System.Drawing.Point(8, 148);
             this.lblConno.Name = "lblConno";
             this.lblConno.Size = new System.Drawing.Size(53, 20);
             this.lblConno.TabIndex = 7;
@@ -718,7 +743,7 @@
             // 
             // lblSotien
             // 
-            this.lblSotien.Location = new System.Drawing.Point(8, 51);
+            this.lblSotien.Location = new System.Drawing.Point(8, 115);
             this.lblSotien.Name = "lblSotien";
             this.lblSotien.Size = new System.Drawing.Size(64, 20);
             this.lblSotien.TabIndex = 6;
@@ -1154,16 +1179,60 @@
             this.mnuHome.TabIndex = 0;
             this.mnuHome.Text = "menuStripHome";
             // 
-            // gbThongTinDK
+            // txtLesson
             // 
-            this.gbThongTinDK.Controls.Add(this.dtgDangky);
-            this.gbThongTinDK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbThongTinDK.Location = new System.Drawing.Point(0, 41);
-            this.gbThongTinDK.Name = "gbThongTinDK";
-            this.gbThongTinDK.Size = new System.Drawing.Size(776, 130);
-            this.gbThongTinDK.TabIndex = 14;
-            this.gbThongTinDK.TabStop = false;
-            this.gbThongTinDK.Text = "Thông tin đăng ký";
+            this.txtLesson.Location = new System.Drawing.Point(8, 55);
+            this.txtLesson.Name = "txtLesson";
+            this.txtLesson.Size = new System.Drawing.Size(64, 20);
+            this.txtLesson.TabIndex = 21;
+            this.txtLesson.Values.Text = "Khóa học:";
+            // 
+            // txtDuration
+            // 
+            this.txtDuration.Location = new System.Drawing.Point(8, 85);
+            this.txtDuration.Name = "txtDuration";
+            this.txtDuration.Size = new System.Drawing.Size(72, 20);
+            this.txtDuration.TabIndex = 24;
+            this.txtDuration.Values.Text = "Thời lượng:";
+            // 
+            // txtInfoDuration
+            // 
+            this.txtInfoDuration.Location = new System.Drawing.Point(116, 86);
+            this.txtInfoDuration.Name = "txtInfoDuration";
+            this.txtInfoDuration.Size = new System.Drawing.Size(28, 20);
+            this.txtInfoDuration.TabIndex = 25;
+            this.txtInfoDuration.Values.Text = "giờ";
+            // 
+            // txtInfoLesson
+            // 
+            this.txtInfoLesson.Location = new System.Drawing.Point(117, 55);
+            this.txtInfoLesson.Name = "txtInfoLesson";
+            this.txtInfoLesson.Size = new System.Drawing.Size(6, 2);
+            this.txtInfoLesson.TabIndex = 26;
+            this.txtInfoLesson.Values.Text = "";
+            // 
+            // kryptonLabel8
+            // 
+            this.kryptonLabel8.Location = new System.Drawing.Point(504, 9);
+            this.kryptonLabel8.Name = "kryptonLabel8";
+            this.kryptonLabel8.Size = new System.Drawing.Size(106, 20);
+            this.kryptonLabel8.TabIndex = 12;
+            this.kryptonLabel8.Values.Text = "Tìm kím theo tên:";
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(208, 55);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(83, 20);
+            this.kryptonLabel9.TabIndex = 16;
+            this.kryptonLabel9.Values.Text = "Số tiền đóng:";
+            // 
+            // tbTuition
+            // 
+            this.tbTuition.Location = new System.Drawing.Point(289, 55);
+            this.tbTuition.Name = "tbTuition";
+            this.tbTuition.Size = new System.Drawing.Size(100, 23);
+            this.tbTuition.TabIndex = 17;
             // 
             // frmHome
             // 
@@ -1193,6 +1262,7 @@
             this.tpDangky.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
+            this.gbThongTinDK.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDangky)).EndInit();
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
@@ -1226,7 +1296,6 @@
             this.kryptonStatusStrip1.PerformLayout();
             this.mnuHome.ResumeLayout(false);
             this.mnuHome.PerformLayout();
-            this.gbThongTinDK.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1255,7 +1324,6 @@
         private System.Windows.Forms.Panel panel5;
         private Krypton.Toolkit.KryptonDataGridView dtgDangky;
         private System.Windows.Forms.Panel panel13;
-        private FontAwesome.Sharp.IconButton btnTimkiemdk;
         private Krypton.Toolkit.KryptonTextBox txbMahocvien;
         private FontAwesome.Sharp.IconButton btnXuathoadondk;
         private FontAwesome.Sharp.IconButton btnXoadk;
@@ -1337,5 +1405,12 @@
         private Krypton.Toolkit.KryptonComboBox cbbCourses;
         private Krypton.Toolkit.KryptonTextBox tbCost;
         private System.Windows.Forms.GroupBox gbThongTinDK;
+        private Krypton.Toolkit.KryptonLabel txtInfoDuration;
+        private Krypton.Toolkit.KryptonLabel txtDuration;
+        private Krypton.Toolkit.KryptonLabel txtLesson;
+        private Krypton.Toolkit.KryptonLabel txtInfoLesson;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel8;
+        private Krypton.Toolkit.KryptonTextBox tbTuition;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel9;
     }
 }

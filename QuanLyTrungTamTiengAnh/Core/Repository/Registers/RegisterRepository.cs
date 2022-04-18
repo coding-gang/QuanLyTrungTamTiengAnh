@@ -38,6 +38,8 @@ namespace Core.Repository.Registers
                 register.BranchName = row[11];
                 register.Room = row[12];
                 register.Active = bool.Parse(row[13]);
+                register.Cost = decimal.Parse(row[14]);
+                register.Duration = int.Parse(row[15]);
                 detailRegisters.Add(register);
             }
            
@@ -97,6 +99,13 @@ namespace Core.Repository.Registers
                 infoToRegisters.Add(infoRegister);
             }
             return infoToRegisters;
+        }
+
+        public bool PaymentTuition(int idRegister, decimal money)
+        {
+            query = "dbo.PaymentTuition @idRegister , @amount";
+            para = new object[] { idRegister, money };
+            return Command(query, para);
         }
     }
 }

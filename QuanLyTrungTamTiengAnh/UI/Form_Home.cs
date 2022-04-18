@@ -22,6 +22,8 @@ namespace UI
         private StudentBLL  _studentBLL  = null;
         private CoursesBLL  _coursesBLL  = null;
         private IDictionary<int, int> dictionaryClassCaseStudy =null;
+        private List<DetailRegister> detailRegisters = null;
+        private int IdCaseStudy { get; set; }
         public frmHome()
         {
             InitializeComponent();
@@ -38,10 +40,13 @@ namespace UI
         }
         private void LoadRegisters()
         {
-           dtgDangky.DataSource = _registerBLL.unitOfWork.registerRepository.GetAll();
-           dtgDangky.Columns["StudentId"].Visible = false;
+            detailRegisters =(List<DetailRegister>)_registerBLL.unitOfWork.registerRepository.GetAll();
+            dtgDangky.DataSource = detailRegisters;
+            dtgDangky.Columns["StudentId"].Visible = false;
             dtgDangky.Columns["ClassId"].Visible = false;
             dtgDangky.Columns["Id"].Visible = false;
+            dtgDangky.Columns["Cost"].Visible = false;
+            dtgDangky.Columns["Duration"].Visible = false;
         }
 
         private void LoadCourses()
@@ -98,6 +103,7 @@ namespace UI
         private void cbbCaHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
            var caseStudy    = (CaseStudys)cbbCaHoc.SelectedItem;
+           this.IdCaseStudy = caseStudy.Id;
            tbDateStudy.Text = caseStudy.DateStudy;
            tbStartTime.Text = caseStudy.StartTime;
         }
@@ -137,22 +143,24 @@ namespace UI
             }
             else
             {
-                AddStudent();
-                LoadStudents();
+                if(ConfirmAction($"Bạn có chắc thêm mới học sinh {txtFullName.Text} ?","Thêm học sinh!!"))
+                {
+                    AddStudent();
+                    LoadStudents();
+                }         
             }
         }
 
         private void AddRegister()
         {
-            var isNoPayment = String.IsNullOrEmpty(tbMoney.Text);
-            var caseStudyId = ((CaseStudys)cbbCaHoc.SelectedItem).Id;
-            var classId = dictionaryClassCaseStudy[caseStudyId];
+            var isNoPayment = String.IsNullOrEmpty(tbTuition.Text);
+            var classId = dictionaryClassCaseStudy[this.IdCaseStudy];
             var register = new Register
             {
                 StudentId = (int)((Student)cbbHocvien.SelectedItem).Id,
                 ClassId = classId,
                 PaymentDate = DateTime.Now,
-                Amount = isNoPayment ? 0 : decimal.Parse(tbMoney.Text),
+                Amount = isNoPayment ? 0 : decimal.Parse(tbTuition.Text),
                 Status = !isNoPayment
             };
             var isRegister = _registerBLL.unitOfWork.registerRepository.Add(register);
@@ -168,8 +176,119 @@ namespace UI
 
         private void btnDangkydk_Click(object sender, EventArgs e)
         {
-            AddRegister();
-            LoadRegisters();
+            if(ConfirmAction("Bạn có chắc muốn đăng ký ?", "Đăng ký khóa học!!"))
+            {
+                AddRegister();
+                LoadRegisters();
+            }
+           
+        }
+
+        private bool ConfirmAction(string message,string cation)
+        {
+            var confirmResult = MessageBox.Show(message,cation,MessageBoxButtons.YesNo);
+            return confirmResult == DialogResult.Yes;
+        }
+
+        private void dtgDangky_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           var register =  (DetailRegister)dtgDangky.CurrentRow.DataBoundItem;
+           SetInfoRegiter(register);
+        }
+        private decimal TuitionDebt(decimal cost, decimal amount)
+        {
+            var money = cost - amount;
+            return money;
+        }
+
+        private void btnThanhtoandk_Click(object sender, EventArgs e)
+        {
+            var tuitionDebt = nmrConno.Value;
+            var currentRow = dtgDangky.CurrentRow;
+            var index = currentRow.Index;
+            var register = (DetailRegister)currentRow.DataBoundItem;
+            var totalDebt = tuitionDebt + register.Amount;
+            var message = $"Đóng tiền học cho học sinh: {register.NameStudent}\nSố tiền:{FormatCurrency(totalDebt)} đồng";
+            if (ConfirmAction(message,"Đóng tiền học!!"))
+            {
+                PaymentTuition(totalDebt, register, index);
+            }
+            
+        }
+
+        private void PaymentTuition(decimal totalDebt, DetailRegister register,int index)
+        {
+            if (totalDebt > register.Cost)
+            {
+                Notify("Qúa số tiền đóng, vui lòng nhập lại");
+            }
+            else
+            {
+                bool isSuccess = _registerBLL.unitOfWork.registerRepository.PaymentTuition((int)register.Id, totalDebt);
+                if (isSuccess)
+                {
+                    Notify("Đóng tiền thành công");
+                    LoadRegisters();
+                    var registers = (List<DetailRegister>)dtgDangky.DataSource;
+                    var item = registers.Find(r => (int)r.Id == register.Id);
+                    SetInfoRegiter(item);
+                    dtgDangky.CurrentCell = dtgDangky.Rows[index].Cells[0];
+                    SearchRegisterByNameStudent();
+                }
+                else
+                {
+                    Notify("Đóng tiền thất bại");
+                }
+            }
+        }
+        private void SetInfoRegiter(DetailRegister detailRegister)
+        {
+            tbMoney.Text = FormatCurrency(detailRegister.Cost);
+            txtInfoLesson.Text = detailRegister.Lessons;
+            txtInfoDuration.Text = detailRegister.Duration.ToString() + " giờ";
+            var tuitionDebt = TuitionDebt(detailRegister.Cost, detailRegister.Amount);
+            nmrConno.Text = tuitionDebt.ToString();
+
+            if (tuitionDebt != 0m)
+            {
+                btnThanhtoandk.Visible = true;
+            }
+            else if (!detailRegister.Status)
+            {
+                btnThanhtoandk.Visible = true;
+            }
+            else
+            {
+                btnThanhtoandk.Visible = false;
+            }
+        }
+
+        private void txbMahocvien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
+            {
+                SearchRegisterByNameStudent();
+            }
+        }
+
+        private void txbMahocvien_KeyUp(object sender, KeyEventArgs e)
+        {
+             SearchRegisterByNameStudent();
+        }
+
+        private void SearchRegisterByNameStudent()
+        {
+            var listRegister = detailRegisters;
+            var listExistName = listRegister.Where(r => r.NameStudent.Contains(txbMahocvien.Text.Trim())).ToList();
+            if (listExistName.Count > 0)
+            {
+                dtgDangky.DataSource = listExistName;
+                SetInfoRegiter(listExistName[0]);
+            }
+            else
+            {
+                dtgDangky.DataSource = detailRegisters;
+            }
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Core.Repository.Registers
    public interface IGenericRegister
     {
         List<InfoToRegister> GetInfoToRegisters(int idCourse);
+        bool PaymentTuition(int idRegister, decimal money);
     }
 }

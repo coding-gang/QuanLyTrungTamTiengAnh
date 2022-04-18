@@ -24,6 +24,10 @@ namespace Dtos
 
         public string BranchName { get; set; }
 
-      
+        public decimal Cost { get; set; }
+
+        public int Duration { get; set; }
+
+
     }
 }

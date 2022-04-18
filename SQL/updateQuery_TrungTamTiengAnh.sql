@@ -235,11 +235,12 @@ end
 
  select * from Courses
  select * from Students
+ drop view DetailRegister
  create view DetailRegister as
  select r.id, r.student_id,r.class_id,r.register_date,r.amount,r.status,
         stu.full_name as 'Student', c.lessons as 'Lessons',cs.name as 'CaseStudy',cs.date_study as'Date study',
 		emp.full_name as 'Teacher',
-		b.name as 'Branch',cl.room,cl.active
+		b.name as 'Branch',cl.room,cl.active,c.cost,c.duration
  from Registers r
  inner join Students stu on stu.id = r.student_id
  inner join Classes cl on cl.id =r.class_id
@@ -260,3 +261,12 @@ end
   INSERT INTO Registers(student_id, class_id, register_date, amount, status)
   VALUES (@studentId, @classId, @registerDate, @amount, @status)
  end
+
+ create procedure PaymentTuition @idRegister int, @amount money
+ as
+ begin
+  Update Registers
+  set status =1 , amount =@amount
+  where id =@idRegister
+ end
+ select * from Case_study
