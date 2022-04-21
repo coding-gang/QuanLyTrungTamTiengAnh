@@ -39,7 +39,7 @@ alter table Classes alter column teacher_id varchar(6) null;
    exec Update_ClassByTeachId 7,'GV003'
 
  /*them hoc vien */
-
+ select * from Employees
  select * from Students
  create procedure Add_Student @fullname nvarchar(90), @dob date,
 							  @phone varchar(15), @address nvarchar(100)
@@ -231,7 +231,7 @@ end
  on cl.case_id = ca.id
  end
 
- exec getInfoRegisterByIdCourses 1
+ exec getInfoRegisterByIdCourses 4
 
  select * from Courses
  select * from Students
@@ -269,4 +269,31 @@ end
   set status =1 , amount =@amount
   where id =@idRegister
  end
+
  select * from Case_study
+ select * from Classes
+ select * from Courses
+ drop procedure GetCoursesByStudentId
+ create procedure GetCoursesByStudentId @idStudent int
+ as
+ begin
+ select course_id,lessons, idCaseStudy ,name as 'NameCaseStudy',start_time,date_study,fullname 
+ from Courses c
+ inner join(
+ Select course_id, case_id as 'idCaseStudy', fullname
+ from Classes cl
+ inner join(
+ select class_id ,std.full_name as 'fullname'
+ from Registers r
+ inner join (
+  select * from Students where id =@idStudent
+ ) std on std.id = r.student_id) r 
+ on cl.id = r.class_id ) cl
+ on c.id =cl.course_id
+ inner join Case_study ca on ca.id = idCaseStudy
+ end
+
+ exec GetCoursesByStudentId 8
+
+ select * 
+ from Branches 

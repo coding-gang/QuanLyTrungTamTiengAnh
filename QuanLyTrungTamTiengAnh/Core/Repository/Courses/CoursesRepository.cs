@@ -43,7 +43,18 @@ namespace Core.Repository.Courses
 
         public DAL.Entities.Courses GetById(object id)
         {
-            throw new NotImplementedException();
+            query = $"Select * from Courses where id ={id}";
+            var courses = new DAL.Entities.Courses();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            var dataRows = dataTable.GetRows(listRow);
+            foreach (var item in dataRows)
+            {
+                courses.Id = int.Parse(item[0]);
+                courses.Lesson = item[1];
+                courses.Duration = int.Parse(item[2]);
+                courses.Cost = decimal.Parse(item[3]);
+            }
+            return courses;
         }
 
         public bool Update(object id, DAL.Entities.Courses item)

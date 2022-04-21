@@ -25,7 +25,7 @@ namespace Core.Repository.Registers
             {
                 var register = new DetailRegister();
                 register.Id = int.Parse(row[0]);
-              //  register.StudentId = int.Parse(row[1]);
+                register.StudentId = int.Parse(row[1]);
                 register.ClassId = int.Parse(row[2]);
                 register.PaymentDate = DateTime.Parse(row[3]);
                 register.Amount = Decimal.Parse(row[4]);
@@ -105,6 +105,37 @@ namespace Core.Repository.Registers
         {
             query = "dbo.PaymentTuition @idRegister , @amount";
             para = new object[] { idRegister, money };
+            return Command(query, para);
+        }
+
+        public List<StudentRegister> RegisterClassForStudent(int idStudent)
+        {
+            query = "dbo.GetCoursesByStudentId @idStudent";
+            para = new object[] { idStudent };
+            var studentRegisters = new List<StudentRegister>();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query,para);
+            var dataRow = dataTable.GetRows(listRow);
+            foreach (var item in dataRow)
+            {
+                var studentRegister = new StudentRegister
+                {
+                    idCourses = int.Parse(item[0]),
+                    Lesson = item[1],
+                    idCaseStudy = int.Parse(item[2]),
+                    NameCaseStudy = item[3],
+                    StartTime = item[4],
+                    DateStudy = item[5],
+                    NameStudent =item[6]
+                };
+                studentRegisters.Add(studentRegister);
+            }
+            return studentRegisters;
+        }
+
+        public bool ExchangeClassStudent(int classId, int studentId)
+        {
+            query = "dbo.Update_Register @classId , @studentId";
+            para = new object[] { classId, studentId };
             return Command(query, para);
         }
     }

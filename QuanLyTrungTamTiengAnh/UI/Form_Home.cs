@@ -23,13 +23,15 @@ namespace UI
         private CoursesBLL  _coursesBLL  = null;
         private IDictionary<int, int> dictionaryClassCaseStudy =null;
         private List<DetailRegister> detailRegisters = null;
-        private int IdCaseStudy { get; set; }
+        private FormUpdateClassStudent frmUpdate = null;
+        private int? IdCaseStudy { get; set; }
         public frmHome()
         {
             InitializeComponent();
             _registerBLL = new RegisterBLL(_unitOfWork);
             _studentBLL = new StudentBLL(_unitOfWork);
             _coursesBLL = new CoursesBLL(_unitOfWork);
+           
             
         }
         private void frmHome_Load(object sender, EventArgs e)
@@ -66,8 +68,18 @@ namespace UI
         private void LoadCaseStudy(List<CaseStudys> listCaseStudy)
         {
             cbbCaHoc.DataSource = listCaseStudy;
-            cbbCaHoc.DisplayMember = "Name";
-            cbbCaHoc.ValueMember   = "Id";
+            if (listCaseStudy.Count > 0)
+            {
+                cbbCaHoc.DisplayMember = "Name";
+                cbbCaHoc.ValueMember = "Id";
+            }
+            else
+            {
+                cbbCaHoc.DisplayMember = "";
+                cbbCaHoc.ValueMember = "";
+            }
+         
+
         }
         private List<CaseStudys> InitCaseStudys(List<InfoToRegister> infoToRegisters)
         {
@@ -91,7 +103,18 @@ namespace UI
             var idCourses = int.Parse(cbbCourses.SelectedValue.ToString());
             var infoRegisters = _registerBLL.unitOfWork.registerRepository.GetInfoToRegisters(idCourses);
             var listCaseStudy = InitCaseStudys(infoRegisters);
-            LoadCaseStudy(listCaseStudy);
+            if(listCaseStudy.Count > 0)
+            {
+                LoadCaseStudy(listCaseStudy);
+            }
+            else
+            {
+                cbbCaHoc.Text = String.Empty;
+                this.IdCaseStudy = null;
+                tbDateStudy.Text = String.Empty;
+                tbStartTime.Text = String.Empty;
+            }
+        
         }
 
         private string FormatCurrency(decimal money)
@@ -102,10 +125,15 @@ namespace UI
 
         private void cbbCaHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-           var caseStudy    = (CaseStudys)cbbCaHoc.SelectedItem;
-           this.IdCaseStudy = caseStudy.Id;
-           tbDateStudy.Text = caseStudy.DateStudy;
-           tbStartTime.Text = caseStudy.StartTime;
+            SetTextCaseStudy();
+        }
+
+        private void SetTextCaseStudy()
+        {
+            var caseStudy = (CaseStudys)cbbCaHoc.SelectedItem;
+            this.IdCaseStudy = caseStudy.Id;
+            tbDateStudy.Text = caseStudy.DateStudy;
+            tbStartTime.Text = caseStudy.StartTime;
         }
 
         private void AddStudent()
@@ -151,27 +179,44 @@ namespace UI
             }
         }
 
+        private bool IsAddRegister()
+        {
+           return String.IsNullOrEmpty(cbbCaHoc.Text) &&
+                  String.IsNullOrEmpty(tbDateStudy.Text) &&
+                  String.IsNullOrEmpty(tbStartTime.Text) ||
+                  this.IdCaseStudy == null ? true : false;
+            
+        }
+
         private void AddRegister()
         {
-            var isNoPayment = String.IsNullOrEmpty(tbTuition.Text);
-            var classId = dictionaryClassCaseStudy[this.IdCaseStudy];
-            var register = new Register
+            if (IsAddRegister())
             {
-                StudentId = (int)((Student)cbbHocvien.SelectedItem).Id,
-                ClassId = classId,
-                PaymentDate = DateTime.Now,
-                Amount = isNoPayment ? 0 : decimal.Parse(tbTuition.Text),
-                Status = !isNoPayment
-            };
-            var isRegister = _registerBLL.unitOfWork.registerRepository.Add(register);
-            if (isRegister)
-            {
-                Notify("Đăng ký khóa học thành công!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
             }
             else
             {
-                Notify("Đăng ký thất bại!");
+                var isNoPayment = String.IsNullOrEmpty(tbTuition.Text);
+                var classId = dictionaryClassCaseStudy[(int)this.IdCaseStudy];
+                var register = new Register
+                {
+                    StudentId = (int)((Student)cbbHocvien.SelectedItem).Id,
+                    ClassId = classId,
+                    PaymentDate = DateTime.Now,
+                    Amount = isNoPayment ? 0 : decimal.Parse(tbTuition.Text),
+                    Status = !isNoPayment
+                };
+                var isRegister = _registerBLL.unitOfWork.registerRepository.Add(register);
+                if (isRegister)
+                {
+                    Notify("Đăng ký khóa học thành công!");
+                }
+                else
+                {
+                    Notify("Đăng ký thất bại!");
+                }
             }
+
         }
 
         private void btnDangkydk_Click(object sender, EventArgs e)
@@ -289,6 +334,38 @@ namespace UI
             {
                 dtgDangky.DataSource = detailRegisters;
             }
+        }
+
+        private void dtgDangky_CellContextMenuStripChanged(object sender, DataGridViewCellEventArgs e)
+        {
+        
+        }
+
+        private void dtgDangky_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Cập nhật ca học", MenuItemNew_Click));
+                int currentMouseOverRow = dtgDangky.HitTest(e.X, e.Y).RowIndex;
+                var nameStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
+                var student = detailRegisters.Find(d => d.NameStudent.Equals(nameStudent));
+                m.Show(dtgDangky, new Point(e.X, e.Y));
+                this.frmUpdate = new FormUpdateClassStudent(_registerBLL, (int)student.StudentId);
+                this.frmUpdate.EventUpdateHandler += FrmUpdate_EventUpdateHandler;   
+            }
+        }
+
+        private void FrmUpdate_EventUpdateHandler(object sender, FormUpdateClassStudent.UpdateEventArgs args)
+        {
+            LoadRegisters();
+            this.frmUpdate.Hide();
+        }
+
+        private void MenuItemNew_Click(Object sender, System.EventArgs e)
+        {
+            frmUpdate.Show();
+           
         }
     }
 }

@@ -10,5 +10,9 @@ namespace Core.Repository.Registers
     {
         List<InfoToRegister> GetInfoToRegisters(int idCourse);
         bool PaymentTuition(int idRegister, decimal money);
+
+        List<StudentRegister> RegisterClassForStudent(int idStudent);
+
+        bool ExchangeClassStudent(int classId, int studentId);
     }
 }

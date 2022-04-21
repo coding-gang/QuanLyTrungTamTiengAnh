@@ -52,6 +52,7 @@
             this.gbThongTinDK = new System.Windows.Forms.GroupBox();
             this.dtgDangky = new Krypton.Toolkit.KryptonDataGridView();
             this.panel20 = new System.Windows.Forms.Panel();
+            this.kryptonLabel8 = new Krypton.Toolkit.KryptonLabel();
             this.btnSuadk = new FontAwesome.Sharp.IconButton();
             this.txbMahocvien = new Krypton.Toolkit.KryptonTextBox();
             this.btnXoadk = new FontAwesome.Sharp.IconButton();
@@ -61,6 +62,8 @@
             this.grbThongtindangky = new System.Windows.Forms.GroupBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.tbTuition = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel9 = new Krypton.Toolkit.KryptonLabel();
             this.tbCost = new Krypton.Toolkit.KryptonTextBox();
             this.cbbCourses = new Krypton.Toolkit.KryptonComboBox();
             this.lblHocvien = new Krypton.Toolkit.KryptonLabel();
@@ -78,6 +81,10 @@
             this.kryptonLabel6 = new Krypton.Toolkit.KryptonLabel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.grbThanhtoanhocphi = new System.Windows.Forms.GroupBox();
+            this.txtInfoLesson = new Krypton.Toolkit.KryptonLabel();
+            this.txtInfoDuration = new Krypton.Toolkit.KryptonLabel();
+            this.txtDuration = new Krypton.Toolkit.KryptonLabel();
+            this.txtLesson = new Krypton.Toolkit.KryptonLabel();
             this.tbMoney = new Krypton.Toolkit.KryptonTextBox();
             this.nmrConno = new System.Windows.Forms.NumericUpDown();
             this.btnThanhtoandk = new Krypton.Toolkit.KryptonButton();
@@ -130,13 +137,7 @@
             this.mnuBaocao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHotro = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHome = new System.Windows.Forms.MenuStrip();
-            this.txtLesson = new Krypton.Toolkit.KryptonLabel();
-            this.txtDuration = new Krypton.Toolkit.KryptonLabel();
-            this.txtInfoDuration = new Krypton.Toolkit.KryptonLabel();
-            this.txtInfoLesson = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel8 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel9 = new Krypton.Toolkit.KryptonLabel();
-            this.tbTuition = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
             this.panel2.SuspendLayout();
             this.tc1.SuspendLayout();
             this.tpHocvien.SuspendLayout();
@@ -412,9 +413,9 @@
             this.dtgDangky.Name = "dtgDangky";
             this.dtgDangky.Size = new System.Drawing.Size(770, 111);
             this.dtgDangky.TabIndex = 0;
-            this.dtgDangky.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgDangky_CellBeginEdit);
             this.dtgDangky.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDangky_CellContentClick);
-            this.dtgDangky.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDangky_CellEndEdit);
+            this.dtgDangky.CellContextMenuStripChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDangky_CellContextMenuStripChanged);
+            this.dtgDangky.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dtgDangky_MouseClick);
             // 
             // panel20
             // 
@@ -428,6 +429,14 @@
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(776, 41);
             this.panel20.TabIndex = 13;
+            // 
+            // kryptonLabel8
+            // 
+            this.kryptonLabel8.Location = new System.Drawing.Point(504, 9);
+            this.kryptonLabel8.Name = "kryptonLabel8";
+            this.kryptonLabel8.Size = new System.Drawing.Size(106, 20);
+            this.kryptonLabel8.TabIndex = 12;
+            this.kryptonLabel8.Values.Text = "Tìm kím theo tên:";
             // 
             // btnSuadk
             // 
@@ -537,6 +546,21 @@
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(395, 182);
             this.panel21.TabIndex = 16;
+            // 
+            // tbTuition
+            // 
+            this.tbTuition.Location = new System.Drawing.Point(289, 55);
+            this.tbTuition.Name = "tbTuition";
+            this.tbTuition.Size = new System.Drawing.Size(100, 23);
+            this.tbTuition.TabIndex = 17;
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(208, 55);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(83, 20);
+            this.kryptonLabel9.TabIndex = 16;
+            this.kryptonLabel9.Values.Text = "Số tiền đóng:";
             // 
             // tbCost
             // 
@@ -702,6 +726,38 @@
             this.grbThanhtoanhocphi.TabIndex = 14;
             this.grbThanhtoanhocphi.TabStop = false;
             this.grbThanhtoanhocphi.Text = "Thanh toán học phí";
+            // 
+            // txtInfoLesson
+            // 
+            this.txtInfoLesson.Location = new System.Drawing.Point(117, 55);
+            this.txtInfoLesson.Name = "txtInfoLesson";
+            this.txtInfoLesson.Size = new System.Drawing.Size(6, 2);
+            this.txtInfoLesson.TabIndex = 26;
+            this.txtInfoLesson.Values.Text = "";
+            // 
+            // txtInfoDuration
+            // 
+            this.txtInfoDuration.Location = new System.Drawing.Point(116, 86);
+            this.txtInfoDuration.Name = "txtInfoDuration";
+            this.txtInfoDuration.Size = new System.Drawing.Size(28, 20);
+            this.txtInfoDuration.TabIndex = 25;
+            this.txtInfoDuration.Values.Text = "giờ";
+            // 
+            // txtDuration
+            // 
+            this.txtDuration.Location = new System.Drawing.Point(8, 85);
+            this.txtDuration.Name = "txtDuration";
+            this.txtDuration.Size = new System.Drawing.Size(72, 20);
+            this.txtDuration.TabIndex = 24;
+            this.txtDuration.Values.Text = "Thời lượng:";
+            // 
+            // txtLesson
+            // 
+            this.txtLesson.Location = new System.Drawing.Point(8, 55);
+            this.txtLesson.Name = "txtLesson";
+            this.txtLesson.Size = new System.Drawing.Size(64, 20);
+            this.txtLesson.TabIndex = 21;
+            this.txtLesson.Values.Text = "Khóa học:";
             // 
             // tbMoney
             // 
@@ -1179,61 +1235,6 @@
             this.mnuHome.TabIndex = 0;
             this.mnuHome.Text = "menuStripHome";
             // 
-            // txtLesson
-            // 
-            this.txtLesson.Location = new System.Drawing.Point(8, 55);
-            this.txtLesson.Name = "txtLesson";
-            this.txtLesson.Size = new System.Drawing.Size(64, 20);
-            this.txtLesson.TabIndex = 21;
-            this.txtLesson.Values.Text = "Khóa học:";
-            // 
-            // txtDuration
-            // 
-            this.txtDuration.Location = new System.Drawing.Point(8, 85);
-            this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(72, 20);
-            this.txtDuration.TabIndex = 24;
-            this.txtDuration.Values.Text = "Thời lượng:";
-            // 
-            // txtInfoDuration
-            // 
-            this.txtInfoDuration.Location = new System.Drawing.Point(116, 86);
-            this.txtInfoDuration.Name = "txtInfoDuration";
-            this.txtInfoDuration.Size = new System.Drawing.Size(28, 20);
-            this.txtInfoDuration.TabIndex = 25;
-            this.txtInfoDuration.Values.Text = "giờ";
-            // 
-            // txtInfoLesson
-            // 
-            this.txtInfoLesson.Location = new System.Drawing.Point(117, 55);
-            this.txtInfoLesson.Name = "txtInfoLesson";
-            this.txtInfoLesson.Size = new System.Drawing.Size(6, 2);
-            this.txtInfoLesson.TabIndex = 26;
-            this.txtInfoLesson.Values.Text = "";
-            // 
-            // kryptonLabel8
-            // 
-            this.kryptonLabel8.Location = new System.Drawing.Point(504, 9);
-            this.kryptonLabel8.Name = "kryptonLabel8";
-            this.kryptonLabel8.Size = new System.Drawing.Size(106, 20);
-            this.kryptonLabel8.TabIndex = 12;
-            this.kryptonLabel8.Values.Text = "Tìm kím theo tên:";
-            // 
-            // kryptonLabel9
-            // 
-            this.kryptonLabel9.Location = new System.Drawing.Point(208, 55);
-            this.kryptonLabel9.Name = "kryptonLabel9";
-            this.kryptonLabel9.Size = new System.Drawing.Size(83, 20);
-            this.kryptonLabel9.TabIndex = 16;
-            this.kryptonLabel9.Values.Text = "Số tiền đóng:";
-            // 
-            // tbTuition
-            // 
-            this.tbTuition.Location = new System.Drawing.Point(289, 55);
-            this.tbTuition.Name = "tbTuition";
-            this.tbTuition.Size = new System.Drawing.Size(100, 23);
-            this.tbTuition.TabIndex = 17;
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1412,5 +1413,6 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel8;
         private Krypton.Toolkit.KryptonTextBox tbTuition;
         private Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
     }
 }
