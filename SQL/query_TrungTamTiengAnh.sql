@@ -352,3 +352,10 @@ where FullName not in (Select FullName
  From Classes c, Employees emp 
  Where c.EmployeeID =emp.ID)
 
+  Create Procedure TimGiaoVienChuaDuocPhanDay
+ as
+ Select *
+ from Employees
+where full_name not in (Select full_name
+ From Classes c, Employees emp 
+ Where c.teacher_id =emp.ID)

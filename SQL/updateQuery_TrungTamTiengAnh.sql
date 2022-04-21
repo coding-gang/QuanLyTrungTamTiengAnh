@@ -1,7 +1,3 @@
--- cqrs
--- git flow
--- facade
-use DatabaseEnglishCenter
 alter table Classes alter column teacher_id varchar(6) null;
  /*Chuyen lop cung chi nhanh hoac khac*/
   Create Procedure Update_Register @classId int, @studentId int
@@ -43,7 +39,7 @@ alter table Classes alter column teacher_id varchar(6) null;
    exec Update_ClassByTeachId 7,'GV003'
 
  /*them hoc vien */
-
+ select * from Employees
  select * from Students
  create procedure Add_Student @fullname nvarchar(90), @dob date,
 							  @phone varchar(15), @address nvarchar(100)
@@ -53,7 +49,6 @@ alter table Classes alter column teacher_id varchar(6) null;
   VALUES (@fullname, @dob, @phone,@address)
  end
  exec Add_Student 'Nguyen Mau Tuan', '2000-03-06','0949238337', 'Phu Dong Thien Vuong' 
- 
  create procedure Update_Student @id int, @fullname nvarchar(90), @dob date,
 							  @phone varchar(15), @address nvarchar(100) 
  as
@@ -200,9 +195,7 @@ end
   Order by  [So hoc sinh] DESC) r 
   on r.id =cl.id
   end
-
   EXEC CaHocCoLopHocNhieuNhat
-
   create procedure Add_Employess @id nvarchar(6), @branch_id int,@full_name nvarchar(50),@dob datetime,
                                  @phone varchar(15), @qualification nvarchar(30),
 								 @nation nvarchar(30), @jobtitle nvarchar(30),
@@ -224,3 +217,101 @@ end
  end
 
  exec GvChuaDuocPhanCong
+
+
+ create procedure getInfoRegisterByIdCourses @idCourses int   
+ as
+ begin
+ select *
+ from Case_study ca
+ inner join(
+ Select case_id,id as 'idClass'
+ from Classes
+ where course_id = @idCourses) cl
+ on cl.case_id = ca.id
+ end
+
+ exec getInfoRegisterByIdCourses 4
+
+ select * from Courses
+ select * from Students
+ drop view DetailRegister
+ create view DetailRegister as
+ select r.id, r.student_id,r.class_id,r.register_date,r.amount,r.status,
+        stu.full_name as 'Student', c.lessons as 'Lessons',cs.name as 'CaseStudy',cs.date_study as'Date study',
+		emp.full_name as 'Teacher',
+		b.name as 'Branch',cl.room,cl.active,c.cost,c.duration
+ from Registers r
+ inner join Students stu on stu.id = r.student_id
+ inner join Classes cl on cl.id =r.class_id
+ inner join Employees emp on emp.id =cl.teacher_id
+ inner join Case_study cs on cs.id =cl.case_id
+ inner join Branches b on b.id =cl.branch_id
+ inner join Courses c on c.id = cl.course_id
+ 
+ Select * from DetailRegister
+
+ select * from Classes
+
+
+ create procedure Add_Register @studentId int, @classId int, @registerDate datetime,
+                               @amount money, @status bit
+ as
+ begin
+  INSERT INTO Registers(student_id, class_id, register_date, amount, status)
+  VALUES (@studentId, @classId, @registerDate, @amount, @status)
+ end
+
+ create procedure PaymentTuition @idRegister int, @amount money
+ as
+ begin
+  Update Registers
+  set status =1 , amount =@amount
+  where id =@idRegister
+ end
+
+ select * from Case_study
+ select * from Classes
+ select * from Courses
+ drop procedure GetCoursesByStudentId
+ create procedure GetCoursesByStudentId @idStudent int
+ as
+ begin
+ select course_id,lessons, idCaseStudy ,name as 'NameCaseStudy',start_time,date_study,fullname 
+ from Courses c
+ inner join(
+ Select course_id, case_id as 'idCaseStudy', fullname
+ from Classes cl
+ inner join(
+ select class_id ,std.full_name as 'fullname'
+ from Registers r
+ inner join (
+  select * from Students where id =@idStudent
+ ) std on std.id = r.student_id) r 
+ on cl.id = r.class_id ) cl
+ on c.id =cl.course_id
+ inner join Case_study ca on ca.id = idCaseStudy
+ end
+
+ exec GetCoursesByStudentId 8
+
+ select * 
+ from Branches 
+
+ create procedure dbo.update_Employee  
+@Id varchar(6),
+@branch_id int,
+@full_name nvarchar(50), 
+@dob datetime,
+@phone varchar(15),
+@qualification varchar(30),
+@nation nvarchar(30),
+@jobtitle nvarchar(30),
+@salary int
+as
+begin
+	update Employees
+	set branch_id = @branch_id,full_name = @full_name, date_of_birth= @dob,phone = @phone,qualification = @qualification,
+		nation = @nation, jobtitle = @jobtitle, salary = @salary
+	where id = @Id
+end
