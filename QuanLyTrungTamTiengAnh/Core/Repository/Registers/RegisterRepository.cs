@@ -8,6 +8,7 @@ using Core.GenericRepositorys;
 using DAL;
 using DAL.Extensions;
 using Dtos;
+
 namespace Core.Repository.Registers
 {
     class RegisterRepository : GenericRepository , IRegisterRepository

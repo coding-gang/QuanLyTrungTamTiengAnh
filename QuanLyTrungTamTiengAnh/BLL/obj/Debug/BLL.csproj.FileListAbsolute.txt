@@ -1,0 +1,13 @@
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\BLL.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\BLL.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Core.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\DAL.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Core.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\DAL.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\bin\Debug\Dtos.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\BLL\obj\Debug\BLL.pdb

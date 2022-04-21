@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.GenericRepositorys;
-using Core.Extension;
 using DAL.Entities;
+using DAL.Extensions;
 
 namespace Core.Repository.Students
 {
@@ -22,12 +22,14 @@ namespace Core.Repository.Students
 
         public  IEnumerable<Student> GetAll()
         {
+         
             query = "Select * from Students";
             List<Student> Students = new List<Student>();
             DataTable dataTable = dataProvider.ExcuteDataReader(query);
             var NameColumn = dataTable.InitNameColumn();
             foreach (DataRow row in dataTable.Rows)
             {
+               
                 listRow = new List<string>();
                 var data = row.GetValueRow(listRow, NameColumn);
                 var student = new Student(Id: int.Parse(data[0]),

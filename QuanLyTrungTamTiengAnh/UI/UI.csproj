@@ -111,15 +111,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{d13c5a42-34e7-44ea-914e-e02c128c1abc}</Project>
+      <Project>{D13C5A42-34E7-44EA-914E-E02C128C1ABC}</Project>
       <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{9c1bacbc-d0b7-4fbe-9559-84e3d98eed73}</Project>
+      <Project>{9C1BACBC-D0B7-4FBE-9559-84E3D98EED73}</Project>
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{810ae2a4-a2e5-4189-8d38-65018d61f63b}</Project>
+      <Project>{810AE2A4-A2E5-4189-8D38-65018D61F63B}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dtos\Dtos.csproj">

@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
-using BLL;
-using Core.IConfiguration;
 using Core.UnitOfWork;
-using DAL.Entities;
+using Core.IConfiguration;
+using BLL;
 using Dtos;
+using DAL.Entities;
+
 namespace UI
 {
     public partial class frmHome : Form
