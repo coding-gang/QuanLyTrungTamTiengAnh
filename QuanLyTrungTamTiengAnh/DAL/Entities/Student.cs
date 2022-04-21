@@ -8,13 +8,13 @@ namespace DAL.Entities
 {
    public class Student 
     {
-        public int Id { get; set; }
+        public int? Id { get; set; } = null;
         public string FullName { get; set; }
         public DateTime DoB { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
 
-        public Student(int Id,string FullName,DateTime DoB,string Phone,string Address)
+        public Student(int? Id,string FullName,DateTime DoB,string Phone,string Address)
         {
             this.Id = Id;
             this.FullName = FullName;
@@ -22,5 +22,6 @@ namespace DAL.Entities
             this.Phone = Phone;
             this.Address = Address;
         }
+        public Student() { }
     }
 }

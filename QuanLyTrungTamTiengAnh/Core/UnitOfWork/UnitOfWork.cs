@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.IConfiguration;
+using Core.Repository.Courses;
+using Core.Repository.Registers;
 using Core.Repository.Employees;
 using Core.Repository.Students;
 
@@ -13,12 +15,16 @@ namespace Core.UnitOfWork
   public class UnitOfWork : IUnitOfWork
     {
         public IStudentRepository studentRepository { get; private set; }
+        public IRegisterRepository registerRepository { get; private set; }
 
+        public ICoursesRepository coursesRepository { get; private set; }
         public IEmployeeRepository employeeRepository { get; private set;}
 
         public UnitOfWork()
         {
             this.studentRepository = new StudentRepository();
+            this.registerRepository = new RegisterRepository();
+            this.coursesRepository = new CoursesRepository();
             this.employeeRepository = new EmployeeRepository();
         }
 

@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
     <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\CaseStudys.cs" />
+    <Compile Include="Entities\Courses.cs" />
+    <Compile Include="Entities\Register.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Extensions\GenericExtention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

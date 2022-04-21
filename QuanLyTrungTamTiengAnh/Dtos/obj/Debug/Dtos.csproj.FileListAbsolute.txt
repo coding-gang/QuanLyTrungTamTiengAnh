@@ -1,0 +1,9 @@
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\obj\Debug\Dtos.csproj.AssemblyReference.cache
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\obj\Debug\Dtos.csproj.CoreCompileInputs.cache
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\bin\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\bin\Debug\Dtos.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\bin\Debug\DAL.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\bin\Debug\DAL.pdb
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\obj\Debug\Dtos.csproj.CopyComplete
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\obj\Debug\Dtos.dll
+E:\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\Dtos\obj\Debug\Dtos.pdb

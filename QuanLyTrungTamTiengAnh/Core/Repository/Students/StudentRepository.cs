@@ -12,7 +12,7 @@ namespace Core.Repository.Students
 {
    public class StudentRepository : GenericRepository, IStudentRepository
     {
-        public string query { get; set; }
+        public string query {  get; set; }
         public object[] para { get; set; }
 
         public StudentRepository():base()
@@ -56,14 +56,10 @@ namespace Core.Repository.Students
             return Command(query,para);
         }
 
-        //public bool Update(object id)
-        //{
-           
-        //    return Command(query,para);
-        //}
-
         public bool Update(object id, Student item)
         {
+            query = "Update_Student @id , @fullname , @dob , @phone , @address";
+            para = new object[] { id, item.FullName, item.DoB, item.Phone, item.Address };
             return Command(query,para);
         }
     }
