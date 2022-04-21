@@ -297,3 +297,21 @@ end
 
  select * 
  from Branches 
+
+ create procedure dbo.update_Employee  
+@Id varchar(6),
+@branch_id int,
+@full_name nvarchar(50), 
+@dob datetime,
+@phone varchar(15),
+@qualification varchar(30),
+@nation nvarchar(30),
+@jobtitle nvarchar(30),
+@salary int
+as
+begin
+	update Employees
+	set branch_id = @branch_id,full_name = @full_name, date_of_birth= @dob,phone = @phone,qualification = @qualification,
+		nation = @nation, jobtitle = @jobtitle, salary = @salary
+	where id = @Id
+end
