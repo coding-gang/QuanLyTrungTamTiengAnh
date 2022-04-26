@@ -22,6 +22,7 @@ namespace UI
         private RegisterBLL _registerBLL = null;
         private StudentBLL  _studentBLL  = null;
         private CoursesBLL  _coursesBLL  = null;
+        private ClassStudyBLL _classBll  = null;
         private IDictionary<int, int> dictionaryClassCaseStudy =null;
         private List<DetailRegister> detailRegisters = null;
         private FormUpdateClassStudent frmUpdate = null;
@@ -32,6 +33,7 @@ namespace UI
             _registerBLL = new RegisterBLL(_unitOfWork);
             _studentBLL = new StudentBLL(_unitOfWork);
             _coursesBLL = new CoursesBLL(_unitOfWork);
+            _classBll = new ClassStudyBLL(_unitOfWork); 
            
             
         }
@@ -40,6 +42,7 @@ namespace UI
             LoadStudents();
             LoadRegisters();
             LoadCourses();
+            LoadClassStudy();
         }
         private void LoadRegisters()
         {
@@ -52,6 +55,14 @@ namespace UI
             dtgDangky.Columns["Duration"].Visible = false;
         }
 
+        private void LoadClassStudy()
+        {
+            dtgClassStudy.DataSource = _classBll._unitOfWork.classStudyRepository.GetAll();
+            dtgClassStudy.Columns["CourseId"].Visible = false;
+            dtgClassStudy.Columns["CaseId"].Visible = false;
+            dtgClassStudy.Columns["EmpId"].Visible = false;
+            dtgClassStudy.Columns["BranchId"].Visible = false;
+        }
         private void LoadCourses()
         {
             cbbCourses.DisplayMember = "Lesson";
@@ -367,6 +378,16 @@ namespace UI
         {
             frmUpdate.Show();
            
+        }
+
+        private void panel24_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void kryptonLabel14_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
