@@ -12,7 +12,8 @@ alter table Classes alter column teacher_id varchar(6) null;
   select * from Registers
   select * from Classes
   select * from Employees
-   
+  select * from Case_study
+  select * from Branches
    drop Procedure Update_Branch_Emp
    /*Chuyen GV  chi nhanh khac- GV*/
   Create Procedure Update_Branch_Emp @branchCurrentId int,@branchExchangeId int ,@EmpId varchar(6)
@@ -315,3 +316,41 @@ begin
 		nation = @nation, jobtitle = @jobtitle, salary = @salary
 	where id = @Id
 end
+
+
+create view DetailClassStudy
+as
+select cl.id, c.lessons, cs.name as 'Ca h?c', emp.full_name as 'Giáo viên',
+b.name as 'Chi nhánh', cl.room,cl.start_date,cl.time_per_week,cl.active
+from Classes cl
+inner join Courses c
+on cl.course_id = c.id
+inner join Case_study cs
+on cs.id = cl.case_id
+inner join Employees emp
+on emp.id = cl.teacher_id
+inner join Branches b
+on b.id = cl.branch_id
+
+select * from DetailClassStudy
+
+create procedure Add_ClassStudy @course_id int, @case_id int, @teacher_id varchar(6), @branch_id int,
+                                @room int, @start_date date, @time_per_week int, @active bit
+as
+begin
+INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
+VALUES (@course_id,@case_id,@teacher_id,@branch_id,@room,@start_date,@time_per_week,@active)
+end
+
+select * from Case_study
+drop procedure AddCaseStudy
+create procedure AddCaseStudy @Name varchar(50), @start_time varchar(50), @date_study nvarchar(50)
+as
+begin
+INSERT INTO Case_study(Name, start_time, date_study) 
+VALUES (@Name, @start_time, @date_study)
+end
+
+
+
+delete Case_study where id =50

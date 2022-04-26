@@ -17,7 +17,9 @@ namespace Core.Repository.ClassStudy
 
         public bool Add(ClassStudys item)
         {
-            throw new NotImplementedException();
+            query = "dbo.Add_ClassStudy @course_id , @case_id , @teacher_id , @branch_id , @room , @start_date , @time_per_week , @active";
+            para = new object[] { item.CourseId, item.CaseId, item.EmpId, item.BranchId, item.Room, item.StartDate, item.TimePerWeek, item.Active };
+            return Command(query, para);
         }
 
         public bool Delete(object id)

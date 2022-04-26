@@ -23,19 +23,30 @@ namespace UI
         private StudentBLL  _studentBLL  = null;
         private CoursesBLL  _coursesBLL  = null;
         private ClassStudyBLL _classBll  = null;
+        private CaseStudyBLL _caseStudyBLL = null;
+        private EmployeeBLL _employeeBLL = null;
         private IDictionary<int, int> dictionaryClassCaseStudy =null;
         private List<DetailRegister> detailRegisters = null;
         private FormUpdateClassStudent frmUpdate = null;
+        private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
+        private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
+        private string[] DateStudy = new string[] { "Thứ 2 - Thứ 4", "Thứ 3 - Thứ 4","Thứ 3 - Thứ 5",
+                                                    "Thứ 3 - Thứ 6","Thứ 3 - Thứ 7","Thứ 2 - Thứ 5",
+                                                    "Thứ 2 - Thứ 6","Thứ 2 - Thứ 7","Thứ 2 - Thứ 3",
+                                                    "Thứ 4 - Thứ 6","Thứ 4 - Thứ 7","Thứ 4 - Thứ 4",
+                                                    "Thứ 5 - Thứ 6","Thứ 5 - Thứ 7","Thứ 6 - Thứ 7",
+                                                    "Thứ 2 - Thứ 3 - Thứ 4","Thứ 3 - Thứ 5 - Thứ 7","Thứ 2 - Thứ 6 - Thứ 7",
+                                                    "Thứ 4 - Thứ 6 - Thứ 7","Thứ 4 - Thứ 5 - Thứ 7","Thứ 5 - Thứ 6 - Thứ 7","Thứ 2 - Thứ 4 - Thứ 6"};
         private int? IdCaseStudy { get; set; }
         public frmHome()
         {
             InitializeComponent();
-            _registerBLL = new RegisterBLL(_unitOfWork);
-            _studentBLL = new StudentBLL(_unitOfWork);
-            _coursesBLL = new CoursesBLL(_unitOfWork);
-            _classBll = new ClassStudyBLL(_unitOfWork); 
-           
-            
+            _registerBLL  = new RegisterBLL(_unitOfWork);
+            _studentBLL   = new StudentBLL(_unitOfWork);
+            _coursesBLL   = new CoursesBLL(_unitOfWork);
+            _classBll     = new ClassStudyBLL(_unitOfWork);
+            _caseStudyBLL = new CaseStudyBLL(_unitOfWork);
+            _employeeBLL = new EmployeeBLL(_unitOfWork);
         }
         private void frmHome_Load(object sender, EventArgs e)
         {
@@ -43,7 +54,35 @@ namespace UI
             LoadRegisters();
             LoadCourses();
             LoadClassStudy();
+            LoadLopCourses();
+            LoadCaseStudy();
+            LoadBranch();
+            LoadEmployees();
+            LoadTimeDayClass();
+            LoadDateStudy();
         }
+
+        private void LoadTimeDayClass()
+        {
+            cbbTimeDate.DataSource = TimeDayClass;
+        }
+
+        private void LoadBranch()
+        {
+            cbbBranch.DataSource = branchs;
+        }
+
+        private void LoadDateStudy()
+        {
+            cbbDate.DataSource = DateStudy;
+        }
+        private void LoadEmployees()
+        {
+            cbbLopHocEmp.DisplayMember = "FullName";
+            cbbLopHocEmp.ValueMember   = "Id";
+            cbbLopHocEmp.DataSource = _employeeBLL._unitOfWork.employeeRepository.GetAll();
+        }
+
         private void LoadRegisters()
         {
             detailRegisters =(List<DetailRegister>)_registerBLL.unitOfWork.registerRepository.GetAll();
@@ -62,12 +101,28 @@ namespace UI
             dtgClassStudy.Columns["CaseId"].Visible = false;
             dtgClassStudy.Columns["EmpId"].Visible = false;
             dtgClassStudy.Columns["BranchId"].Visible = false;
+            dtgClassStudy.Columns["Id"].Visible = false;
+        }
+
+        private void LoadCaseStudy()
+        {
+            cbbLopCaHoc.DisplayMember = "Name";
+            cbbLopCaHoc.ValueMember   = "Id";
+            cbbLopCaHoc.DataSource    = _caseStudyBLL._unitOfWork.caseStudyRepository.GetAll();
+
         }
         private void LoadCourses()
         {
             cbbCourses.DisplayMember = "Lesson";
-            cbbCourses.ValueMember = "Id";
-            cbbCourses.DataSource =  _coursesBLL.unitOfWork.coursesRepository.GetAll();           
+            cbbCourses.ValueMember   = "Id";
+            cbbCourses.DataSource    =  _coursesBLL.unitOfWork.coursesRepository.GetAll();           
+        }
+
+        private void LoadLopCourses()
+        {
+            cbbLopHocKH.DisplayMember = "Lesson";
+            cbbLopHocKH.ValueMember = "Id";
+            cbbLopHocKH.DataSource = _coursesBLL.unitOfWork.coursesRepository.GetAll();
         }
 
         private void LoadStudents()
@@ -348,11 +403,6 @@ namespace UI
             }
         }
 
-        private void dtgDangky_CellContextMenuStripChanged(object sender, DataGridViewCellEventArgs e)
-        {
-        
-        }
-
         private void dtgDangky_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -380,14 +430,79 @@ namespace UI
            
         }
 
-        private void panel24_Paint(object sender, PaintEventArgs e)
+        private void cbbLopCaHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           var caseStudy = (CaseStudys)cbbLopCaHoc.SelectedItem;
+           tbLopNgayHoc.Text = caseStudy.DateStudy;
+           tbLopThoigian.Text = caseStudy.StartTime;
+        }
+        // them lop hoc
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if(ConfirmAction("Bạn có chắc muốn thêm lớp học!","Thêm mới lớp học!!"))
+            {
+                AddClassStudy();
+            }
+       
         }
 
-        private void kryptonLabel14_Click(object sender, EventArgs e)
+        private void AddClassStudy()
         {
-            
+            var coursesId = cbbLopHocKH.SelectedValue;
+            var caseStudyId = cbbLopCaHoc.SelectedValue;
+            var teacherId = cbbLopHocEmp.SelectedValue;
+            var branchId = cbbBranch.SelectedText == "Chi nhánh 1" ? 1 : 2;
+            var room = tbRoom.Text.Trim();
+            var timePerWeek = tbThoiGianHoc.Text.Trim();
+            var classStudy = new ClassStudys
+            {
+                CourseId = (int)coursesId,
+                CaseId = (int)caseStudyId,
+                EmpId = teacherId.ToString(),
+                BranchId = branchId,
+                Room = int.Parse(room),
+                StartDate = DateTime.Parse(dtNgayBatDau.Value.Date.ToString().Split(' ')[0]),
+                TimePerWeek = int.Parse(timePerWeek),
+                Active =true
+            };
+            bool isSuccess = _classBll._unitOfWork.classStudyRepository.Add(classStudy);
+            if (isSuccess)
+            {
+                Notify("Thêm lớp học mới thành công!");
+                LoadClassStudy();
+            }
+            else
+            {
+                Notify("Thêm lớp học thất bại!!");
+            }
+
+        }
+        // add ca hoc
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+           if(ConfirmAction("Bạn có chắc thêm ca học","Thêm ca học!!"))
+            {
+                AddCaseStudy();
+            }
+        }
+        private void AddCaseStudy()
+        {
+            var caseStudy = new CaseStudys
+            {
+                Name = tbNameCaHoc.Text,
+                DateStudy = cbbDate.Text,
+                StartTime = cbbTimeDate.Text,
+            };
+            bool isSuccess = _caseStudyBLL._unitOfWork.caseStudyRepository.Add(caseStudy);
+            if (isSuccess)
+            {
+                Notify("Thêm ca học thành công!");
+                LoadCaseStudy();
+            }
+            else
+            {
+                Notify("Thêm ca học thất bại!");
+            }
         }
     }
 }

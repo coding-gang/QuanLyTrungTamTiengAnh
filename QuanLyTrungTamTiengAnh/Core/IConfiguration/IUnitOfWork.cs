@@ -8,6 +8,7 @@ using Core.Repository.Registers;
 using Core.Repository.Courses;
 using Core.Repository.Employees;
 using Core.Repository.ClassStudy;
+using Core.Repository.CaseStudy;
 namespace Core.IConfiguration
 {
    public interface IUnitOfWork 
@@ -17,5 +18,7 @@ namespace Core.IConfiguration
        IRegisterRepository registerRepository { get; }
        ICoursesRepository coursesRepository { get; }
        IClassStudyRepository classStudyRepository { get; }
+
+       ICaseStudyRepository caseStudyRepository { get; }
     }
 }

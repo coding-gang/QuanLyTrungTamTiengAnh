@@ -17,7 +17,9 @@ namespace Core.Repository.CaseStudy
 
         public bool Add(CaseStudys item)
         {
-            throw new NotImplementedException();
+            query = "dbo.AddCaseStudy @Name , @start_time , @date_study";
+            para = new object[] { item.Name, item.StartTime, item.DateStudy };
+            return Command(query, para);
         }
 
         public bool Delete(object id)
@@ -27,7 +29,22 @@ namespace Core.Repository.CaseStudy
 
         public IEnumerable<CaseStudys> GetAll()
         {
-            throw new NotImplementedException();
+            query = "select* from Case_Study";
+            var listCaseStudy = new List<CaseStudys>();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            var dataRows = dataTable.GetRows(listRow);
+            foreach (var item in dataRows)
+            {
+                var caseStudy = new CaseStudys
+                {
+                  Id = int.Parse(item[0]),
+                  Name = item[1],
+                  StartTime = item[2],
+                  DateStudy = item[3]
+                };
+                listCaseStudy.Add(caseStudy);
+            }
+            return listCaseStudy;
         }
 
         public CaseStudys GetById(object id)
