@@ -46,6 +46,8 @@
     <Compile Include="GenericRepositorys\IGenericRepository.cs" />
     <Compile Include="IConfiguration\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Branchs\BranchRepository.cs" />
+    <Compile Include="Repository\Branchs\IBranchRepository.cs" />
     <Compile Include="Repository\ClassStudy\ClassStudyRepository.cs" />
     <Compile Include="Repository\ClassStudy\IClassStudyRepository.cs" />
     <Compile Include="Repository\ClassStudy\IGenericClassStudy.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Repository\CaseStudy\ICaseStudyRepository.cs" />
     <Compile Include="Repository\Courses\CoursesRepository.cs" />
     <Compile Include="Repository\Courses\ICoursesRepository.cs" />
+    <Compile Include="Repository\Employees\IGenericEmployee.cs" />
     <Compile Include="Repository\Registers\IGenericRegister.cs" />
     <Compile Include="Repository\Registers\IRegisterRepository.cs" />
     <Compile Include="Repository\Registers\RegisterRepository.cs" />

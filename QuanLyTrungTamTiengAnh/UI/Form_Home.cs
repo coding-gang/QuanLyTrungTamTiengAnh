@@ -14,10 +14,13 @@ using BLL;
 using Dtos;
 using DAL.Entities;
 
+
 namespace UI
 {
     public partial class frmHome : Form
     {
+        private EmployeeBLL empBLL = null;
+        private BranchBLL branchBLL = null;
         private IUnitOfWork _unitOfWork  = new UnitOfWork();
         private RegisterBLL _registerBLL = null;
         private StudentBLL  _studentBLL  = null;
@@ -30,6 +33,8 @@ namespace UI
         private List<DetailRegister> detailRegisters = null;
         private FormUpdateClassStudent frmUpdate = null;
         private frmBaoCao frmReport = null;
+        private List<Employee> employees = new List<Employee>();
+        private List<Branch> branches = new List<Branch>();
 
         private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
@@ -51,6 +56,8 @@ namespace UI
             _caseStudyBLL = new CaseStudyBLL(_unitOfWork);
             _employeeBLL = new EmployeeBLL(_unitOfWork);
             _reportBLL = new ReportBLL(_unitOfWork);
+            empBLL = new EmployeeBLL(_unitOfWork);
+            branchBLL = new BranchBLL(_unitOfWork);
         }
         private void frmHome_Load(object sender, EventArgs e)
         {
@@ -60,12 +67,76 @@ namespace UI
             LoadClassStudy();
             LoadLopCourses();
             LoadCaseStudy();
-            LoadBranch();
+            LoadBranchTemp();
             LoadEmployees();
             LoadTimeDayClass();
             LoadDateStudy();
             LoadCbbGiaoVien();
             LoadClassStudyWithoutTeacher();
+            LoadAllEmployee();
+            LoadBranch();
+            LoadLevel();
+            LoadJobTitle();
+            loadTypeSearch();
+        }
+        IDictionary<string, string> typeSearch = new Dictionary<string, string>()
+            {
+                {"Id","Mã nhân viên" },
+                 {"BranhId","Nhánh" },
+                {"FullName","Họ tên"},
+                {"DOB","Ngày sinh"},
+                {"Phone","SĐT" },
+                {"Qualification","Trình độ"},
+                {"Nation", "Quốc tịch" },
+                {"Jobtitle","Chức danh" },
+                 {"Salary","Lương" }
+            };
+
+        public void loadTypeSearch()
+        {
+            cbSearchType.DataSource = new BindingSource(typeSearch, null);
+            cbSearchType.ValueMember = "key";
+            cbSearchType.DisplayMember = "value";
+        }
+        private void SearchEmployeeByeName()
+        {
+            string typeSearch = cbSearchType.SelectedValue.ToString();
+            var listEmployee = employees;
+
+            var listNEmployeeExist = listEmployee.Where(employee =>
+                      employee.GetType().GetProperty(typeSearch).GetValue(employee).ToString().ToLower().Contains(txtSearchByName.Text.ToLower().Trim())).ToList();
+            if (listNEmployeeExist.Count > 0)
+            {
+                dtgNhanVien.DataSource = listNEmployeeExist;
+            }
+            else
+            {
+                dtgNhanVien.DataSource = employees;
+            }
+        }
+
+        public void LoadAllEmployee()
+        {
+
+            employees = (List<Employee>)empBLL._unitOfWork.employeeRepository.GetAll();
+            dtgNhanVien.DataSource = employees;
+        }
+        public void LoadBranch()
+        {
+            branches = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetAll();
+            cbBranch.DataSource = branches;
+            cbBranch.DisplayMember = "Name";
+            cbBranch.ValueMember = "Id";
+        }
+        public void LoadLevel()
+        {
+            string[] levels = { "Đại học", "Cao đẳng", "THCS" };
+            cbbLevel.DataSource = levels;
+        }
+        public void LoadJobTitle()
+        {
+            string[] jobTitles = { "Giáo viên", "lễ Tân", "Bảo vệ", "Kế toán", "Nhân viên" };
+            cbbJobTitle.DataSource = jobTitles;
         }
 
         private void LoadTimeDayClass()
@@ -73,7 +144,7 @@ namespace UI
             cbbTimeDate.DataSource = TimeDayClass;
         }
 
-        private void LoadBranch()
+        private void LoadBranchTemp()
         {
             cbbBranch.DataSource = branchs;
         }
@@ -631,5 +702,118 @@ namespace UI
             var listReport = _reportBLL._unitOfWork.reportRepository.TeacherNotInClass();
             dtgReportMax.DataSource = listReport;
         }
+
+        private void txtSearchByName_KeyUp(object sender, KeyEventArgs e)
+        {
+            //SearchEmployeeByeName();
+        }
+
+        private void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            Employee employee = new Employee
+            {
+                BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
+                FullName = txtFullName1.Text,
+                DOB = dtpDOB.CalendarTodayDate,
+                Phone = txtPhone.Text,
+                Qualification = cbbLevel.Text,
+                Nation = txtNation.Text,
+                Jobtitle = cbbJobTitle.Text,
+                Salary = int.Parse(txtSalary.Text)
+            };
+            var result = empBLL._unitOfWork.employeeRepository.Add(employee);
+            handleNotifyFromData(result, "Thêm nhân viên thành công", "Thêm nhân viên thất bại");
+        }
+        private void handleNotifyFromData(bool result, string notifySuccess, string notifyError)
+        {
+            if (result)
+            {
+                Notify(notifySuccess);
+                LoadAllEmployee();
+            }
+            else
+            {
+                Notify(notifyError);
+            }
+        }
+
+        string idEmployee = "";
+        Employee currentEmployee;
+        private void dtgNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            DataGridViewRow selectedRow = dtgNhanVien.Rows[index];
+            idEmployee = selectedRow.Cells[0].Value.ToString();
+            cbBranch.SelectedValue = selectedRow.Cells[1].Value;
+            txtFullName1.Text = selectedRow.Cells[2].Value.ToString();
+            dtpDOB.CalendarTodayText = selectedRow.Cells[3].Value.ToString();
+            txtPhone.Text = selectedRow.Cells[4].Value.ToString();
+            cbbLevel.Text = selectedRow.Cells[5].Value.ToString();
+            txtNation.Text = selectedRow.Cells[6].Value.ToString();
+            cbbJobTitle.Text = selectedRow.Cells[7].Value.ToString();
+            txtSalary.Text = selectedRow.Cells[8].Value.ToString();
+
+            currentEmployee = new Employee
+            {
+                Id = selectedRow.Cells[0].Value.ToString(),
+                BranhId = int.Parse(selectedRow.Cells[1].Value.ToString()),
+                FullName = selectedRow.Cells[2].Value.ToString(),
+                DOB = DateTime.Parse(selectedRow.Cells[3].Value.ToString()),
+                Phone = selectedRow.Cells[4].Value.ToString(),
+                Qualification = selectedRow.Cells[5].Value.ToString(),
+                Nation = selectedRow.Cells[6].Value.ToString(),
+                Jobtitle = selectedRow.Cells[7].Value.ToString(),
+                Salary = int.Parse(selectedRow.Cells[8].Value.ToString())
+            };
+        }
+
+        private void dtgNhanVien_Click(object sender, EventArgs e)
+        {
+            btnUpdateEmployee.Visible = true;
+            btnDeleteEmployee.Visible = true;
+        }
+
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        {
+
+            Employee employee = new Employee
+            {
+                Id = currentEmployee.Id,
+                BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
+                FullName = txtFullName1.Text,
+                DOB = DateTime.Parse(dtpDOB.Value.ToString()),
+                Phone = txtPhone.Text,
+                Qualification = cbbLevel.Text,
+                Nation = txtNation.Text,
+                Jobtitle = cbbJobTitle.Text,
+                Salary = int.Parse(txtSalary.Text)
+            };
+
+
+            if (currentEmployee.BranhId != employee.BranhId)
+            {
+
+                var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
+                var updateBranch = empBLL._unitOfWork.employeeRepository.UpdateBranchEmployee(currentEmployee.BranhId, employee.BranhId, employee.Id);
+                handleNotifyFromData(result && updateBranch, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
+
+            }
+            else
+            {
+                var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
+                handleNotifyFromData(result, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
+
+            }
+        }
+
+        private void btnDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            var result = empBLL._unitOfWork.employeeRepository.Delete(idEmployee);
+            handleNotifyFromData(result, "Xoá nhân viên thành công", "Xoá nhân viên thất bại");
+        }
+
+        ///\
+        ///
+
     }
 }

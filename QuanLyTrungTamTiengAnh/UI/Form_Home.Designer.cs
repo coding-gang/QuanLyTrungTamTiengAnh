@@ -31,15 +31,34 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.L = new System.Windows.Forms.TabControl();
             this.tpNhanvien = new System.Windows.Forms.TabPage();
-            this.kryptonDataGridView2 = new Krypton.Toolkit.KryptonDataGridView();
+            this.dtgNhanVien = new Krypton.Toolkit.KryptonDataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
-            this.kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
-            this.iconButton7 = new FontAwesome.Sharp.IconButton();
-            this.iconButton8 = new FontAwesome.Sharp.IconButton();
-            this.iconButton9 = new FontAwesome.Sharp.IconButton();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.kryptonLabel43 = new Krypton.Toolkit.KryptonLabel();
+            this.txtSearchByName = new Krypton.Toolkit.KryptonTextBox();
+            this.btnDeleteEmployee = new FontAwesome.Sharp.IconButton();
+            this.btnUpdateEmployee = new FontAwesome.Sharp.IconButton();
+            this.cbSearchType = new Krypton.Toolkit.KryptonComboBox();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dtpDOB = new Krypton.Toolkit.KryptonDateTimePicker();
+            this.btnAddEmployee = new Krypton.Toolkit.KryptonButton();
+            this.txtSalary = new System.Windows.Forms.TextBox();
+            this.txtNation = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtFullName1 = new System.Windows.Forms.TextBox();
+            this.cbbJobTitle = new Krypton.Toolkit.KryptonComboBox();
+            this.cbbLevel = new Krypton.Toolkit.KryptonComboBox();
+            this.cbBranch = new Krypton.Toolkit.KryptonComboBox();
+            this.kryptonLabel27 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel29 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel30 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel32 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel35 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel37 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel40 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel42 = new Krypton.Toolkit.KryptonLabel();
             this.tpDangky = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -100,8 +119,10 @@
             this.dtgClassStudy = new Krypton.Toolkit.KryptonDataGridView();
             this.panel24 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.kryptonButton7 = new Krypton.Toolkit.KryptonButton();
             this.cbbDate = new Krypton.Toolkit.KryptonComboBox();
             this.cbbTimeDate = new Krypton.Toolkit.KryptonComboBox();
+            this.kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.tbNameCaHoc = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel19 = new Krypton.Toolkit.KryptonLabel();
@@ -140,6 +161,35 @@
             this.cbbGanGv = new Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel22 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonTreeView1 = new Krypton.Toolkit.KryptonTreeView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.dtgReportMax = new Krypton.Toolkit.KryptonDataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.kryptonButton12 = new Krypton.Toolkit.KryptonButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.kryptonButton11 = new Krypton.Toolkit.KryptonButton();
+            this.tbHSCaHoc = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel41 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel44 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonButton10 = new Krypton.Toolkit.KryptonButton();
+            this.tbReportKHHS = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel36 = new Krypton.Toolkit.KryptonLabel();
+            this.tbReportKH = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel38 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel39 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonButton9 = new Krypton.Toolkit.KryptonButton();
+            this.tbReportSLHS = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel31 = new Krypton.Toolkit.KryptonLabel();
+            this.tbReportHS = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel33 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel34 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonButton8 = new Krypton.Toolkit.KryptonButton();
+            this.tbReportSLGV = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel28 = new Krypton.Toolkit.KryptonLabel();
+            this.tbReportGV = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel26 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel24 = new Krypton.Toolkit.KryptonLabel();
             this.tlbLabelTendangnhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlbTendangnhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlbLabelChinhanh = new System.Windows.Forms.ToolStripStatusLabel();
@@ -152,43 +202,19 @@
             this.mnuQuanly = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHome = new System.Windows.Forms.MenuStrip();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
-            this.kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton7 = new Krypton.Toolkit.KryptonButton();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.kryptonLabel24 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel26 = new Krypton.Toolkit.KryptonLabel();
-            this.tbReportGV = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel28 = new Krypton.Toolkit.KryptonLabel();
-            this.tbReportSLGV = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton8 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton9 = new Krypton.Toolkit.KryptonButton();
-            this.tbReportSLHS = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel31 = new Krypton.Toolkit.KryptonLabel();
-            this.tbReportHS = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel33 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel34 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton10 = new Krypton.Toolkit.KryptonButton();
-            this.tbReportKHHS = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel36 = new Krypton.Toolkit.KryptonLabel();
-            this.tbReportKH = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel38 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel39 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            this.tbHSCaHoc = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel41 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel44 = new Krypton.Toolkit.KryptonLabel();
-            this.dtgReportMax = new Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonButton12 = new Krypton.Toolkit.KryptonButton();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.L.SuspendLayout();
             this.tpNhanvien.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgNhanVien)).BeginInit();
             this.panel17.SuspendLayout();
             this.panel19.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSearchType)).BeginInit();
+            this.panel18.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbJobTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbBranch)).BeginInit();
             this.tpDangky.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -223,14 +249,14 @@
             this.panel22.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbKHAddNV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGanGv)).BeginInit();
-            this.kryptonStatusStrip1.SuspendLayout();
-            this.mnuHome.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgReportMax)).BeginInit();
             this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.kryptonStatusStrip1.SuspendLayout();
+            this.mnuHome.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -257,7 +283,7 @@
             // 
             // tpNhanvien
             // 
-            this.tpNhanvien.Controls.Add(this.kryptonDataGridView2);
+            this.tpNhanvien.Controls.Add(this.dtgNhanVien);
             this.tpNhanvien.Controls.Add(this.panel17);
             this.tpNhanvien.Controls.Add(this.panel18);
             this.tpNhanvien.Location = new System.Drawing.Point(4, 22);
@@ -268,98 +294,291 @@
             this.tpNhanvien.Text = "Nhân viên";
             this.tpNhanvien.UseVisualStyleBackColor = true;
             // 
-            // kryptonDataGridView2
+            // dtgNhanVien
             // 
-            this.kryptonDataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kryptonDataGridView2.Location = new System.Drawing.Point(203, 34);
-            this.kryptonDataGridView2.Name = "kryptonDataGridView2";
-            this.kryptonDataGridView2.Size = new System.Drawing.Size(796, 341);
-            this.kryptonDataGridView2.TabIndex = 4;
+            this.dtgNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgNhanVien.Location = new System.Drawing.Point(284, 34);
+            this.dtgNhanVien.Name = "dtgNhanVien";
+            this.dtgNhanVien.Size = new System.Drawing.Size(715, 341);
+            this.dtgNhanVien.TabIndex = 5;
+            this.dtgNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgNhanVien_CellClick);
+            this.dtgNhanVien.Click += new System.EventHandler(this.dtgNhanVien_Click);
             // 
             // panel17
             // 
             this.panel17.Controls.Add(this.panel19);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel17.Location = new System.Drawing.Point(203, 3);
+            this.panel17.Location = new System.Drawing.Point(284, 3);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(796, 31);
+            this.panel17.Size = new System.Drawing.Size(715, 31);
             this.panel17.TabIndex = 2;
             // 
             // panel19
             // 
-            this.panel19.Controls.Add(this.iconButton6);
-            this.panel19.Controls.Add(this.kryptonTextBox3);
-            this.panel19.Controls.Add(this.iconButton7);
-            this.panel19.Controls.Add(this.iconButton8);
-            this.panel19.Controls.Add(this.iconButton9);
+            this.panel19.Controls.Add(this.panel9);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel19.Location = new System.Drawing.Point(0, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(796, 31);
+            this.panel19.Size = new System.Drawing.Size(715, 31);
             this.panel19.TabIndex = 2;
             // 
-            // iconButton6
+            // panel9
             // 
-            this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton6.IconColor = System.Drawing.Color.Black;
-            this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton6.Location = new System.Drawing.Point(693, 3);
-            this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Size = new System.Drawing.Size(75, 23);
-            this.iconButton6.TabIndex = 12;
-            this.iconButton6.Text = "Tìm kiếm";
-            this.iconButton6.UseVisualStyleBackColor = true;
+            this.panel9.Controls.Add(this.kryptonLabel43);
+            this.panel9.Controls.Add(this.txtSearchByName);
+            this.panel9.Controls.Add(this.btnDeleteEmployee);
+            this.panel9.Controls.Add(this.btnUpdateEmployee);
+            this.panel9.Controls.Add(this.cbSearchType);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(715, 31);
+            this.panel9.TabIndex = 3;
             // 
-            // kryptonTextBox3
+            // kryptonLabel43
             // 
-            this.kryptonTextBox3.Location = new System.Drawing.Point(533, 3);
-            this.kryptonTextBox3.Name = "kryptonTextBox3";
-            this.kryptonTextBox3.Size = new System.Drawing.Size(154, 23);
-            this.kryptonTextBox3.TabIndex = 11;
+            this.kryptonLabel43.AutoSize = false;
+            this.kryptonLabel43.Location = new System.Drawing.Point(310, 2);
+            this.kryptonLabel43.Name = "kryptonLabel43";
+            this.kryptonLabel43.Size = new System.Drawing.Size(112, 22);
+            this.kryptonLabel43.TabIndex = 12;
+            this.kryptonLabel43.Values.Text = "Tìm kiếm theo:";
             // 
-            // iconButton7
+            // txtSearchByName
             // 
-            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton7.IconColor = System.Drawing.Color.Black;
-            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton7.Location = new System.Drawing.Point(151, 3);
-            this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(101, 23);
-            this.iconButton7.TabIndex = 2;
-            this.iconButton7.Text = "Xuất hóa đơn";
-            this.iconButton7.UseVisualStyleBackColor = true;
+            this.txtSearchByName.Location = new System.Drawing.Point(573, 2);
+            this.txtSearchByName.Name = "txtSearchByName";
+            this.txtSearchByName.Size = new System.Drawing.Size(154, 23);
+            this.txtSearchByName.TabIndex = 11;
+            this.txtSearchByName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchByName_KeyUp);
             // 
-            // iconButton8
+            // btnDeleteEmployee
             // 
-            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton8.IconColor = System.Drawing.Color.Black;
-            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton8.Location = new System.Drawing.Point(75, 3);
-            this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Size = new System.Drawing.Size(75, 23);
-            this.iconButton8.TabIndex = 1;
-            this.iconButton8.Text = "Xóa";
-            this.iconButton8.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnDeleteEmployee.IconColor = System.Drawing.Color.Black;
+            this.btnDeleteEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(75, 3);
+            this.btnDeleteEmployee.Name = "btnDeleteEmployee";
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteEmployee.TabIndex = 1;
+            this.btnDeleteEmployee.Text = "Xóa";
+            this.btnDeleteEmployee.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.Visible = false;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
             // 
-            // iconButton9
+            // btnUpdateEmployee
             // 
-            this.iconButton9.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton9.IconColor = System.Drawing.Color.Black;
-            this.iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton9.Location = new System.Drawing.Point(0, 3);
-            this.iconButton9.Name = "iconButton9";
-            this.iconButton9.Size = new System.Drawing.Size(75, 23);
-            this.iconButton9.TabIndex = 0;
-            this.iconButton9.Text = "Sửa";
-            this.iconButton9.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnUpdateEmployee.IconColor = System.Drawing.Color.Black;
+            this.btnUpdateEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(0, 3);
+            this.btnUpdateEmployee.Name = "btnUpdateEmployee";
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateEmployee.TabIndex = 0;
+            this.btnUpdateEmployee.Text = "Sửa";
+            this.btnUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Visible = false;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
+            // 
+            // cbSearchType
+            // 
+            this.cbSearchType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbSearchType.DropDownWidth = 121;
+            this.cbSearchType.IntegralHeight = false;
+            this.cbSearchType.Location = new System.Drawing.Point(428, 4);
+            this.cbSearchType.Name = "cbSearchType";
+            this.cbSearchType.Size = new System.Drawing.Size(139, 21);
+            this.cbSearchType.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cbSearchType.TabIndex = 1;
+            this.cbSearchType.Text = "1";
             // 
             // panel18
             // 
+            this.panel18.Controls.Add(this.groupBox4);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel18.Location = new System.Drawing.Point(3, 3);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(200, 372);
+            this.panel18.Size = new System.Drawing.Size(281, 372);
             this.panel18.TabIndex = 3;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dtpDOB);
+            this.groupBox4.Controls.Add(this.btnAddEmployee);
+            this.groupBox4.Controls.Add(this.txtSalary);
+            this.groupBox4.Controls.Add(this.txtNation);
+            this.groupBox4.Controls.Add(this.txtPhone);
+            this.groupBox4.Controls.Add(this.txtFullName1);
+            this.groupBox4.Controls.Add(this.cbbJobTitle);
+            this.groupBox4.Controls.Add(this.cbbLevel);
+            this.groupBox4.Controls.Add(this.cbBranch);
+            this.groupBox4.Controls.Add(this.kryptonLabel27);
+            this.groupBox4.Controls.Add(this.kryptonLabel29);
+            this.groupBox4.Controls.Add(this.kryptonLabel30);
+            this.groupBox4.Controls.Add(this.kryptonLabel32);
+            this.groupBox4.Controls.Add(this.kryptonLabel35);
+            this.groupBox4.Controls.Add(this.kryptonLabel37);
+            this.groupBox4.Controls.Add(this.kryptonLabel40);
+            this.groupBox4.Controls.Add(this.kryptonLabel42);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(281, 372);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Thêm nhân viên";
+            // 
+            // dtpDOB
+            // 
+            this.dtpDOB.Location = new System.Drawing.Point(99, 81);
+            this.dtpDOB.Name = "dtpDOB";
+            this.dtpDOB.Size = new System.Drawing.Size(156, 21);
+            this.dtpDOB.TabIndex = 4;
+            // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.Location = new System.Drawing.Point(71, 260);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(116, 25);
+            this.btnAddEmployee.TabIndex = 3;
+            this.btnAddEmployee.Values.Text = "Thêm nhân viên";
+            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
+            // 
+            // txtSalary
+            // 
+            this.txtSalary.Location = new System.Drawing.Point(99, 218);
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Size = new System.Drawing.Size(156, 20);
+            this.txtSalary.TabIndex = 2;
+            // 
+            // txtNation
+            // 
+            this.txtNation.Location = new System.Drawing.Point(99, 162);
+            this.txtNation.Name = "txtNation";
+            this.txtNation.Size = new System.Drawing.Size(156, 20);
+            this.txtNation.TabIndex = 2;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(99, 110);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(156, 20);
+            this.txtPhone.TabIndex = 2;
+            // 
+            // txtFullName1
+            // 
+            this.txtFullName1.Location = new System.Drawing.Point(99, 62);
+            this.txtFullName1.Name = "txtFullName1";
+            this.txtFullName1.Size = new System.Drawing.Size(156, 20);
+            this.txtFullName1.TabIndex = 2;
+            // 
+            // cbbJobTitle
+            // 
+            this.cbbJobTitle.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbJobTitle.DropDownWidth = 121;
+            this.cbbJobTitle.IntegralHeight = false;
+            this.cbbJobTitle.Location = new System.Drawing.Point(99, 192);
+            this.cbbJobTitle.Name = "cbbJobTitle";
+            this.cbbJobTitle.Size = new System.Drawing.Size(156, 21);
+            this.cbbJobTitle.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cbbJobTitle.TabIndex = 1;
+            this.cbbJobTitle.Text = "1";
+            // 
+            // cbbLevel
+            // 
+            this.cbbLevel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbLevel.DropDownWidth = 121;
+            this.cbbLevel.IntegralHeight = false;
+            this.cbbLevel.Location = new System.Drawing.Point(99, 136);
+            this.cbbLevel.Name = "cbbLevel";
+            this.cbbLevel.Size = new System.Drawing.Size(156, 21);
+            this.cbbLevel.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cbbLevel.TabIndex = 1;
+            this.cbbLevel.Text = "1";
+            // 
+            // cbBranch
+            // 
+            this.cbBranch.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbBranch.DropDownWidth = 121;
+            this.cbBranch.IntegralHeight = false;
+            this.cbBranch.Location = new System.Drawing.Point(99, 31);
+            this.cbBranch.Name = "cbBranch";
+            this.cbBranch.Size = new System.Drawing.Size(156, 21);
+            this.cbBranch.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cbBranch.TabIndex = 1;
+            this.cbBranch.Text = "1";
+            // 
+            // kryptonLabel27
+            // 
+            this.kryptonLabel27.Location = new System.Drawing.Point(4, 192);
+            this.kryptonLabel27.Name = "kryptonLabel27";
+            this.kryptonLabel27.Size = new System.Drawing.Size(72, 20);
+            this.kryptonLabel27.TabIndex = 0;
+            this.kryptonLabel27.Values.Text = "Chức danh:";
+            // 
+            // kryptonLabel29
+            // 
+            this.kryptonLabel29.AutoSize = false;
+            this.kryptonLabel29.Location = new System.Drawing.Point(6, 218);
+            this.kryptonLabel29.Name = "kryptonLabel29";
+            this.kryptonLabel29.Size = new System.Drawing.Size(77, 20);
+            this.kryptonLabel29.TabIndex = 0;
+            this.kryptonLabel29.Values.Text = "Lương:";
+            // 
+            // kryptonLabel30
+            // 
+            this.kryptonLabel30.AutoSize = false;
+            this.kryptonLabel30.Location = new System.Drawing.Point(3, 166);
+            this.kryptonLabel30.Name = "kryptonLabel30";
+            this.kryptonLabel30.Size = new System.Drawing.Size(96, 20);
+            this.kryptonLabel30.TabIndex = 0;
+            this.kryptonLabel30.Values.Text = "Quốc tịch:";
+            // 
+            // kryptonLabel32
+            // 
+            this.kryptonLabel32.AutoSize = false;
+            this.kryptonLabel32.Location = new System.Drawing.Point(4, 140);
+            this.kryptonLabel32.Name = "kryptonLabel32";
+            this.kryptonLabel32.Size = new System.Drawing.Size(96, 20);
+            this.kryptonLabel32.TabIndex = 0;
+            this.kryptonLabel32.Values.Text = "Trình độ:";
+            // 
+            // kryptonLabel35
+            // 
+            this.kryptonLabel35.AutoSize = false;
+            this.kryptonLabel35.Location = new System.Drawing.Point(4, 114);
+            this.kryptonLabel35.Name = "kryptonLabel35";
+            this.kryptonLabel35.Size = new System.Drawing.Size(99, 20);
+            this.kryptonLabel35.TabIndex = 0;
+            this.kryptonLabel35.Values.Text = "Số điện thoai:";
+            // 
+            // kryptonLabel37
+            // 
+            this.kryptonLabel37.AutoSize = false;
+            this.kryptonLabel37.Location = new System.Drawing.Point(4, 88);
+            this.kryptonLabel37.Name = "kryptonLabel37";
+            this.kryptonLabel37.Size = new System.Drawing.Size(99, 20);
+            this.kryptonLabel37.TabIndex = 0;
+            this.kryptonLabel37.Values.Text = "Ngày sinh:";
+            // 
+            // kryptonLabel40
+            // 
+            this.kryptonLabel40.AutoSize = false;
+            this.kryptonLabel40.Location = new System.Drawing.Point(4, 62);
+            this.kryptonLabel40.Name = "kryptonLabel40";
+            this.kryptonLabel40.Size = new System.Drawing.Size(99, 20);
+            this.kryptonLabel40.TabIndex = 0;
+            this.kryptonLabel40.Values.Text = "Họ và Tên:";
+            // 
+            // kryptonLabel42
+            // 
+            this.kryptonLabel42.AutoSize = false;
+            this.kryptonLabel42.Location = new System.Drawing.Point(3, 31);
+            this.kryptonLabel42.Name = "kryptonLabel42";
+            this.kryptonLabel42.Size = new System.Drawing.Size(100, 25);
+            this.kryptonLabel42.TabIndex = 0;
+            this.kryptonLabel42.Values.Text = "Nhánh:";
             // 
             // tpDangky
             // 
@@ -945,6 +1164,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ca học";
             // 
+            // kryptonButton7
+            // 
+            this.kryptonButton7.Location = new System.Drawing.Point(186, 186);
+            this.kryptonButton7.Name = "kryptonButton7";
+            this.kryptonButton7.Size = new System.Drawing.Size(170, 25);
+            this.kryptonButton7.TabIndex = 11;
+            this.kryptonButton7.Values.Text = "Danh sách lớp có giáo viên dạy";
+            this.kryptonButton7.Click += new System.EventHandler(this.kryptonButton7_Click);
+            // 
             // cbbDate
             // 
             this.cbbDate.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
@@ -966,6 +1194,15 @@
             this.cbbTimeDate.Size = new System.Drawing.Size(234, 21);
             this.cbbTimeDate.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.cbbTimeDate.TabIndex = 7;
+            // 
+            // kryptonButton6
+            // 
+            this.kryptonButton6.Location = new System.Drawing.Point(6, 186);
+            this.kryptonButton6.Name = "kryptonButton6";
+            this.kryptonButton6.Size = new System.Drawing.Size(168, 25);
+            this.kryptonButton6.TabIndex = 10;
+            this.kryptonButton6.Values.Text = "Xuất báo cáo theo khóa học";
+            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click);
             // 
             // kryptonButton3
             // 
@@ -1321,6 +1558,274 @@
             this.kryptonTreeView1.Size = new System.Drawing.Size(200, 372);
             this.kryptonTreeView1.TabIndex = 0;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1002, 378);
+            this.tabPage2.TabIndex = 6;
+            this.tabPage2.Text = "Thống kê";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 131);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(996, 244);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.dtgReportMax);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(0, 41);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(996, 203);
+            this.panel8.TabIndex = 4;
+            // 
+            // dtgReportMax
+            // 
+            this.dtgReportMax.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgReportMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgReportMax.Location = new System.Drawing.Point(0, 0);
+            this.dtgReportMax.Name = "dtgReportMax";
+            this.dtgReportMax.Size = new System.Drawing.Size(996, 203);
+            this.dtgReportMax.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.kryptonButton12);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(996, 41);
+            this.panel7.TabIndex = 3;
+            // 
+            // kryptonButton12
+            // 
+            this.kryptonButton12.Location = new System.Drawing.Point(21, 6);
+            this.kryptonButton12.Name = "kryptonButton12";
+            this.kryptonButton12.Size = new System.Drawing.Size(185, 25);
+            this.kryptonButton12.TabIndex = 2;
+            this.kryptonButton12.Values.Text = "Giáo viên chưa được phân dạy";
+            this.kryptonButton12.Click += new System.EventHandler(this.kryptonButton12_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.kryptonButton11);
+            this.panel3.Controls.Add(this.tbHSCaHoc);
+            this.panel3.Controls.Add(this.kryptonLabel41);
+            this.panel3.Controls.Add(this.kryptonLabel44);
+            this.panel3.Controls.Add(this.kryptonButton10);
+            this.panel3.Controls.Add(this.tbReportKHHS);
+            this.panel3.Controls.Add(this.kryptonLabel36);
+            this.panel3.Controls.Add(this.tbReportKH);
+            this.panel3.Controls.Add(this.kryptonLabel38);
+            this.panel3.Controls.Add(this.kryptonLabel39);
+            this.panel3.Controls.Add(this.kryptonButton9);
+            this.panel3.Controls.Add(this.tbReportSLHS);
+            this.panel3.Controls.Add(this.kryptonLabel31);
+            this.panel3.Controls.Add(this.tbReportHS);
+            this.panel3.Controls.Add(this.kryptonLabel33);
+            this.panel3.Controls.Add(this.kryptonLabel34);
+            this.panel3.Controls.Add(this.kryptonButton8);
+            this.panel3.Controls.Add(this.tbReportSLGV);
+            this.panel3.Controls.Add(this.kryptonLabel28);
+            this.panel3.Controls.Add(this.tbReportGV);
+            this.panel3.Controls.Add(this.kryptonLabel26);
+            this.panel3.Controls.Add(this.kryptonLabel24);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(996, 128);
+            this.panel3.TabIndex = 0;
+            // 
+            // kryptonButton11
+            // 
+            this.kryptonButton11.Location = new System.Drawing.Point(854, 91);
+            this.kryptonButton11.Name = "kryptonButton11";
+            this.kryptonButton11.Size = new System.Drawing.Size(102, 29);
+            this.kryptonButton11.TabIndex = 23;
+            this.kryptonButton11.Values.Text = "Thống kê";
+            this.kryptonButton11.Click += new System.EventHandler(this.kryptonButton11_Click);
+            // 
+            // tbHSCaHoc
+            // 
+            this.tbHSCaHoc.Location = new System.Drawing.Point(862, 39);
+            this.tbHSCaHoc.Name = "tbHSCaHoc";
+            this.tbHSCaHoc.Size = new System.Drawing.Size(6, 2);
+            this.tbHSCaHoc.TabIndex = 22;
+            this.tbHSCaHoc.Values.Text = "";
+            // 
+            // kryptonLabel41
+            // 
+            this.kryptonLabel41.Location = new System.Drawing.Point(783, 39);
+            this.kryptonLabel41.Name = "kryptonLabel41";
+            this.kryptonLabel41.Size = new System.Drawing.Size(76, 20);
+            this.kryptonLabel41.TabIndex = 21;
+            this.kryptonLabel41.Values.Text = "Số học sinh:";
+            // 
+            // kryptonLabel44
+            // 
+            this.kryptonLabel44.Location = new System.Drawing.Point(783, 13);
+            this.kryptonLabel44.Name = "kryptonLabel44";
+            this.kryptonLabel44.Size = new System.Drawing.Size(173, 20);
+            this.kryptonLabel44.TabIndex = 18;
+            this.kryptonLabel44.Values.Text = "Ca học có nhiều lớp học nhất:";
+            // 
+            // kryptonButton10
+            // 
+            this.kryptonButton10.Location = new System.Drawing.Point(584, 91);
+            this.kryptonButton10.Name = "kryptonButton10";
+            this.kryptonButton10.Size = new System.Drawing.Size(102, 29);
+            this.kryptonButton10.TabIndex = 17;
+            this.kryptonButton10.Values.Text = "Thống kê";
+            this.kryptonButton10.Click += new System.EventHandler(this.kryptonButton10_Click);
+            // 
+            // tbReportKHHS
+            // 
+            this.tbReportKHHS.Location = new System.Drawing.Point(591, 65);
+            this.tbReportKHHS.Name = "tbReportKHHS";
+            this.tbReportKHHS.Size = new System.Drawing.Size(6, 2);
+            this.tbReportKHHS.TabIndex = 16;
+            this.tbReportKHHS.Values.Text = "";
+            // 
+            // kryptonLabel36
+            // 
+            this.kryptonLabel36.Location = new System.Drawing.Point(512, 65);
+            this.kryptonLabel36.Name = "kryptonLabel36";
+            this.kryptonLabel36.Size = new System.Drawing.Size(76, 20);
+            this.kryptonLabel36.TabIndex = 15;
+            this.kryptonLabel36.Values.Text = "Số học sinh:";
+            // 
+            // tbReportKH
+            // 
+            this.tbReportKH.Location = new System.Drawing.Point(591, 39);
+            this.tbReportKH.Name = "tbReportKH";
+            this.tbReportKH.Size = new System.Drawing.Size(6, 2);
+            this.tbReportKH.TabIndex = 14;
+            this.tbReportKH.Values.Text = "";
+            // 
+            // kryptonLabel38
+            // 
+            this.kryptonLabel38.Location = new System.Drawing.Point(524, 39);
+            this.kryptonLabel38.Name = "kryptonLabel38";
+            this.kryptonLabel38.Size = new System.Drawing.Size(64, 20);
+            this.kryptonLabel38.TabIndex = 13;
+            this.kryptonLabel38.Values.Text = "Khóa học:";
+            // 
+            // kryptonLabel39
+            // 
+            this.kryptonLabel39.Location = new System.Drawing.Point(455, 13);
+            this.kryptonLabel39.Name = "kryptonLabel39";
+            this.kryptonLabel39.Size = new System.Drawing.Size(243, 20);
+            this.kryptonLabel39.TabIndex = 12;
+            this.kryptonLabel39.Values.Text = "Khóa học có nhiều học viên theo học nhất:";
+            // 
+            // kryptonButton9
+            // 
+            this.kryptonButton9.Location = new System.Drawing.Point(293, 91);
+            this.kryptonButton9.Name = "kryptonButton9";
+            this.kryptonButton9.Size = new System.Drawing.Size(102, 29);
+            this.kryptonButton9.TabIndex = 11;
+            this.kryptonButton9.Values.Text = "Thống kê";
+            this.kryptonButton9.Click += new System.EventHandler(this.kryptonButton9_Click);
+            // 
+            // tbReportSLHS
+            // 
+            this.tbReportSLHS.Location = new System.Drawing.Point(300, 65);
+            this.tbReportSLHS.Name = "tbReportSLHS";
+            this.tbReportSLHS.Size = new System.Drawing.Size(6, 2);
+            this.tbReportSLHS.TabIndex = 10;
+            this.tbReportSLHS.Values.Text = "";
+            // 
+            // kryptonLabel31
+            // 
+            this.kryptonLabel31.Location = new System.Drawing.Point(249, 65);
+            this.kryptonLabel31.Name = "kryptonLabel31";
+            this.kryptonLabel31.Size = new System.Drawing.Size(48, 20);
+            this.kryptonLabel31.TabIndex = 9;
+            this.kryptonLabel31.Values.Text = "Số lớp:";
+            // 
+            // tbReportHS
+            // 
+            this.tbReportHS.Location = new System.Drawing.Point(300, 39);
+            this.tbReportHS.Name = "tbReportHS";
+            this.tbReportHS.Size = new System.Drawing.Size(6, 2);
+            this.tbReportHS.TabIndex = 8;
+            this.tbReportHS.Values.Text = "";
+            // 
+            // kryptonLabel33
+            // 
+            this.kryptonLabel33.Location = new System.Drawing.Point(233, 39);
+            this.kryptonLabel33.Name = "kryptonLabel33";
+            this.kryptonLabel33.Size = new System.Drawing.Size(61, 20);
+            this.kryptonLabel33.TabIndex = 7;
+            this.kryptonLabel33.Values.Text = "Học sinh:";
+            // 
+            // kryptonLabel34
+            // 
+            this.kryptonLabel34.Location = new System.Drawing.Point(233, 13);
+            this.kryptonLabel34.Name = "kryptonLabel34";
+            this.kryptonLabel34.Size = new System.Drawing.Size(167, 20);
+            this.kryptonLabel34.TabIndex = 6;
+            this.kryptonLabel34.Values.Text = "Học viên học nhiều lớp nhất:";
+            // 
+            // kryptonButton8
+            // 
+            this.kryptonButton8.Location = new System.Drawing.Point(65, 91);
+            this.kryptonButton8.Name = "kryptonButton8";
+            this.kryptonButton8.Size = new System.Drawing.Size(102, 29);
+            this.kryptonButton8.TabIndex = 5;
+            this.kryptonButton8.Values.Text = "Thống kê";
+            this.kryptonButton8.Click += new System.EventHandler(this.kryptonButton8_Click);
+            // 
+            // tbReportSLGV
+            // 
+            this.tbReportSLGV.Location = new System.Drawing.Point(72, 65);
+            this.tbReportSLGV.Name = "tbReportSLGV";
+            this.tbReportSLGV.Size = new System.Drawing.Size(6, 2);
+            this.tbReportSLGV.TabIndex = 4;
+            this.tbReportSLGV.Values.Text = "";
+            // 
+            // kryptonLabel28
+            // 
+            this.kryptonLabel28.Location = new System.Drawing.Point(21, 65);
+            this.kryptonLabel28.Name = "kryptonLabel28";
+            this.kryptonLabel28.Size = new System.Drawing.Size(48, 20);
+            this.kryptonLabel28.TabIndex = 3;
+            this.kryptonLabel28.Values.Text = "Số lớp:";
+            // 
+            // tbReportGV
+            // 
+            this.tbReportGV.Location = new System.Drawing.Point(72, 39);
+            this.tbReportGV.Name = "tbReportGV";
+            this.tbReportGV.Size = new System.Drawing.Size(6, 2);
+            this.tbReportGV.TabIndex = 2;
+            this.tbReportGV.Values.Text = "";
+            // 
+            // kryptonLabel26
+            // 
+            this.kryptonLabel26.Location = new System.Drawing.Point(5, 39);
+            this.kryptonLabel26.Name = "kryptonLabel26";
+            this.kryptonLabel26.Size = new System.Drawing.Size(64, 20);
+            this.kryptonLabel26.TabIndex = 1;
+            this.kryptonLabel26.Values.Text = "Giáo viên:";
+            // 
+            // kryptonLabel24
+            // 
+            this.kryptonLabel24.Location = new System.Drawing.Point(5, 13);
+            this.kryptonLabel24.Name = "kryptonLabel24";
+            this.kryptonLabel24.Size = new System.Drawing.Size(170, 20);
+            this.kryptonLabel24.TabIndex = 0;
+            this.kryptonLabel24.Values.Text = "Giáo viên dạy nhiều lớp nhất:";
+            // 
             // tlbLabelTendangnhap
             // 
             this.tlbLabelTendangnhap.Name = "tlbLabelTendangnhap";
@@ -1406,292 +1911,6 @@
             this.mnuHome.TabIndex = 0;
             this.mnuHome.Text = "menuStripHome";
             // 
-            // kryptonButton6
-            // 
-            this.kryptonButton6.Location = new System.Drawing.Point(6, 186);
-            this.kryptonButton6.Name = "kryptonButton6";
-            this.kryptonButton6.Size = new System.Drawing.Size(168, 25);
-            this.kryptonButton6.TabIndex = 10;
-            this.kryptonButton6.Values.Text = "Xuất báo cáo theo khóa học";
-            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click);
-            // 
-            // kryptonButton7
-            // 
-            this.kryptonButton7.Location = new System.Drawing.Point(186, 186);
-            this.kryptonButton7.Name = "kryptonButton7";
-            this.kryptonButton7.Size = new System.Drawing.Size(170, 25);
-            this.kryptonButton7.TabIndex = 11;
-            this.kryptonButton7.Values.Text = "Danh sách lớp có giáo viên dạy";
-            this.kryptonButton7.Click += new System.EventHandler(this.kryptonButton7_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.panel4);
-            this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1002, 378);
-            this.tabPage2.TabIndex = 6;
-            this.tabPage2.Text = "Thống kê";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.kryptonButton11);
-            this.panel3.Controls.Add(this.tbHSCaHoc);
-            this.panel3.Controls.Add(this.kryptonLabel41);
-            this.panel3.Controls.Add(this.kryptonLabel44);
-            this.panel3.Controls.Add(this.kryptonButton10);
-            this.panel3.Controls.Add(this.tbReportKHHS);
-            this.panel3.Controls.Add(this.kryptonLabel36);
-            this.panel3.Controls.Add(this.tbReportKH);
-            this.panel3.Controls.Add(this.kryptonLabel38);
-            this.panel3.Controls.Add(this.kryptonLabel39);
-            this.panel3.Controls.Add(this.kryptonButton9);
-            this.panel3.Controls.Add(this.tbReportSLHS);
-            this.panel3.Controls.Add(this.kryptonLabel31);
-            this.panel3.Controls.Add(this.tbReportHS);
-            this.panel3.Controls.Add(this.kryptonLabel33);
-            this.panel3.Controls.Add(this.kryptonLabel34);
-            this.panel3.Controls.Add(this.kryptonButton8);
-            this.panel3.Controls.Add(this.tbReportSLGV);
-            this.panel3.Controls.Add(this.kryptonLabel28);
-            this.panel3.Controls.Add(this.tbReportGV);
-            this.panel3.Controls.Add(this.kryptonLabel26);
-            this.panel3.Controls.Add(this.kryptonLabel24);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(996, 128);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel8);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 131);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(996, 244);
-            this.panel4.TabIndex = 1;
-            // 
-            // kryptonLabel24
-            // 
-            this.kryptonLabel24.Location = new System.Drawing.Point(5, 13);
-            this.kryptonLabel24.Name = "kryptonLabel24";
-            this.kryptonLabel24.Size = new System.Drawing.Size(170, 20);
-            this.kryptonLabel24.TabIndex = 0;
-            this.kryptonLabel24.Values.Text = "Giáo viên dạy nhiều lớp nhất:";
-            // 
-            // kryptonLabel26
-            // 
-            this.kryptonLabel26.Location = new System.Drawing.Point(5, 39);
-            this.kryptonLabel26.Name = "kryptonLabel26";
-            this.kryptonLabel26.Size = new System.Drawing.Size(64, 20);
-            this.kryptonLabel26.TabIndex = 1;
-            this.kryptonLabel26.Values.Text = "Giáo viên:";
-            // 
-            // tbReportGV
-            // 
-            this.tbReportGV.Location = new System.Drawing.Point(72, 39);
-            this.tbReportGV.Name = "tbReportGV";
-            this.tbReportGV.Size = new System.Drawing.Size(6, 2);
-            this.tbReportGV.TabIndex = 2;
-            this.tbReportGV.Values.Text = "";
-            // 
-            // kryptonLabel28
-            // 
-            this.kryptonLabel28.Location = new System.Drawing.Point(21, 65);
-            this.kryptonLabel28.Name = "kryptonLabel28";
-            this.kryptonLabel28.Size = new System.Drawing.Size(48, 20);
-            this.kryptonLabel28.TabIndex = 3;
-            this.kryptonLabel28.Values.Text = "Số lớp:";
-            // 
-            // tbReportSLGV
-            // 
-            this.tbReportSLGV.Location = new System.Drawing.Point(72, 65);
-            this.tbReportSLGV.Name = "tbReportSLGV";
-            this.tbReportSLGV.Size = new System.Drawing.Size(6, 2);
-            this.tbReportSLGV.TabIndex = 4;
-            this.tbReportSLGV.Values.Text = "";
-            // 
-            // kryptonButton8
-            // 
-            this.kryptonButton8.Location = new System.Drawing.Point(65, 91);
-            this.kryptonButton8.Name = "kryptonButton8";
-            this.kryptonButton8.Size = new System.Drawing.Size(102, 29);
-            this.kryptonButton8.TabIndex = 5;
-            this.kryptonButton8.Values.Text = "Thống kê";
-            this.kryptonButton8.Click += new System.EventHandler(this.kryptonButton8_Click);
-            // 
-            // kryptonButton9
-            // 
-            this.kryptonButton9.Location = new System.Drawing.Point(293, 91);
-            this.kryptonButton9.Name = "kryptonButton9";
-            this.kryptonButton9.Size = new System.Drawing.Size(102, 29);
-            this.kryptonButton9.TabIndex = 11;
-            this.kryptonButton9.Values.Text = "Thống kê";
-            this.kryptonButton9.Click += new System.EventHandler(this.kryptonButton9_Click);
-            // 
-            // tbReportSLHS
-            // 
-            this.tbReportSLHS.Location = new System.Drawing.Point(300, 65);
-            this.tbReportSLHS.Name = "tbReportSLHS";
-            this.tbReportSLHS.Size = new System.Drawing.Size(6, 2);
-            this.tbReportSLHS.TabIndex = 10;
-            this.tbReportSLHS.Values.Text = "";
-            // 
-            // kryptonLabel31
-            // 
-            this.kryptonLabel31.Location = new System.Drawing.Point(249, 65);
-            this.kryptonLabel31.Name = "kryptonLabel31";
-            this.kryptonLabel31.Size = new System.Drawing.Size(48, 20);
-            this.kryptonLabel31.TabIndex = 9;
-            this.kryptonLabel31.Values.Text = "Số lớp:";
-            // 
-            // tbReportHS
-            // 
-            this.tbReportHS.Location = new System.Drawing.Point(300, 39);
-            this.tbReportHS.Name = "tbReportHS";
-            this.tbReportHS.Size = new System.Drawing.Size(6, 2);
-            this.tbReportHS.TabIndex = 8;
-            this.tbReportHS.Values.Text = "";
-            // 
-            // kryptonLabel33
-            // 
-            this.kryptonLabel33.Location = new System.Drawing.Point(233, 39);
-            this.kryptonLabel33.Name = "kryptonLabel33";
-            this.kryptonLabel33.Size = new System.Drawing.Size(61, 20);
-            this.kryptonLabel33.TabIndex = 7;
-            this.kryptonLabel33.Values.Text = "Học sinh:";
-            // 
-            // kryptonLabel34
-            // 
-            this.kryptonLabel34.Location = new System.Drawing.Point(233, 13);
-            this.kryptonLabel34.Name = "kryptonLabel34";
-            this.kryptonLabel34.Size = new System.Drawing.Size(167, 20);
-            this.kryptonLabel34.TabIndex = 6;
-            this.kryptonLabel34.Values.Text = "Học viên học nhiều lớp nhất:";
-            // 
-            // kryptonButton10
-            // 
-            this.kryptonButton10.Location = new System.Drawing.Point(584, 91);
-            this.kryptonButton10.Name = "kryptonButton10";
-            this.kryptonButton10.Size = new System.Drawing.Size(102, 29);
-            this.kryptonButton10.TabIndex = 17;
-            this.kryptonButton10.Values.Text = "Thống kê";
-            this.kryptonButton10.Click += new System.EventHandler(this.kryptonButton10_Click);
-            // 
-            // tbReportKHHS
-            // 
-            this.tbReportKHHS.Location = new System.Drawing.Point(591, 65);
-            this.tbReportKHHS.Name = "tbReportKHHS";
-            this.tbReportKHHS.Size = new System.Drawing.Size(6, 2);
-            this.tbReportKHHS.TabIndex = 16;
-            this.tbReportKHHS.Values.Text = "";
-            // 
-            // kryptonLabel36
-            // 
-            this.kryptonLabel36.Location = new System.Drawing.Point(512, 65);
-            this.kryptonLabel36.Name = "kryptonLabel36";
-            this.kryptonLabel36.Size = new System.Drawing.Size(76, 20);
-            this.kryptonLabel36.TabIndex = 15;
-            this.kryptonLabel36.Values.Text = "Số học sinh:";
-            // 
-            // tbReportKH
-            // 
-            this.tbReportKH.Location = new System.Drawing.Point(591, 39);
-            this.tbReportKH.Name = "tbReportKH";
-            this.tbReportKH.Size = new System.Drawing.Size(6, 2);
-            this.tbReportKH.TabIndex = 14;
-            this.tbReportKH.Values.Text = "";
-            // 
-            // kryptonLabel38
-            // 
-            this.kryptonLabel38.Location = new System.Drawing.Point(524, 39);
-            this.kryptonLabel38.Name = "kryptonLabel38";
-            this.kryptonLabel38.Size = new System.Drawing.Size(64, 20);
-            this.kryptonLabel38.TabIndex = 13;
-            this.kryptonLabel38.Values.Text = "Khóa học:";
-            // 
-            // kryptonLabel39
-            // 
-            this.kryptonLabel39.Location = new System.Drawing.Point(455, 13);
-            this.kryptonLabel39.Name = "kryptonLabel39";
-            this.kryptonLabel39.Size = new System.Drawing.Size(243, 20);
-            this.kryptonLabel39.TabIndex = 12;
-            this.kryptonLabel39.Values.Text = "Khóa học có nhiều học viên theo học nhất:";
-            // 
-            // kryptonButton11
-            // 
-            this.kryptonButton11.Location = new System.Drawing.Point(854, 91);
-            this.kryptonButton11.Name = "kryptonButton11";
-            this.kryptonButton11.Size = new System.Drawing.Size(102, 29);
-            this.kryptonButton11.TabIndex = 23;
-            this.kryptonButton11.Values.Text = "Thống kê";
-            this.kryptonButton11.Click += new System.EventHandler(this.kryptonButton11_Click);
-            // 
-            // tbHSCaHoc
-            // 
-            this.tbHSCaHoc.Location = new System.Drawing.Point(862, 39);
-            this.tbHSCaHoc.Name = "tbHSCaHoc";
-            this.tbHSCaHoc.Size = new System.Drawing.Size(6, 2);
-            this.tbHSCaHoc.TabIndex = 22;
-            this.tbHSCaHoc.Values.Text = "";
-            // 
-            // kryptonLabel41
-            // 
-            this.kryptonLabel41.Location = new System.Drawing.Point(783, 39);
-            this.kryptonLabel41.Name = "kryptonLabel41";
-            this.kryptonLabel41.Size = new System.Drawing.Size(76, 20);
-            this.kryptonLabel41.TabIndex = 21;
-            this.kryptonLabel41.Values.Text = "Số học sinh:";
-            // 
-            // kryptonLabel44
-            // 
-            this.kryptonLabel44.Location = new System.Drawing.Point(783, 13);
-            this.kryptonLabel44.Name = "kryptonLabel44";
-            this.kryptonLabel44.Size = new System.Drawing.Size(173, 20);
-            this.kryptonLabel44.TabIndex = 18;
-            this.kryptonLabel44.Values.Text = "Ca học có nhiều lớp học nhất:";
-            // 
-            // dtgReportMax
-            // 
-            this.dtgReportMax.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgReportMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgReportMax.Location = new System.Drawing.Point(0, 0);
-            this.dtgReportMax.Name = "dtgReportMax";
-            this.dtgReportMax.Size = new System.Drawing.Size(996, 203);
-            this.dtgReportMax.TabIndex = 0;
-            // 
-            // kryptonButton12
-            // 
-            this.kryptonButton12.Location = new System.Drawing.Point(21, 6);
-            this.kryptonButton12.Name = "kryptonButton12";
-            this.kryptonButton12.Size = new System.Drawing.Size(185, 25);
-            this.kryptonButton12.TabIndex = 2;
-            this.kryptonButton12.Values.Text = "Giáo viên chưa được phân dạy";
-            this.kryptonButton12.Click += new System.EventHandler(this.kryptonButton12_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.kryptonButton12);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(996, 41);
-            this.panel7.TabIndex = 3;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.dtgReportMax);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 41);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(996, 203);
-            this.panel8.TabIndex = 4;
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1709,10 +1928,18 @@
             this.panel2.ResumeLayout(false);
             this.L.ResumeLayout(false);
             this.tpNhanvien.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgNhanVien)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
-            this.panel19.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSearchType)).EndInit();
+            this.panel18.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbJobTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbBranch)).EndInit();
             this.tpDangky.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -1755,17 +1982,17 @@
             this.panel22.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbKHAddNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGanGv)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgReportMax)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.kryptonStatusStrip1.ResumeLayout(false);
             this.kryptonStatusStrip1.PerformLayout();
             this.mnuHome.ResumeLayout(false);
             this.mnuHome.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgReportMax)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1788,14 +2015,8 @@
         private Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
         private System.Windows.Forms.TabControl L;
         private System.Windows.Forms.TabPage tpNhanvien;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView2;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel19;
-        private FontAwesome.Sharp.IconButton iconButton6;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
-        private FontAwesome.Sharp.IconButton iconButton7;
-        private FontAwesome.Sharp.IconButton iconButton8;
-        private FontAwesome.Sharp.IconButton iconButton9;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.TabPage tpDangky;
         private System.Windows.Forms.Panel panel5;
@@ -1928,5 +2149,30 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel24;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel43;
+        private Krypton.Toolkit.KryptonTextBox txtSearchByName;
+        private FontAwesome.Sharp.IconButton btnDeleteEmployee;
+        private FontAwesome.Sharp.IconButton btnUpdateEmployee;
+        private Krypton.Toolkit.KryptonComboBox cbSearchType;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private Krypton.Toolkit.KryptonDateTimePicker dtpDOB;
+        private Krypton.Toolkit.KryptonButton btnAddEmployee;
+        private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.TextBox txtNation;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtFullName1;
+        private Krypton.Toolkit.KryptonComboBox cbbJobTitle;
+        private Krypton.Toolkit.KryptonComboBox cbbLevel;
+        private Krypton.Toolkit.KryptonComboBox cbBranch;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel27;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel29;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel30;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel32;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel35;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel37;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel40;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel42;
+        private Krypton.Toolkit.KryptonDataGridView dtgNhanVien;
     }
 }

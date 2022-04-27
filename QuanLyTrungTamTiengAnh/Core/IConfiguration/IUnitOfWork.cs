@@ -10,6 +10,8 @@ using Core.Repository.Employees;
 using Core.Repository.ClassStudy;
 using Core.Repository.CaseStudy;
 using Core.Repository.Reports;
+using Core.Repository.Branchs;
+
 namespace Core.IConfiguration
 {
    public interface IUnitOfWork 
@@ -23,5 +25,7 @@ namespace Core.IConfiguration
        ICaseStudyRepository caseStudyRepository { get; }
 
        IReportRepository reportRepository { get; }
+        IBranchRepository branchRepository { get; }
+
     }
 }

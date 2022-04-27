@@ -8,7 +8,8 @@ using DAL.Entities;
 
 namespace Core.Repository.Employees
 {
-    public interface IEmployeeRepository : IGenericRepository<Employee>, IGenericEmployee
+    public interface IBranchRepository : IGenericRepository<Branch>
     {
+
     }
 }

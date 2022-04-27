@@ -11,6 +11,7 @@ using Core.Repository.Students;
 using Core.Repository.ClassStudy;
 using Core.Repository.CaseStudy;
 using Core.Repository.Reports;
+using Core.Repository.Branchs;
 
 namespace Core.UnitOfWork
 {
@@ -28,6 +29,8 @@ namespace Core.UnitOfWork
 
         public IReportRepository reportRepository { get; private set; }
 
+        public IBranchRepository branchRepository { get; private set; }
+
         public UnitOfWork()
         {
             this.studentRepository = new StudentRepository();
@@ -37,6 +40,7 @@ namespace Core.UnitOfWork
             this.classStudyRepository = new ClassStudyRepository();
             this.caseStudyRepository = new CaseStudyRepository();
             this.reportRepository = new ReportRepository();
+            this.branchRepository = new BranchRepository();
         }
 
     }
