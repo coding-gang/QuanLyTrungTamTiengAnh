@@ -25,9 +25,12 @@ namespace UI
         private ClassStudyBLL _classBll  = null;
         private CaseStudyBLL _caseStudyBLL = null;
         private EmployeeBLL _employeeBLL = null;
+        private ReportBLL _reportBLL = null;
         private IDictionary<int, int> dictionaryClassCaseStudy =null;
         private List<DetailRegister> detailRegisters = null;
         private FormUpdateClassStudent frmUpdate = null;
+        private frmBaoCao frmReport = null;
+
         private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
         private string[] DateStudy = new string[] { "Thứ 2 - Thứ 4", "Thứ 3 - Thứ 4","Thứ 3 - Thứ 5",
@@ -47,6 +50,7 @@ namespace UI
             _classBll     = new ClassStudyBLL(_unitOfWork);
             _caseStudyBLL = new CaseStudyBLL(_unitOfWork);
             _employeeBLL = new EmployeeBLL(_unitOfWork);
+            _reportBLL = new ReportBLL(_unitOfWork);
         }
         private void frmHome_Load(object sender, EventArgs e)
         {
@@ -60,6 +64,8 @@ namespace UI
             LoadEmployees();
             LoadTimeDayClass();
             LoadDateStudy();
+            LoadCbbGiaoVien();
+            LoadClassStudyWithoutTeacher();
         }
 
         private void LoadTimeDayClass()
@@ -409,10 +415,15 @@ namespace UI
             {
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Cập nhật ca học", MenuItemNew_Click));
+                m.MenuItems.Add(new MenuItem("Xuất báo cáo", MenuItemBaoCao_Click));
+
                 int currentMouseOverRow = dtgDangky.HitTest(e.X, e.Y).RowIndex;
                 var nameStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
+                var idStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
                 var student = detailRegisters.Find(d => d.NameStudent.Equals(nameStudent));
                 m.Show(dtgDangky, new Point(e.X, e.Y));
+                var billStudents = _reportBLL._unitOfWork.reportRepository.PrintBillByStudent(student.StudentId);
+                this.frmReport = new frmBaoCao($"Biên lại tiền học của học sinh {nameStudent}", billStudents);
                 this.frmUpdate = new FormUpdateClassStudent(_registerBLL, (int)student.StudentId);
                 this.frmUpdate.EventUpdateHandler += FrmUpdate_EventUpdateHandler;   
             }
@@ -450,7 +461,8 @@ namespace UI
         {
             var coursesId = cbbLopHocKH.SelectedValue;
             var caseStudyId = cbbLopCaHoc.SelectedValue;
-            var teacherId = cbbLopHocEmp.SelectedValue;
+
+            var teacherId = chbAddGv.Checked ? null : cbbLopHocEmp.SelectedValue.ToString();
             var branchId = cbbBranch.SelectedText == "Chi nhánh 1" ? 1 : 2;
             var room = tbRoom.Text.Trim();
             var timePerWeek = tbThoiGianHoc.Text.Trim();
@@ -458,7 +470,7 @@ namespace UI
             {
                 CourseId = (int)coursesId,
                 CaseId = (int)caseStudyId,
-                EmpId = teacherId.ToString(),
+                EmpId = teacherId,
                 BranchId = branchId,
                 Room = int.Parse(room),
                 StartDate = DateTime.Parse(dtNgayBatDau.Value.Date.ToString().Split(' ')[0]),
@@ -503,6 +515,121 @@ namespace UI
             {
                 Notify("Thêm ca học thất bại!");
             }
+        }
+
+        private void LoadClassStudyWithoutTeacher()
+        {
+            cbbKHAddNV.DisplayMember = "NameLessons";
+            cbbKHAddNV.ValueMember = "CourseId";
+            cbbKHAddNV.DataSource = _classBll._unitOfWork.classStudyRepository.GetAllWithoutTeacher();
+        }
+        private void LoadCbbGiaoVien()
+        {
+            cbbGanGv.DisplayMember = "FullName";
+            cbbGanGv.ValueMember = "Id";
+            cbbGanGv.DataSource = _employeeBLL._unitOfWork.employeeRepository.GetAll();
+        }
+        private void cbbKHAddNV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           var classStudy = (DetailClassStudy)cbbKHAddNV.SelectedItem;
+           txtNameCH.Text = classStudy.NameCaseStudy;
+           txtIdLopHoc.Text = classStudy.Id.ToString();
+        }
+
+        //Add Emp in class
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            if(ConfirmAction("Bạn có chắc muốn gắn giáo viên?","Gắn giáo viên!!"))
+            {
+                DeclareTeacherInClass();
+            }
+        }
+
+        private void DeclareTeacherInClass()
+        {
+            var idTeach = cbbGanGv.SelectedValue;
+            var isSuccess = _classBll._unitOfWork.classStudyRepository.UpdateEmployeesInClass(int.Parse(txtIdLopHoc.Text), idTeach.ToString());
+            if (isSuccess)
+            {
+                Notify("Gắn giáo viên vào lớp học thành công!");
+                LoadClassStudy();
+                LoadClassStudyWithoutTeacher();
+            }
+            else
+            {
+                Notify("Gắn giáo viên thất bại!");
+            }
+        }
+
+        private void dtgClassStudy_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Báo học viên theo lớp", MenuItemBaoCao_Click));
+                int currentMouseOverRow = dtgClassStudy.HitTest(e.X, e.Y).RowIndex;
+                var idClass = dtgClassStudy.Rows[currentMouseOverRow].Cells[4].Value.ToString();
+                m.Show(dtgClassStudy, new Point(e.X, e.Y));
+                var listStudent = _reportBLL._unitOfWork.reportRepository.PrintStudentInClass(int.Parse(idClass));
+                this.frmReport = new frmBaoCao("Báo cáo danh sách học viên theo lớp".ToUpper(),listStudent);
+               // this.frmUpdate.EventUpdateHandler += FrmUpdate_EventUpdateHandler;
+            }
+        }
+        private void MenuItemBaoCao_Click(Object sender, System.EventArgs e)
+        {
+            this.frmReport.Show();
+
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            var idCourses = cbbLopHocKH.SelectedValue;
+            var nameLesson = cbbLopHocKH.Text;
+            var listStudent = _reportBLL._unitOfWork.reportRepository.PrintStudentInCourses((int)idCourses);
+            this.frmReport = new frmBaoCao($"Báo cáo danh sách học viên theo khóa học {nameLesson}".ToUpper(), listStudent);
+            this.frmReport.Show();
+        }
+
+        private void kryptonButton7_Click(object sender, EventArgs e)
+        {
+            var emp = cbbLopHocEmp.Text.Trim();
+            var listClass =  _reportBLL._unitOfWork.reportRepository.PrintClassByTeacher(emp);
+            this.frmReport = new frmBaoCao($"Báo cáo danh sách lớp theo giáo viên {emp}".ToUpper(),listClass);
+            this.frmReport.Show();
+        }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+           var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("GVMax");
+            tbReportGV.Text = listReport[0].FullName;
+            tbReportSLGV.Text = listReport[0].Solop.ToString();
+        }
+
+        private void kryptonButton9_Click(object sender, EventArgs e)
+        {
+            var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("HVMax");
+            tbReportHS.Text = listReport[0].FullName;
+            tbReportSLHS.Text = listReport[0].Solop.ToString();
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("KHMax");
+            tbReportKH.Text = listReport[0].FullName;
+            tbReportKHHS.Text = listReport[0].Solop.ToString();
+        }
+
+        private void kryptonButton11_Click(object sender, EventArgs e)
+        {
+            var listReport = _reportBLL._unitOfWork.reportRepository.ReportCaHocMax();
+            dtgReportMax.DataSource = listReport;
+            tbHSCaHoc.Text = listReport[0].SoHocSinh;
+        }
+
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            var listReport = _reportBLL._unitOfWork.reportRepository.TeacherNotInClass();
+            dtgReportMax.DataSource = listReport;
         }
     }
 }

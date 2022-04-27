@@ -17,8 +17,19 @@ namespace Core.Repository.ClassStudy
 
         public bool Add(ClassStudys item)
         {
-            query = "dbo.Add_ClassStudy @course_id , @case_id , @teacher_id , @branch_id , @room , @start_date , @time_per_week , @active";
-            para = new object[] { item.CourseId, item.CaseId, item.EmpId, item.BranchId, item.Room, item.StartDate, item.TimePerWeek, item.Active };
+            if (String.IsNullOrEmpty(item.EmpId))
+            {
+                query = "dbo.Add_ClassStudyWithoutEmp @course_id , @case_id , @branch_id , @room , @start_date , @time_per_week , @active";
+                para = new object[] { item.CourseId, item.CaseId, item.BranchId, item.Room, item.StartDate, item.TimePerWeek, item.Active };
+
+            }
+            else
+            {
+                query = "dbo.Add_ClassStudy @course_id , @case_id , @teacher_id , @branch_id , @room , @start_date , @time_per_week , @active";
+                para = new object[] { item.CourseId, item.CaseId, item.EmpId, item.BranchId, item.Room, item.StartDate, item.TimePerWeek, item.Active };
+            }
+         
+         
             return Command(query, para);
         }
 
@@ -52,6 +63,30 @@ namespace Core.Repository.ClassStudy
             return listClass;
         }
 
+        public IEnumerable<ClassStudys> GetAllWithoutTeacher()
+        {
+            query = "select * from DetailClassWithoutTeacher";
+            var listClass = new List<DetailClassStudy>();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            var dataRows = dataTable.GetRows(listRow);
+            foreach (var item in dataRows)
+            {
+                var classStudy = new DetailClassStudy
+                {
+                    Id = int.Parse(item[0]),
+                    NameLessons = item[1],
+                    NameCaseStudy = item[2],
+                    BranchName = item[3],
+                    Room = int.Parse(item[4]),
+                    StartDate = DateTime.Parse(item[5]),
+                    TimePerWeek = int.Parse(item[6]),
+                    Active = bool.Parse(item[7])
+                };
+                listClass.Add(classStudy);
+            }
+            return listClass;
+        }
+
         public ClassStudys GetById(object id)
         {
             throw new NotImplementedException();
@@ -60,6 +95,13 @@ namespace Core.Repository.ClassStudy
         public bool Update(object id, ClassStudys item)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdateEmployeesInClass(int id, string idTeacher)
+        {
+            query = "dbo.UpdateEmpClass @id , @teachId";
+            para = new object[] { id, idTeacher };
+            return Command(query, para);
         }
     }
 }

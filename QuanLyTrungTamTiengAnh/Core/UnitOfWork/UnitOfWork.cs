@@ -10,6 +10,7 @@ using Core.Repository.Employees;
 using Core.Repository.Students;
 using Core.Repository.ClassStudy;
 using Core.Repository.CaseStudy;
+using Core.Repository.Reports;
 
 namespace Core.UnitOfWork
 {
@@ -25,6 +26,8 @@ namespace Core.UnitOfWork
 
         public ICaseStudyRepository caseStudyRepository { get; private set; }
 
+        public IReportRepository reportRepository { get; private set; }
+
         public UnitOfWork()
         {
             this.studentRepository = new StudentRepository();
@@ -33,6 +36,7 @@ namespace Core.UnitOfWork
             this.employeeRepository = new EmployeeRepository();
             this.classStudyRepository = new ClassStudyRepository();
             this.caseStudyRepository = new CaseStudyRepository();
+            this.reportRepository = new ReportRepository();
         }
 
     }

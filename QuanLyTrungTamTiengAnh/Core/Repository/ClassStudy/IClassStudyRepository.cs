@@ -7,7 +7,7 @@ using Core.GenericRepositorys;
 using DAL.Entities;
 namespace Core.Repository.ClassStudy
 {
-   public interface IClassStudyRepository : IGenericRepository<ClassStudys>
+   public interface IClassStudyRepository : IGenericRepository<ClassStudys> , IGenericClassStudy
     {
     }
 }

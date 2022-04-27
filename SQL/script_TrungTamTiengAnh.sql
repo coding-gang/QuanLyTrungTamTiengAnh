@@ -236,8 +236,8 @@ select * from Classes
 
 select * from Branches
 -- Class
-INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
-VALUES (1,31,'GV001',1,5,'2022-3-11',4,1)
+INSERT INTO Classes(course_id, case_id, branch_id, room, start_date, time_per_week, active)
+VALUES (1,31,1,25,'2022-3-11',4,1)
 INSERT INTO Classes(course_id, case_id, teacher_id, branch_id, room, start_date, time_per_week, active)
 VALUES (1,32,'GV002',1,6,'2022-3-11',4,1)
 

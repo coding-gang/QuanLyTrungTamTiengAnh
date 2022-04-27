@@ -113,7 +113,7 @@ VALUES (@lessons, @duration, @cost)
  on r.student_id = st.id
  end
 
- exec Xuat_DS_HV_ByIdClass 9
+ exec Xuat_DS_HV_ByIdClass 7
 
 
 
@@ -125,6 +125,14 @@ VALUES (@lessons, @duration, @cost)
  where teacher_id =@idGV
  end
 
+ drop procedure Xuat_DS_Lop_ByNameGV
+ Create procedure Xuat_DS_Lop_ByNameGV @nameGV nvarchar(50)
+ as
+ begin
+ Select *
+ from DetailClassStudy
+ where [Giáo viên] = @nameGV
+ end
   Create Procedure Xuat_DSBill_ByStudent @idStudent int
  as
  begin  
@@ -147,13 +155,15 @@ VALUES (@lessons, @duration, @cost)
  Create Procedure GvDayNhieuLopNhat 
  as
  begin
- Select TOP 1 emp.full_name ,  COUNT(c.teacher_id) Solop
+ Select TOP 1 emp.full_name , COUNT(c.teacher_id) Solop
  From Classes c
  inner join  Employees emp 
  on c.teacher_id = emp.id
  Group by c.teacher_id, emp.full_name
  Order by Solop DESC
  end
+
+ exec GvDayNhieuLopNhat
 
  Create Procedure HvHocNhieuNhatLop
  as
@@ -351,6 +361,39 @@ INSERT INTO Case_study(Name, start_time, date_study)
 VALUES (@Name, @start_time, @date_study)
 end
 
+create procedure Add_ClassStudyWithoutEmp @course_id int, @case_id int, @branch_id int,
+                                @room int, @start_date date, @time_per_week int, @active bit
+as
+begin
+INSERT INTO Classes(course_id, case_id, branch_id, room, start_date, time_per_week, active)
+VALUES (@course_id,@case_id,@branch_id,@room,@start_date,@time_per_week,@active)
+end
 
-
+select * from Classes
 delete Case_study where id =50
+
+create view DetailClassWithoutTeacher
+as
+select cl.id, c.lessons, cs.name as 'Ca hoc',
+b.name as 'Chi nhánh', cl.room,cl.start_date,cl.time_per_week,cl.active
+from (
+select * from Classes where teacher_id is null) cl
+inner join Courses c
+on cl.course_id = c.id
+inner join Case_study cs
+on cs.id = cl.case_id
+inner join Branches b
+on b.id = cl.branch_id
+
+select * from DetailClassWithoutTeacher
+
+create procedure UpdateEmpClass @id int, @teachId varchar(6)
+as
+begin
+  update Classes
+  set teacher_id = @teachId
+  where id =@id
+end
+
+
+
