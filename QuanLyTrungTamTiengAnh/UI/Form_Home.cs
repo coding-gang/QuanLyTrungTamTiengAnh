@@ -812,6 +812,16 @@ namespace UI
             handleNotifyFromData(result, "Xoá nhân viên thành công", "Xoá nhân viên thất bại");
         }
 
+        private void kryptonButton13_Click(object sender, EventArgs e)
+        {
+          var total =  _reportBLL._unitOfWork.reportRepository.TotalByDate(dtpStart.Value, dtpEnd.Value);
+            if (total.Count > 0)
+            {
+                lblTotal.Text = FormatCurrency(total[0].Cost);
+            }
+           
+        }
+
         ///\
         ///
 

@@ -22,5 +22,6 @@ namespace Core.Repository.Reports
         List<CaseStudyMaxStudent> ReportCaHocMax();
 
         List<Employee> TeacherNotInClass();
+        List<Total> TotalByDate(DateTime start, DateTime end);
     }
 }

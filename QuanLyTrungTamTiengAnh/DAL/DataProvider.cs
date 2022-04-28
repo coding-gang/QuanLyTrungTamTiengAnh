@@ -12,12 +12,13 @@ namespace DAL
     {
         private static readonly DataProvider instance;
         private const string id = "sa";
-        private const string password = "123";
-        private const string SERVERNAMECN1 = @"DESKTOP-UPDAPIH\MSSQLSERVER01";
-        private const string SERVERNAMECN2 = @"DESKTOP-4N9II10";
-
-
+        private const string password = "1234";
         private const string SERVERNAME = @"DESKTOP-6HQ6JE6";
+        private const string SERVERNAMECN1 = @"DESKTOP-4N9II10";
+        private const string SERVERNAMECN2 = @"DESKTOP-6HQ6JE6\MSSQLSERVER01";
+
+
+      
 
 
         public static DataProvider Instance
@@ -31,7 +32,7 @@ namespace DAL
 
         }
 
-        private readonly string strCon = $@"server={SERVERNAMECN1};database=DatabaseEnglishCenter;User id={id};password={password}";
+        private readonly string strCon = $@"server={SERVERNAMECN2};database=DatabaseCN1;User id={id};password={password}";
 
         private void hasParameter(SqlCommand cmd, string query, object[] para = null)
         {

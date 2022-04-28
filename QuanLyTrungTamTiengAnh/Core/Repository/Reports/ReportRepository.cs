@@ -189,5 +189,27 @@ namespace Core.Repository.Reports
             }
             return listMaxReport;
         }
+
+        public List<Total> TotalByDate(DateTime start, DateTime end)
+        {
+            query = "dbo.Report_Cost_By_Payment_Date @dateStart , @dateEnd";
+            para = new object[] { start, end };
+            var listMaxReport = new List<Total>();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query,para);
+            var dataRows = dataTable.GetRows(listRow);
+            foreach (var row in dataRows)
+            {
+                if (!String.IsNullOrEmpty(row[0]))
+                {
+                    var cost = new Total
+                    {
+                        Cost = decimal.Parse(row[0])
+                    };
+                    listMaxReport.Add(cost);
+                }
+           
+            }
+            return listMaxReport;
+        }
     }
 }

@@ -4,3 +4,9 @@ C:\Users\ADMIN\OneDrive\Desktop\merge-c0de\QuanLyTrungTamTiengAnh\QuanLyTrungTam
 C:\Users\ADMIN\OneDrive\Desktop\merge-c0de\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\ADMIN\OneDrive\Desktop\merge-c0de\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.dll
 C:\Users\ADMIN\OneDrive\Desktop\merge-c0de\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.pdb
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\bin\Debug\DAL.dll
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\bin\Debug\DAL.pdb
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.dll
+C:\Users\ADMIN\OneDrive\Desktop\Quanlytrungtamtienganh\QuanLyTrungTamTiengAnh\QuanLyTrungTamTiengAnh\DAL\obj\Debug\DAL.pdb

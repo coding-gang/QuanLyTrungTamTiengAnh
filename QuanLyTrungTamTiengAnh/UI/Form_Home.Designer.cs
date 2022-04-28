@@ -202,6 +202,10 @@
             this.mnuQuanly = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHome = new System.Windows.Forms.MenuStrip();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.lblTotal = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             this.panel2.SuspendLayout();
             this.L.SuspendLayout();
             this.tpNhanvien.SuspendLayout();
@@ -1600,6 +1604,10 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.kryptonButton13);
+            this.panel7.Controls.Add(this.lblTotal);
+            this.panel7.Controls.Add(this.dtpEnd);
+            this.panel7.Controls.Add(this.dtpStart);
             this.panel7.Controls.Add(this.kryptonButton12);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
@@ -1911,6 +1919,37 @@
             this.mnuHome.TabIndex = 0;
             this.mnuHome.Text = "menuStripHome";
             // 
+            // dtpStart
+            // 
+            this.dtpStart.Location = new System.Drawing.Point(249, 10);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(200, 20);
+            this.dtpStart.TabIndex = 3;
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(466, 10);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
+            this.dtpEnd.TabIndex = 3;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Location = new System.Drawing.Point(854, 11);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(6, 2);
+            this.lblTotal.TabIndex = 18;
+            this.lblTotal.Values.Text = "";
+            // 
+            // kryptonButton13
+            // 
+            this.kryptonButton13.Location = new System.Drawing.Point(672, 6);
+            this.kryptonButton13.Name = "kryptonButton13";
+            this.kryptonButton13.Size = new System.Drawing.Size(156, 25);
+            this.kryptonButton13.TabIndex = 19;
+            this.kryptonButton13.Values.Text = "Thống kê theo ngày";
+            this.kryptonButton13.Click += new System.EventHandler(this.kryptonButton13_Click);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1987,6 +2026,7 @@
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgReportMax)).EndInit();
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.kryptonStatusStrip1.ResumeLayout(false);
@@ -2174,5 +2214,9 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel40;
         private Krypton.Toolkit.KryptonLabel kryptonLabel42;
         private Krypton.Toolkit.KryptonDataGridView dtgNhanVien;
+        private Krypton.Toolkit.KryptonLabel lblTotal;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private Krypton.Toolkit.KryptonButton kryptonButton13;
     }
 }

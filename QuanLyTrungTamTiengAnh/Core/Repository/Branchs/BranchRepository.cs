@@ -28,7 +28,7 @@ namespace Core.Repository.Branchs
 
         public IEnumerable<Branch> GetAll()
         {
-            query = "select * from Branches";
+            query = "select * from LINK.DatabaseEnglishCenter.DBO.Branches";
             var branches = new List<Branch>();
             var dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var collectionRowData = dataTable.GetRows(listRow);
