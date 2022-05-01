@@ -45,6 +45,7 @@
     <Compile Include="GenericRepositorys\GenericRepository.cs" />
     <Compile Include="GenericRepositorys\IGenericRepository.cs" />
     <Compile Include="IConfiguration\IUnitOfWork.cs" />
+    <Compile Include="Logins\Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Branchs\BranchRepository.cs" />
     <Compile Include="Repository\Branchs\IBranchRepository.cs" />

@@ -11,28 +11,38 @@ namespace DAL
    public class DataProvider
     {
         private static readonly DataProvider instance;
-        private const string id = "sa";
-        private const string password = "1234";
-        private const string SERVERNAME = @"DESKTOP-6HQ6JE6";
-        private const string SERVERNAMECN1 = @"DESKTOP-4N9II10";
-        private const string SERVERNAMECN2 = @"DESKTOP-6HQ6JE6\MSSQLSERVER01";
+        private static string id;
+        private static bool   isLogin;
+        private static string password;
+        private static string SERVERNAME;
+        public static string Id
+        {
+            get {  return id; } 
+            set { if (!isLogin){ id = value; } }
+        }
 
-
-      
-
+        public static string Password
+        {
+            get { return password; }
+            set { if (!isLogin) { password = value; } }
+        }
+        public static string Branch
+        {
+            get { return SERVERNAME; }
+            set { if (!isLogin) { SERVERNAME = value; } }
+        }
 
         public static DataProvider Instance
-
         {
             get { if (instance == null) return new DataProvider(); return DataProvider.instance; }
         }
 
         private DataProvider()
         {
-
+        
         }
 
-        private readonly string strCon = $@"server={SERVERNAMECN2};database=DatabaseCN1;User id={id};password={password}";
+        private string strCon = $@"server={SERVERNAME};database=DatabaseEnglishCenter;User id={id};password={password}";
 
         private void hasParameter(SqlCommand cmd, string query, object[] para = null)
         {
@@ -42,6 +52,35 @@ namespace DAL
                 cmd.Parameters.AddWithValue(parameter, para[i]);
                 i++;
             }
+        }
+
+        public bool ISConnected()
+        {
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(strCon);
+                conn.Open();
+                isLogin = true;
+            }
+            catch (SqlException err)
+            {
+                isLogin = false;
+            }
+            finally
+            {
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return isLogin;
+        }
+
+        public bool LogOut()
+        {
+            isLogin = false;
+            return isLogin;
         }
 
         public DataTable ExcuteDataReader(string query, object[] para = null)
