@@ -50,6 +50,7 @@
     <Compile Include="StudentRegister.cs" />
     <Compile Include="ReportMaxClass.cs" />
     <Compile Include="Total.cs" />
+    <Compile Include="UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

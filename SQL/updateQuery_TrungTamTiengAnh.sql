@@ -395,5 +395,5 @@ begin
   where id =@id
 end
 
-
+Select * from InfoRoleUser
 

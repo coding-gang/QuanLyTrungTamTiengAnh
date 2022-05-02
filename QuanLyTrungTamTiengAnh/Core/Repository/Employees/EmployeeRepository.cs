@@ -114,37 +114,13 @@ namespace Core.Repository.Employees
 
         public bool Update(object id, Employee item)
         {
-            query = $"dbo.update_Employee @id , @full_name , @dob "
-                                + ", @phone , @qualification "
-                                + ", @nation , @jobtitle "
-                                 + ", @salary";
-            para = new object[]
-          {
-                id,
-                item.FullName,
-                item.DOB,
-                item.Phone,
-                item.Qualification,
-                item.Nation,
-                item.Jobtitle,
-                item.Salary
-          };
-            return Command(query, para);
+            query = $"update Employees set full_name = '{item.FullName}', date_of_birth = '{item.DOB}', phone = '{item.Phone}', qualification = '{item.Qualification}',nation = '{item.Nation}', jobtitle = '{item.Jobtitle}' , salary = '{item.Salary}' where id = '{id}'";
+            return Command(query);
         }
-
-
-
         public bool UpdateBranchEmployee(int idBranchCurrent, int idBranchExchange, string idEmployee)
         {
-            query = $"Update_Branch_Emp @branchCurrentId " +
-                $", @branchExchangeId , @EmpId ";
-            para = new object[]
-            {
-                idBranchCurrent,
-                idBranchExchange,
-                idEmployee
-            };
-            return Command(query, para);
+            query = $"update Classes set teacher_id = null where branch_id = '{idBranchCurrent}' and teacher_id = '{idEmployee}' update Employees set branch_id = '{idBranchExchange}' where id = '{idEmployee}'";
+            return Command(query);
         }
     };
 }

@@ -13,7 +13,7 @@ using Core.IConfiguration;
 using BLL;
 using Dtos;
 using DAL.Entities;
-
+using Core.Extension;
 
 namespace UI
 {
@@ -35,7 +35,7 @@ namespace UI
         private frmBaoCao frmReport = null;
         private List<Employee> employees = new List<Employee>();
         private List<Branch> branches = new List<Branch>();
-
+        private string _branchCurrent;
         private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
         private string[] DateStudy = new string[] { "Thứ 2 - Thứ 4", "Thứ 3 - Thứ 4","Thứ 3 - Thứ 5",
@@ -46,9 +46,13 @@ namespace UI
                                                     "Thứ 2 - Thứ 3 - Thứ 4","Thứ 3 - Thứ 5 - Thứ 7","Thứ 2 - Thứ 6 - Thứ 7",
                                                     "Thứ 4 - Thứ 6 - Thứ 7","Thứ 4 - Thứ 5 - Thứ 7","Thứ 5 - Thứ 6 - Thứ 7","Thứ 2 - Thứ 4 - Thứ 6"};
         private int? IdCaseStudy { get; set; }
-        public frmHome()
+
+        private UserRole _userRole = null;
+        public frmHome(UserRole userRole,string branch)
         {
             InitializeComponent();
+            _userRole = userRole;
+            _branchCurrent = branch;
             _registerBLL  = new RegisterBLL(_unitOfWork);
             _studentBLL   = new StudentBLL(_unitOfWork);
             _coursesBLL   = new CoursesBLL(_unitOfWork);
@@ -61,6 +65,28 @@ namespace UI
         }
         private void frmHome_Load(object sender, EventArgs e)
         {
+            InFoUserLogin();
+        }
+
+        private void InFoUserLogin()
+        {
+            tlbTendangnhap.Text = _userRole.UserName;
+            tlbNhom.Text = _userRole.RoleName;
+            tlbChinhanh.Text    = _branchCurrent;
+        }
+
+        private void ActionPermissionRoleEmp()
+        {
+            LoadAllEmployee();
+            LoadJobTitle();
+            loadTypeSearch();
+            LoadLevel();
+            LoadBranch();
+            LoadCbbGiaoVien();
+        }
+
+        private void FullPermisson()
+        {
             LoadStudents();
             LoadRegisters();
             LoadCourses();
@@ -71,14 +97,22 @@ namespace UI
             LoadEmployees();
             LoadTimeDayClass();
             LoadDateStudy();
-            LoadCbbGiaoVien();
             LoadClassStudyWithoutTeacher();
-            LoadAllEmployee();
-            LoadBranch();
-            LoadLevel();
-            LoadJobTitle();
-            loadTypeSearch();
+            ActionPermissionRoleEmp();
         }
+
+        private void CheckPermissionRoleToGetData()
+        {
+            if(_userRole.RoleName == "GIAMDOC" || _userRole.RoleName == "QLCHINHANH")
+            {
+                FullPermisson();
+            }
+            else
+            {
+                ActionPermissionRoleEmp();
+            }
+        }
+
         IDictionary<string, string> typeSearch = new Dictionary<string, string>()
             {
                 {"Id","Mã nhân viên" },
@@ -307,20 +341,24 @@ namespace UI
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtAdrress.Text) && 
-                String.IsNullOrEmpty(txtFullName.Text) &&
-                String.IsNullOrEmpty(txtPhoneNumber.Text))
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                Notify("Vui lòng điền đầy đủ thông tin");
-            }
-            else
-            {
-                if(ConfirmAction($"Bạn có chắc thêm mới học sinh {txtFullName.Text} ?","Thêm học sinh!!"))
+                if (String.IsNullOrEmpty(txtAdrress.Text) &&
+            String.IsNullOrEmpty(txtFullName.Text) &&
+            String.IsNullOrEmpty(txtPhoneNumber.Text))
                 {
-                    AddStudent();
-                    LoadStudents();
-                }         
+                    Notify("Vui lòng điền đầy đủ thông tin");
+                }
+                else
+                {
+                    if (ConfirmAction($"Bạn có chắc thêm mới học sinh {txtFullName.Text} ?", "Thêm học sinh!!"))
+                    {
+                        AddStudent();
+                        LoadStudents();
+                    }
+                }
             }
+        
         }
 
         private bool IsAddRegister()
@@ -365,11 +403,15 @@ namespace UI
 
         private void btnDangkydk_Click(object sender, EventArgs e)
         {
-            if(ConfirmAction("Bạn có chắc muốn đăng ký ?", "Đăng ký khóa học!!"))
+            if (_userRole.RoleName != "GIAMDOC")
             {
-                AddRegister();
-                LoadRegisters();
+                if (ConfirmAction("Bạn có chắc muốn đăng ký ?", "Đăng ký khóa học!!"))
+                {
+                    AddRegister();
+                    LoadRegisters();
+                }
             }
+               
            
         }
 
@@ -392,17 +434,19 @@ namespace UI
 
         private void btnThanhtoandk_Click(object sender, EventArgs e)
         {
-            var tuitionDebt = nmrConno.Value;
-            var currentRow = dtgDangky.CurrentRow;
-            var index = currentRow.Index;
-            var register = (DetailRegister)currentRow.DataBoundItem;
-            var totalDebt = tuitionDebt + register.Amount;
-            var message = $"Đóng tiền học cho học sinh: {register.NameStudent}\nSố tiền:{FormatCurrency(totalDebt)} đồng";
-            if (ConfirmAction(message,"Đóng tiền học!!"))
+           if(_userRole.RoleName != "GIAMDOC")
             {
-                PaymentTuition(totalDebt, register, index);
-            }
-            
+                var tuitionDebt = nmrConno.Value;
+                var currentRow = dtgDangky.CurrentRow;
+                var index = currentRow.Index;
+                var register = (DetailRegister)currentRow.DataBoundItem;
+                var totalDebt = tuitionDebt + register.Amount;
+                var message = $"Đóng tiền học cho học sinh: {register.NameStudent}\nSố tiền:{FormatCurrency(totalDebt)} đồng";
+                if (ConfirmAction(message, "Đóng tiền học!!"))
+                {
+                    PaymentTuition(totalDebt, register, index);
+                }
+            }          
         }
 
         private void PaymentTuition(decimal totalDebt, DetailRegister register,int index)
@@ -482,22 +526,26 @@ namespace UI
 
         private void dtgDangky_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                ContextMenu m = new ContextMenu();
-                m.MenuItems.Add(new MenuItem("Cập nhật ca học", MenuItemNew_Click));
-                m.MenuItems.Add(new MenuItem("Xuất báo cáo", MenuItemBaoCao_Click));
+                if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenu m = new ContextMenu();
+                    m.MenuItems.Add(new MenuItem("Cập nhật ca học", MenuItemNew_Click));
+                    m.MenuItems.Add(new MenuItem("Xuất báo cáo", MenuItemBaoCao_Click));
 
-                int currentMouseOverRow = dtgDangky.HitTest(e.X, e.Y).RowIndex;
-                var nameStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
-                var idStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
-                var student = detailRegisters.Find(d => d.NameStudent.Equals(nameStudent));
-                m.Show(dtgDangky, new Point(e.X, e.Y));
-                var billStudents = _reportBLL._unitOfWork.reportRepository.PrintBillByStudent(student.StudentId);
-                this.frmReport = new frmBaoCao($"Biên lại tiền học của học sinh {nameStudent}", billStudents);
-                this.frmUpdate = new FormUpdateClassStudent(_registerBLL, (int)student.StudentId);
-                this.frmUpdate.EventUpdateHandler += FrmUpdate_EventUpdateHandler;   
+                    int currentMouseOverRow = dtgDangky.HitTest(e.X, e.Y).RowIndex;
+                    var nameStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
+                    var idStudent = dtgDangky.Rows[currentMouseOverRow].Cells[0].Value.ToString();
+                    var student = detailRegisters.Find(d => d.NameStudent.Equals(nameStudent));
+                    m.Show(dtgDangky, new Point(e.X, e.Y));
+                    var billStudents = _reportBLL._unitOfWork.reportRepository.PrintBillByStudent(student.StudentId);
+                    this.frmReport = new frmBaoCao($"Biên lại tiền học của học sinh {nameStudent}", billStudents);
+                    this.frmUpdate = new FormUpdateClassStudent(_registerBLL, (int)student.StudentId);
+                    this.frmUpdate.EventUpdateHandler += FrmUpdate_EventUpdateHandler;
+                }
             }
+          
         }
 
         private void FrmUpdate_EventUpdateHandler(object sender, FormUpdateClassStudent.UpdateEventArgs args)
@@ -521,11 +569,13 @@ namespace UI
         // them lop hoc
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            if(ConfirmAction("Bạn có chắc muốn thêm lớp học!","Thêm mới lớp học!!"))
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                AddClassStudy();
-            }
-       
+                if (ConfirmAction("Bạn có chắc muốn thêm lớp học!", "Thêm mới lớp học!!"))
+                {
+                    AddClassStudy();
+                }
+            }    
         }
 
         private void AddClassStudy()
@@ -563,9 +613,12 @@ namespace UI
         // add ca hoc
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-           if(ConfirmAction("Bạn có chắc thêm ca học","Thêm ca học!!"))
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                AddCaseStudy();
+                if (ConfirmAction("Bạn có chắc thêm ca học", "Thêm ca học!!"))
+                {
+                    AddCaseStudy();
+                }
             }
         }
         private void AddCaseStudy()
@@ -610,10 +663,14 @@ namespace UI
         //Add Emp in class
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            if(ConfirmAction("Bạn có chắc muốn gắn giáo viên?","Gắn giáo viên!!"))
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                DeclareTeacherInClass();
+                if (ConfirmAction("Bạn có chắc muốn gắn giáo viên?", "Gắn giáo viên!!"))
+                {
+                    DeclareTeacherInClass();
+                }
             }
+          
         }
 
         private void DeclareTeacherInClass()
@@ -705,24 +762,28 @@ namespace UI
 
         private void txtSearchByName_KeyUp(object sender, KeyEventArgs e)
         {
-            //SearchEmployeeByeName();
+            SearchEmployeeByeName();
         }
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            Employee employee = new Employee
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
-                FullName = txtFullName1.Text,
-                DOB = dtpDOB.CalendarTodayDate,
-                Phone = txtPhone.Text,
-                Qualification = cbbLevel.Text,
-                Nation = txtNation.Text,
-                Jobtitle = cbbJobTitle.Text,
-                Salary = int.Parse(txtSalary.Text)
-            };
-            var result = empBLL._unitOfWork.employeeRepository.Add(employee);
-            handleNotifyFromData(result, "Thêm nhân viên thành công", "Thêm nhân viên thất bại");
+                Employee employee = new Employee
+                {
+                    BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
+                    FullName = txtFullName1.Text,
+                    DOB = dtpDOB.CalendarTodayDate,
+                    Phone = txtPhone.Text,
+                    Qualification = cbbLevel.Text,
+                    Nation = txtNation.Text,
+                    Jobtitle = cbbJobTitle.Text,
+                    Salary = int.Parse(txtSalary.Text)
+                };
+                var result = empBLL._unitOfWork.employeeRepository.Add(employee);
+                handleNotifyFromData(result, "Thêm nhân viên thành công", "Thêm nhân viên thất bại");
+            }
+           
         }
         private void handleNotifyFromData(bool result, string notifySuccess, string notifyError)
         {
@@ -775,41 +836,48 @@ namespace UI
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-
-            Employee employee = new Employee
+            if(_userRole.RoleName != "GIAMDOC")
             {
-                Id = currentEmployee.Id,
-                BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
-                FullName = txtFullName1.Text,
-                DOB = DateTime.Parse(dtpDOB.Value.ToString()),
-                Phone = txtPhone.Text,
-                Qualification = cbbLevel.Text,
-                Nation = txtNation.Text,
-                Jobtitle = cbbJobTitle.Text,
-                Salary = int.Parse(txtSalary.Text)
-            };
+                Employee employee = new Employee
+                {
+                    Id = currentEmployee.Id,
+                    BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
+                    FullName = txtFullName1.Text,
+                    DOB = DateTime.Parse(dtpDOB.Value.ToString()),
+                    Phone = txtPhone.Text,
+                    Qualification = cbbLevel.Text,
+                    Nation = txtNation.Text,
+                    Jobtitle = cbbJobTitle.Text,
+                    Salary = int.Parse(txtSalary.Text)
+                };
 
 
-            if (currentEmployee.BranhId != employee.BranhId)
-            {
+                if (currentEmployee.BranhId != employee.BranhId)
+                {
 
-                var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
-                var updateBranch = empBLL._unitOfWork.employeeRepository.UpdateBranchEmployee(currentEmployee.BranhId, employee.BranhId, employee.Id);
-                handleNotifyFromData(result && updateBranch, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
+                    var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
+                    var updateBranch = empBLL._unitOfWork.employeeRepository.UpdateBranchEmployee(currentEmployee.BranhId, employee.BranhId, employee.Id);
+                    handleNotifyFromData(result && updateBranch, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
 
+                }
+                else
+                {
+                    var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
+                    handleNotifyFromData(result, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
+
+                }
             }
-            else
-            {
-                var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
-                handleNotifyFromData(result, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
-
-            }
+           
         }
 
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
-            var result = empBLL._unitOfWork.employeeRepository.Delete(idEmployee);
-            handleNotifyFromData(result, "Xoá nhân viên thành công", "Xoá nhân viên thất bại");
+            if (_userRole.RoleName != "GIAMDOC")
+            {
+                var result = empBLL._unitOfWork.employeeRepository.Delete(idEmployee);
+                handleNotifyFromData(result, "Xoá nhân viên thành công", "Xoá nhân viên thất bại");
+            }
+               
         }
 
         private void kryptonButton13_Click(object sender, EventArgs e)
@@ -822,8 +890,22 @@ namespace UI
            
         }
 
-        ///\
-        ///
-
+        private void L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(L.SelectedIndex != -1)
+            {
+                var nameTab = L.TabPages[L.SelectedIndex].Text;
+                if(nameTab != "Nhân viên" && _userRole.RoleName == "NHANVIEN")
+                {
+                    Notify("Bạn không có quyền truy cập!");
+                }
+                else
+                {
+                    CheckPermissionRoleToGetData();
+                }
+               
+            }
+        
+        }
     }
 }

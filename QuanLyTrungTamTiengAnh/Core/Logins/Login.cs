@@ -9,7 +9,7 @@ namespace Core.Logins
    public class Login
     {
         private static Dictionary<string, string> serverName = new Dictionary<string, string>();
-        private Login()
+        static Login()
         {
             serverName.Add("Chi nhanh 1", @"DESKTOP-6HQ6JE6\MSSQLSERVER02");
             serverName.Add("Chi nhanh 2", @"DESKTOP-6HQ6JE6\MSSQLSERVER01");

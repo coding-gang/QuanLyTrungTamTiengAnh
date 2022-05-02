@@ -130,7 +130,6 @@
             this.kryptonLabel17 = new Krypton.Toolkit.KryptonLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chbAddGv = new Krypton.Toolkit.KryptonCheckBox();
-            this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             this.tbLopNgayHoc = new Krypton.Toolkit.KryptonTextBox();
             this.tbLopThoigian = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel21 = new Krypton.Toolkit.KryptonLabel();
@@ -166,6 +165,10 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.dtgReportMax = new Krypton.Toolkit.KryptonDataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            this.lblTotal = new Krypton.Toolkit.KryptonLabel();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.kryptonButton11 = new Krypton.Toolkit.KryptonButton();
@@ -190,6 +193,16 @@
             this.tbReportGV = new Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel26 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel24 = new Krypton.Toolkit.KryptonLabel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.kryptonButton14 = new Krypton.Toolkit.KryptonButton();
+            this.cbbPhanNhom = new Krypton.Toolkit.KryptonComboBox();
+            this.tbDkUserName = new Krypton.Toolkit.KryptonTextBox();
+            this.tbDkPass = new Krypton.Toolkit.KryptonTextBox();
+            this.tbdkLogin = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel48 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel47 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel46 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel45 = new Krypton.Toolkit.KryptonLabel();
             this.tlbLabelTendangnhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlbTendangnhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlbLabelChinhanh = new System.Windows.Forms.ToolStripStatusLabel();
@@ -202,10 +215,6 @@
             this.mnuQuanly = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHome = new System.Windows.Forms.MenuStrip();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.lblTotal = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             this.panel2.SuspendLayout();
             this.L.SuspendLayout();
             this.tpNhanvien.SuspendLayout();
@@ -259,6 +268,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgReportMax)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbPhanNhom)).BeginInit();
             this.kryptonStatusStrip1.SuspendLayout();
             this.mnuHome.SuspendLayout();
             this.SuspendLayout();
@@ -278,12 +289,14 @@
             this.L.Controls.Add(this.tpDangky);
             this.L.Controls.Add(this.tabPage1);
             this.L.Controls.Add(this.tabPage2);
+            this.L.Controls.Add(this.tabPage3);
             this.L.Dock = System.Windows.Forms.DockStyle.Fill;
             this.L.Location = new System.Drawing.Point(0, 0);
             this.L.Name = "L";
             this.L.SelectedIndex = 0;
             this.L.Size = new System.Drawing.Size(1010, 404);
             this.L.TabIndex = 0;
+            this.L.SelectedIndexChanged += new System.EventHandler(this.L_SelectedIndexChanged);
             // 
             // tpNhanvien
             // 
@@ -1251,7 +1264,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.chbAddGv);
-            this.groupBox2.Controls.Add(this.kryptonButton4);
             this.groupBox2.Controls.Add(this.tbLopNgayHoc);
             this.groupBox2.Controls.Add(this.tbLopThoigian);
             this.groupBox2.Controls.Add(this.kryptonLabel21);
@@ -1286,14 +1298,6 @@
             this.chbAddGv.Size = new System.Drawing.Size(129, 20);
             this.chbAddGv.TabIndex = 21;
             this.chbAddGv.Values.Text = "Them giao vien sau";
-            // 
-            // kryptonButton4
-            // 
-            this.kryptonButton4.Location = new System.Drawing.Point(362, 186);
-            this.kryptonButton4.Name = "kryptonButton4";
-            this.kryptonButton4.Size = new System.Drawing.Size(66, 25);
-            this.kryptonButton4.TabIndex = 19;
-            this.kryptonButton4.Values.Text = "Sửa ";
             // 
             // tbLopNgayHoc
             // 
@@ -1615,6 +1619,37 @@
             this.panel7.Size = new System.Drawing.Size(996, 41);
             this.panel7.TabIndex = 3;
             // 
+            // kryptonButton13
+            // 
+            this.kryptonButton13.Location = new System.Drawing.Point(672, 6);
+            this.kryptonButton13.Name = "kryptonButton13";
+            this.kryptonButton13.Size = new System.Drawing.Size(156, 25);
+            this.kryptonButton13.TabIndex = 19;
+            this.kryptonButton13.Values.Text = "Thống kê theo ngày";
+            this.kryptonButton13.Click += new System.EventHandler(this.kryptonButton13_Click);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Location = new System.Drawing.Point(854, 11);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(6, 2);
+            this.lblTotal.TabIndex = 18;
+            this.lblTotal.Values.Text = "";
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(466, 10);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
+            this.dtpEnd.TabIndex = 3;
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Location = new System.Drawing.Point(249, 10);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(200, 20);
+            this.dtpStart.TabIndex = 3;
+            // 
             // kryptonButton12
             // 
             this.kryptonButton12.Location = new System.Drawing.Point(21, 6);
@@ -1834,6 +1869,97 @@
             this.kryptonLabel24.TabIndex = 0;
             this.kryptonLabel24.Values.Text = "Giáo viên dạy nhiều lớp nhất:";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.kryptonButton14);
+            this.tabPage3.Controls.Add(this.cbbPhanNhom);
+            this.tabPage3.Controls.Add(this.tbDkUserName);
+            this.tabPage3.Controls.Add(this.tbDkPass);
+            this.tabPage3.Controls.Add(this.tbdkLogin);
+            this.tabPage3.Controls.Add(this.kryptonLabel48);
+            this.tabPage3.Controls.Add(this.kryptonLabel47);
+            this.tabPage3.Controls.Add(this.kryptonLabel46);
+            this.tabPage3.Controls.Add(this.kryptonLabel45);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1002, 378);
+            this.tabPage3.TabIndex = 7;
+            this.tabPage3.Text = "Tạo tài khoản";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // kryptonButton14
+            // 
+            this.kryptonButton14.Location = new System.Drawing.Point(129, 220);
+            this.kryptonButton14.Name = "kryptonButton14";
+            this.kryptonButton14.Size = new System.Drawing.Size(104, 34);
+            this.kryptonButton14.TabIndex = 8;
+            this.kryptonButton14.Values.Text = "Đăng ký";
+            // 
+            // cbbPhanNhom
+            // 
+            this.cbbPhanNhom.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbPhanNhom.DropDownWidth = 121;
+            this.cbbPhanNhom.IntegralHeight = false;
+            this.cbbPhanNhom.Location = new System.Drawing.Point(112, 166);
+            this.cbbPhanNhom.Name = "cbbPhanNhom";
+            this.cbbPhanNhom.Size = new System.Drawing.Size(121, 21);
+            this.cbbPhanNhom.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cbbPhanNhom.TabIndex = 7;
+            // 
+            // tbDkUserName
+            // 
+            this.tbDkUserName.Location = new System.Drawing.Point(112, 118);
+            this.tbDkUserName.Name = "tbDkUserName";
+            this.tbDkUserName.Size = new System.Drawing.Size(121, 23);
+            this.tbDkUserName.TabIndex = 6;
+            // 
+            // tbDkPass
+            // 
+            this.tbDkPass.Location = new System.Drawing.Point(112, 65);
+            this.tbDkPass.Name = "tbDkPass";
+            this.tbDkPass.Size = new System.Drawing.Size(121, 23);
+            this.tbDkPass.TabIndex = 5;
+            // 
+            // tbdkLogin
+            // 
+            this.tbdkLogin.Location = new System.Drawing.Point(112, 23);
+            this.tbdkLogin.Name = "tbdkLogin";
+            this.tbdkLogin.Size = new System.Drawing.Size(121, 23);
+            this.tbdkLogin.TabIndex = 4;
+            // 
+            // kryptonLabel48
+            // 
+            this.kryptonLabel48.Location = new System.Drawing.Point(21, 167);
+            this.kryptonLabel48.Name = "kryptonLabel48";
+            this.kryptonLabel48.Size = new System.Drawing.Size(76, 20);
+            this.kryptonLabel48.TabIndex = 3;
+            this.kryptonLabel48.Values.Text = "Phân nhóm:";
+            // 
+            // kryptonLabel47
+            // 
+            this.kryptonLabel47.Location = new System.Drawing.Point(29, 118);
+            this.kryptonLabel47.Name = "kryptonLabel47";
+            this.kryptonLabel47.Size = new System.Drawing.Size(68, 20);
+            this.kryptonLabel47.TabIndex = 2;
+            this.kryptonLabel47.Values.Text = "Username:";
+            // 
+            // kryptonLabel46
+            // 
+            this.kryptonLabel46.Location = new System.Drawing.Point(32, 68);
+            this.kryptonLabel46.Name = "kryptonLabel46";
+            this.kryptonLabel46.Size = new System.Drawing.Size(65, 20);
+            this.kryptonLabel46.TabIndex = 1;
+            this.kryptonLabel46.Values.Text = "Password:";
+            // 
+            // kryptonLabel45
+            // 
+            this.kryptonLabel45.Location = new System.Drawing.Point(33, 26);
+            this.kryptonLabel45.Name = "kryptonLabel45";
+            this.kryptonLabel45.Size = new System.Drawing.Size(64, 20);
+            this.kryptonLabel45.TabIndex = 0;
+            this.kryptonLabel45.Values.Text = "Tên login:";
+            // 
             // tlbLabelTendangnhap
             // 
             this.tlbLabelTendangnhap.Name = "tlbLabelTendangnhap";
@@ -1919,37 +2045,6 @@
             this.mnuHome.TabIndex = 0;
             this.mnuHome.Text = "menuStripHome";
             // 
-            // dtpStart
-            // 
-            this.dtpStart.Location = new System.Drawing.Point(249, 10);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(200, 20);
-            this.dtpStart.TabIndex = 3;
-            // 
-            // dtpEnd
-            // 
-            this.dtpEnd.Location = new System.Drawing.Point(466, 10);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
-            this.dtpEnd.TabIndex = 3;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Location = new System.Drawing.Point(854, 11);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(6, 2);
-            this.lblTotal.TabIndex = 18;
-            this.lblTotal.Values.Text = "";
-            // 
-            // kryptonButton13
-            // 
-            this.kryptonButton13.Location = new System.Drawing.Point(672, 6);
-            this.kryptonButton13.Name = "kryptonButton13";
-            this.kryptonButton13.Size = new System.Drawing.Size(156, 25);
-            this.kryptonButton13.TabIndex = 19;
-            this.kryptonButton13.Values.Text = "Thống kê theo ngày";
-            this.kryptonButton13.Click += new System.EventHandler(this.kryptonButton13_Click);
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2029,6 +2124,9 @@
             this.panel7.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbPhanNhom)).EndInit();
             this.kryptonStatusStrip1.ResumeLayout(false);
             this.kryptonStatusStrip1.PerformLayout();
             this.mnuHome.ResumeLayout(false);
@@ -2127,7 +2225,6 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel17;
         private System.Windows.Forms.GroupBox groupBox2;
         private Krypton.Toolkit.KryptonCheckBox chbAddGv;
-        private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonTextBox tbLopNgayHoc;
         private Krypton.Toolkit.KryptonTextBox tbLopThoigian;
         private Krypton.Toolkit.KryptonLabel kryptonLabel21;
@@ -2218,5 +2315,15 @@
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.DateTimePicker dtpStart;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private System.Windows.Forms.TabPage tabPage3;
+        private Krypton.Toolkit.KryptonButton kryptonButton14;
+        private Krypton.Toolkit.KryptonComboBox cbbPhanNhom;
+        private Krypton.Toolkit.KryptonTextBox tbDkUserName;
+        private Krypton.Toolkit.KryptonTextBox tbDkPass;
+        private Krypton.Toolkit.KryptonTextBox tbdkLogin;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel48;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel47;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel46;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel45;
     }
 }
