@@ -8,14 +8,19 @@ using Core.GenericRepositorys;
 using DAL;
 using DAL.Extensions;
 using Dtos;
+using System.Data;
 
 namespace Core.Repository.Reports
 {
-    public class ReportRepository : GenericRepository ,  IReportRepository
+    public class ReportRepository : GenericRepository, IReportRepository
     {
         private string query;
         private object[] para;
-
+        Dictionary<string, string> serverName = new Dictionary<string, string> {
+            { "Chi nhánh 1", @"DESKTOP-6HQ6JE6\MSSQLSERVER02" },
+            {"Chi nhánh 2", @"DESKTOP-6HQ6JE6\MSSQLSERVER01" }
+        };
+          
         public List<BillStudent> PrintBillByStudent(int id)
         {
             query = "dbo.Xuat_DSBill_ByStudent @idStudent";
@@ -37,12 +42,21 @@ namespace Core.Repository.Reports
 
         }
 
-        public IEnumerable<ClassStudys> PrintClassByTeacher(string name)
+        public IEnumerable<ClassStudys> PrintClassByTeacher(string name, bool isRoleGiamDoc, string nameServer)
         {
+            DataTable dataTable = null;
             query = "dbo.Xuat_DS_Lop_ByNameGV @nameGV";
             para = new object[] { name };
+            if (isRoleGiamDoc)
+            {
+              dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query,serverName[nameServer],para);
+            }
+            else
+            {
+                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+            }
             var listClass = new List<DetailClassStudy>();
-            var dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+          
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
             {
@@ -86,12 +100,21 @@ namespace Core.Repository.Reports
 
         }
 
-        public List<Student> PrintStudentInCourses(int id)
+        public List<Student> PrintStudentInCourses(int id, bool isRoleGiamDoc, string nameServer)
         {
+            DataTable dataTable = null;
             query = "dbo.Xuat_DS_HV_ByIdCourses @idCourses";
             para = new object[] { id };
+            if (isRoleGiamDoc)
+            {
+                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer], para);
+            }
+            else
+            {
+                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+            }
             var listStudent = new List<Student>();
-            var dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+          
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
             {
@@ -109,11 +132,19 @@ namespace Core.Repository.Reports
 
         }
 
-        public List<CaseStudyMaxStudent> ReportCaHocMax()
+        public List<CaseStudyMaxStudent> ReportCaHocMax(bool isRoleGiamDoc, string nameServer)
         {
+            DataTable dataTable = null;
             query = "dbo.CaHocCoLopHocNhieuNhat";
+            if (isRoleGiamDoc)
+            {
+                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer], para);
+            }
+            else
+            {
+                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+            }
             var listMaxReport = new List<CaseStudyMaxStudent>();
-            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
             {
@@ -136,9 +167,10 @@ namespace Core.Repository.Reports
 
         }
 
-        public List<ReportMaxClass> ReportMax(string typeReport)
+        public List<ReportMaxClass> ReportMax(string typeReport,bool isRoleGiamDoc,string nameServer)
         {
-            if(typeReport == "GVMax")
+            DataTable dataTable = null;
+            if (typeReport == "GVMax")
             {
                 query = "dbo.GvDayNhieuLopNhat";
             }else if (typeReport == "HVMax")
@@ -150,7 +182,15 @@ namespace Core.Repository.Reports
                 query = "dbo.KhoaHocCoHvHocNhieuNhat";
             }
             var listMaxReport = new List<ReportMaxClass>();
-            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            if (isRoleGiamDoc)
+            {
+                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer]);
+            }
+            else
+            {
+                dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            }
+          
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
             {
@@ -165,11 +205,19 @@ namespace Core.Repository.Reports
 
         }
 
-        public List<Employee> TeacherNotInClass()
+        public List<Employee> TeacherNotInClass(bool isRoleGiamDoc, string nameServer)
         {
+            DataTable dataTable = null;
             query = "dbo.GvChuaDuocPhanCong";
+            if (isRoleGiamDoc)
+            {
+                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer]);
+            }
+            else
+            {
+                dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            }
             var listMaxReport = new List<Employee>();
-            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var dataRows = dataTable.GetRows(listRow);
             foreach (var row in dataRows)
             {

@@ -11,17 +11,17 @@ namespace Core.Repository.Reports
     {
         List<Student> PrintStudentInClass(int id);
 
-        List<Student> PrintStudentInCourses(int id);
+        List<Student> PrintStudentInCourses(int id, bool isRoleGiamDoc, string nameServer);
 
-        IEnumerable<ClassStudys> PrintClassByTeacher(string name);
+        IEnumerable<ClassStudys> PrintClassByTeacher(string name, bool isRoleGiamDoc, string nameServer);
 
         List<BillStudent> PrintBillByStudent(int id);
 
-        List<ReportMaxClass> ReportMax(string typeReport);
+        List<ReportMaxClass> ReportMax(string typeReport, bool isRoleGiamDoc, string nameServer);
 
-        List<CaseStudyMaxStudent> ReportCaHocMax();
+        List<CaseStudyMaxStudent> ReportCaHocMax(bool isRoleGiamDoc, string nameServer);
 
-        List<Employee> TeacherNotInClass();
+        List<Employee> TeacherNotInClass(bool isRoleGiamDoc, string nameServer);
         List<Total> TotalByDate(DateTime start, DateTime end);
     }
 }

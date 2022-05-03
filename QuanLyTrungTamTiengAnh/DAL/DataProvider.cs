@@ -77,10 +77,65 @@ namespace DAL
             return isLogin;
         }
 
-        public bool LogOut()
+        public void LogOut()
         {
             isLogin = false;
-            return isLogin;
+        }
+
+        public bool CreateAccountForRoleGiamDoc(string query, object[] para ,string nameServer)
+        {
+            string strConnGiamDoc = $@"server={nameServer};database=DatabaseEnglishCenter;User id=sa;password=1234";
+            try
+            {
+                int kq = 0;
+                using (SqlConnection conn = new SqlConnection(strConnGiamDoc))
+                {
+                    if (conn.State == ConnectionState.Closed) conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (para != null)
+                    {
+                        hasParameter(cmd, query, para);
+                    }
+                    kq = cmd.ExecuteNonQuery();
+
+                }
+                return kq > 0;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public DataTable ReportForRoleGiamDoc(string query, string nameServer, object[] para =null)
+        {
+            string strConnGiamDoc = $@"server={nameServer};database=DatabaseEnglishCenter;User id=sa;password=1234";
+            try
+            {
+                DataTable data = new DataTable();
+                using (SqlConnection conn = new SqlConnection(strConnGiamDoc))
+                {
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (para != null)
+                    {
+
+                        {
+                            hasParameter(cmd, query, para);
+                        }
+
+                    }
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(data);
+
+
+                }
+                return data;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
         }
 
         public DataTable ExcuteDataReader(string query, object[] para = null)

@@ -21,5 +21,10 @@ namespace Core.Logins
             DataProvider.Password = password;
             return DataProvider.Instance.ISConnected();
         }
+
+        public static void LogoutSystem()
+        {
+           DataProvider.Instance.LogOut();
+        }
     }
 }

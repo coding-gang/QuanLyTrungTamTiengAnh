@@ -23,7 +23,7 @@ namespace Core.Repository.Students
         public  IEnumerable<Student> GetAll()
         {
          
-            query = "Select * from Students";
+            query = "Select * from LINK.DatabaseEnglishCenter.dbo.Students";
             List<Student> Students = new List<Student>();
             DataTable dataTable = dataProvider.ExcuteDataReader(query);
             var NameColumn = dataTable.InitNameColumn();

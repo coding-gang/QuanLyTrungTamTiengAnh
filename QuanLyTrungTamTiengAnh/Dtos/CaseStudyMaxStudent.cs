@@ -7,7 +7,7 @@ using DAL.Entities;
 namespace Dtos
 {
    public class CaseStudyMaxStudent : ClassStudys
-    {
+    { 
         public string SoHocSinh { get; set; }
     }
 }

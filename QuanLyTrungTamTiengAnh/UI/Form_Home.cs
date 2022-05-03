@@ -14,14 +14,15 @@ using BLL;
 using Dtos;
 using DAL.Entities;
 using Core.Extension;
-
+using Core.RegisterAccounts;
+using Core.Logins;
 namespace UI
 {
     public partial class frmHome : Form
     {
+        private IUnitOfWork _unitOfWork = new UnitOfWork();
         private EmployeeBLL empBLL = null;
         private BranchBLL branchBLL = null;
-        private IUnitOfWork _unitOfWork  = new UnitOfWork();
         private RegisterBLL _registerBLL = null;
         private StudentBLL  _studentBLL  = null;
         private CoursesBLL  _coursesBLL  = null;
@@ -33,9 +34,11 @@ namespace UI
         private List<DetailRegister> detailRegisters = null;
         private FormUpdateClassStudent frmUpdate = null;
         private frmBaoCao frmReport = null;
+        private UserRole _userRole = null;
         private List<Employee> employees = new List<Employee>();
         private List<Branch> branches = new List<Branch>();
         private string _branchCurrent;
+        
         private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
         private string[] DateStudy = new string[] { "Thứ 2 - Thứ 4", "Thứ 3 - Thứ 4","Thứ 3 - Thứ 5",
@@ -45,9 +48,26 @@ namespace UI
                                                     "Thứ 5 - Thứ 6","Thứ 5 - Thứ 7","Thứ 6 - Thứ 7",
                                                     "Thứ 2 - Thứ 3 - Thứ 4","Thứ 3 - Thứ 5 - Thứ 7","Thứ 2 - Thứ 6 - Thứ 7",
                                                     "Thứ 4 - Thứ 6 - Thứ 7","Thứ 4 - Thứ 5 - Thứ 7","Thứ 5 - Thứ 6 - Thứ 7","Thứ 2 - Thứ 4 - Thứ 6"};
-        private int? IdCaseStudy { get; set; }
 
-        private UserRole _userRole = null;
+       private IDictionary<string, string> typeSearch = new Dictionary<string, string>()
+            {
+                {"Id","Mã nhân viên" },
+                {"BranhId","Nhánh" },
+                {"FullName","Họ tên"},
+                {"DOB","Ngày sinh"},
+                {"Phone","SĐT" },
+                {"Qualification","Trình độ"},
+                {"Nation", "Quốc tịch" },
+                {"Jobtitle","Chức danh" },
+                {"Salary","Lương" }
+            };
+        private IDictionary<string, string> Roles = new Dictionary<string, string>()
+        {
+            {"GIAMDOC","Giám đốc" },
+            {"QLCHINHANH","Quản lý chi nhánh" },
+            {"NHANVIEN","Nhân viên" }
+        };
+        private int? IdCaseStudy { get; set; }
         public frmHome(UserRole userRole,string branch)
         {
             InitializeComponent();
@@ -66,6 +86,7 @@ namespace UI
         private void frmHome_Load(object sender, EventArgs e)
         {
             InFoUserLogin();
+            CheckPermissionRoleToGetData();
         }
 
         private void InFoUserLogin()
@@ -82,6 +103,7 @@ namespace UI
             loadTypeSearch();
             LoadLevel();
             LoadBranch();
+            LoadBranchExchange();
             LoadCbbGiaoVien();
         }
 
@@ -99,32 +121,23 @@ namespace UI
             LoadDateStudy();
             LoadClassStudyWithoutTeacher();
             ActionPermissionRoleEmp();
+            loadCbbPhanQuyen();
         }
 
         private void CheckPermissionRoleToGetData()
         {
-            if(_userRole.RoleName == "GIAMDOC" || _userRole.RoleName == "QLCHINHANH")
+            if(_userRole.RoleName == "GIAMDOC" || _userRole.RoleName == "QLCHINHANH" ||_userRole.RoleName =="NHANVIEN")
             {
                 FullPermisson();
+                CheckRoleActionGiamDoc();
+                ShowBranchRoleGiamDoc();
+                LoadBranchThongKe();
             }
-            else
-            {
-                ActionPermissionRoleEmp();
-            }
+            //else
+            //{
+            //    ActionPermissionRoleEmp();
+            //}
         }
-
-        IDictionary<string, string> typeSearch = new Dictionary<string, string>()
-            {
-                {"Id","Mã nhân viên" },
-                 {"BranhId","Nhánh" },
-                {"FullName","Họ tên"},
-                {"DOB","Ngày sinh"},
-                {"Phone","SĐT" },
-                {"Qualification","Trình độ"},
-                {"Nation", "Quốc tịch" },
-                {"Jobtitle","Chức danh" },
-                 {"Salary","Lương" }
-            };
 
         public void loadTypeSearch()
         {
@@ -162,6 +175,38 @@ namespace UI
             cbBranch.DisplayMember = "Name";
             cbBranch.ValueMember = "Id";
         }
+
+        public void LoadBranchExchange()
+        {
+            cbbChuyenChiNhanh.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+            cbbChuyenChiNhanh.DisplayMember = "Name";
+            cbbChuyenChiNhanh.ValueMember = "Id";
+        }
+
+        public void LoadBranchXuatBaoCao()
+        {
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                cbbXuatBaoCaoGV.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                cbbXuatBaoCaoGV.DisplayMember = "Name";
+                cbbXuatBaoCaoGV.ValueMember = "Id";
+                cbbXuatBaoCaoGV.Visible = true;
+            }
+          
+        }
+
+        public void LoadBranchThongKe()
+        {
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                cbbThongketheoChiNhanh.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                cbbThongketheoChiNhanh.DisplayMember = "Name";
+                cbbThongketheoChiNhanh.ValueMember = "Id";
+                cbbThongketheoChiNhanh.Visible = true;
+            }
+          
+        }
+
         public void LoadLevel()
         {
             string[] levels = { "Đại học", "Cao đẳng", "THCS" };
@@ -180,7 +225,9 @@ namespace UI
 
         private void LoadBranchTemp()
         {
-            cbbBranch.DataSource = branchs;
+            cbbBranch.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetAll();
+            cbbBranch.DisplayMember = "Name";
+            cbbBranch.ValueMember = "Id";   
         }
 
         private void LoadDateStudy()
@@ -603,6 +650,7 @@ namespace UI
             {
                 Notify("Thêm lớp học mới thành công!");
                 LoadClassStudy();
+                LoadClassStudyWithoutTeacher();
             }
             else
             {
@@ -713,51 +761,115 @@ namespace UI
         {
             var idCourses = cbbLopHocKH.SelectedValue;
             var nameLesson = cbbLopHocKH.Text;
-            var listStudent = _reportBLL._unitOfWork.reportRepository.PrintStudentInCourses((int)idCourses);
-            this.frmReport = new frmBaoCao($"Báo cáo danh sách học viên theo khóa học {nameLesson}".ToUpper(), listStudent);
+            if (_userRole.RoleName == "GIAMDOC")
+            {
+                var listStudent = _reportBLL._unitOfWork.reportRepository.PrintStudentInCourses((int)idCourses,true,cbbXuatBaoCaoGV.Text);
+                this.frmReport = new frmBaoCao($"Báo cáo danh sách học viên theo khóa học {nameLesson}".ToUpper(), listStudent);
+            }
+            else
+            {
+                var listStudent = _reportBLL._unitOfWork.reportRepository.PrintStudentInCourses((int)idCourses,false,null);
+                this.frmReport = new frmBaoCao($"Báo cáo danh sách học viên theo khóa học {nameLesson}".ToUpper(), listStudent);
+            }
+            
             this.frmReport.Show();
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
         {
             var emp = cbbLopHocEmp.Text.Trim();
-            var listClass =  _reportBLL._unitOfWork.reportRepository.PrintClassByTeacher(emp);
-            this.frmReport = new frmBaoCao($"Báo cáo danh sách lớp theo giáo viên {emp}".ToUpper(),listClass);
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                var listClass = _reportBLL._unitOfWork.reportRepository.PrintClassByTeacher(emp,true,cbbXuatBaoCaoGV.Text);
+                this.frmReport = new frmBaoCao($"Báo cáo danh sách lớp theo giáo viên {emp}".ToUpper(), listClass);
+            }
+            else
+            {
+                var listClass = _reportBLL._unitOfWork.reportRepository.PrintClassByTeacher(emp,false,null);
+                this.frmReport = new frmBaoCao($"Báo cáo danh sách lớp theo giáo viên {emp}".ToUpper(), listClass);
+            }
+         
             this.frmReport.Show();
         }
 
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
-           var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("GVMax");
-            tbReportGV.Text = listReport[0].FullName;
-            tbReportSLGV.Text = listReport[0].Solop.ToString();
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("GVMax",true,cbbThongketheoChiNhanh.Text);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
+            else
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("GVMax",false,null);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
+        
         }
 
+        private List<ReportMaxClass> GetMaxInReport(List<ReportMaxClass> listReport)
+        {
+           var max = listReport[0].Solop;
+            return listReport.Where(report => report.Solop == max).ToList();
+        }
         private void kryptonButton9_Click(object sender, EventArgs e)
         {
-            var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("HVMax");
-            tbReportHS.Text = listReport[0].FullName;
-            tbReportSLHS.Text = listReport[0].Solop.ToString();
+            if (_userRole.RoleName == "GIAMDOC")
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("HVMax", true, cbbThongketheoChiNhanh.Text);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
+            else
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("HVMax", false, null);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
         }
 
         private void kryptonButton10_Click(object sender, EventArgs e)
         {
-            var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("KHMax");
-            tbReportKH.Text = listReport[0].FullName;
-            tbReportKHHS.Text = listReport[0].Solop.ToString();
+            if (_userRole.RoleName == "GIAMDOC")
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("KHMax", true, cbbThongketheoChiNhanh.Text);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
+            else
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportMax("KHMax", false, null);
+                dtgReportMax.DataSource = GetMaxInReport(listReport);
+            }
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)
         {
-            var listReport = _reportBLL._unitOfWork.reportRepository.ReportCaHocMax();
-            dtgReportMax.DataSource = listReport;
-            tbHSCaHoc.Text = listReport[0].SoHocSinh;
+            if (_userRole.RoleName == "GIAMDOC")
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportCaHocMax(true,cbbThongketheoChiNhanh.Text);
+                var max = listReport[0].SoHocSinh;
+                dtgReportMax.DataSource = listReport.Where(report => report.SoHocSinh == max).ToList();
+            }
+            else
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.ReportCaHocMax(false,null);
+                var max = listReport[0].SoHocSinh;
+                dtgReportMax.DataSource = listReport.Where(report => report.SoHocSinh == max).ToList();
+            }
+               
         }
 
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
-            var listReport = _reportBLL._unitOfWork.reportRepository.TeacherNotInClass();
-            dtgReportMax.DataSource = listReport;
+            if (_userRole.RoleName != "GIAMDOC")
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.TeacherNotInClass(true,cbbThongketheoChiNhanh.Text);
+                dtgReportMax.DataSource = listReport;
+            }
+            else
+            {
+                var listReport = _reportBLL._unitOfWork.reportRepository.TeacherNotInClass(false, null);
+                dtgReportMax.DataSource = listReport;
+            }
+                
         }
 
         private void txtSearchByName_KeyUp(object sender, KeyEventArgs e)
@@ -789,8 +901,8 @@ namespace UI
         {
             if (result)
             {
-                Notify(notifySuccess);
                 LoadAllEmployee();
+                Notify(notifySuccess);
             }
             else
             {
@@ -832,6 +944,8 @@ namespace UI
         {
             btnUpdateEmployee.Visible = true;
             btnDeleteEmployee.Visible = true;
+            lbChuyenChiNhanh.Visible  = true;
+            cbbChuyenChiNhanh.Visible = true;
         }
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
@@ -841,7 +955,7 @@ namespace UI
                 Employee employee = new Employee
                 {
                     Id = currentEmployee.Id,
-                    BranhId = int.Parse(cbBranch.SelectedValue.ToString()),
+                    BranhId = int.Parse(cbbChuyenChiNhanh.SelectedValue.ToString()),
                     FullName = txtFullName1.Text,
                     DOB = DateTime.Parse(dtpDOB.Value.ToString()),
                     Phone = txtPhone.Text,
@@ -858,13 +972,13 @@ namespace UI
                     var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
                     var updateBranch = empBLL._unitOfWork.employeeRepository.UpdateBranchEmployee(currentEmployee.BranhId, employee.BranhId, employee.Id);
                     handleNotifyFromData(result && updateBranch, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
-
+                    dtgNhanVien.DataSource = employees.Where(emp => emp.Id != idEmployee).ToList();
                 }
                 else
                 {
                     var result = empBLL._unitOfWork.employeeRepository.Update(idEmployee, employee);
                     handleNotifyFromData(result, "cập nhật nhân viên thành công", "cập nhật nhân viên thất bại");
-
+                    dtgNhanVien.DataSource = employees.Where(emp => emp.Id != idEmployee).ToList();
                 }
             }
            
@@ -894,18 +1008,118 @@ namespace UI
         {
             if(L.SelectedIndex != -1)
             {
-                var nameTab = L.TabPages[L.SelectedIndex].Text;
-                if(nameTab != "Nhân viên" && _userRole.RoleName == "NHANVIEN")
+                var tab = L.TabPages[L.SelectedIndex];
+                var nameTab =tab.Text;
+                if (nameTab == "Tạo tài khoản" && _userRole.RoleName == "NHANVIEN")
                 {
+                    tab.Hide();
                     Notify("Bạn không có quyền truy cập!");
                 }
-                else
-                {
-                    CheckPermissionRoleToGetData();
-                }
-               
             }
         
+        }
+
+        public void loadCbbPhanQuyen()
+        {
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                cbbPhanNhom.DataSource = new BindingSource(Roles, null);
+            }
+            else
+            {
+               var roleQlChinhanh = Roles.Where(role => role.Key != "GIAMDOC").AsEnumerable();
+                cbbPhanNhom.DataSource = new BindingSource(roleQlChinhanh, null);
+            }
+         
+            cbbPhanNhom.ValueMember = "key";
+            cbbPhanNhom.DisplayMember = "value";
+        }
+
+        private void btnDK_Click(object sender, EventArgs e)
+        {
+           if(ConfirmAction("Bạn có muốn tạo tài khoản mới?","Tạo tài khoản!!"))
+            {
+                CreateAccountForRole();
+            }
+        }
+
+        private void CreateAccountForRole()
+        {
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+               var nameBranch = cbbChinhanhGD.Text;
+                CreateAccount(true,nameBranch);
+            }
+            else
+            {
+                CreateAccount(false);
+            }
+        }
+
+        private void CreateAccount(bool isGiamDoc,string nameBranch =null)
+        {
+            var registerAcc = new RegisterAccount();
+            var account = new Account
+            {
+                LoginName = tbdkLogin.Text.Trim(),
+                Password = tbDkPass.Text.Trim(),
+                Username = tbDkUserName.Text.Trim(),
+                Role = cbbPhanNhom.SelectedValue.ToString()
+            };
+            var isCreated = registerAcc.CreateAccount(account,isGiamDoc,nameBranch);
+            if (isCreated)
+            {
+                Notify("Tạo tài khoản thành công");
+            }
+            else
+            {
+                Notify("Tạo tài khoản thất bại");
+            }
+        }
+
+        private void HideActionRoleGiamDoc()
+        {
+            btnAddEmployee.Hide();
+            btnUpdateEmployee.Hide();
+            btnDeleteEmployee.Hide();
+            kryptonButton1.Hide();
+            btnDangkydk.Hide();
+            btnDangkydk.Hide();
+            kryptonButton5.Hide();
+            kryptonButton2.Hide();
+            kryptonButton3.Hide();
+        }
+
+        private void CheckRoleActionGiamDoc()
+        {
+            if(_userRole.RoleName == "GIAMDOC")
+            {
+                HideActionRoleGiamDoc();
+            }
+        }
+        private void ShowBranchRoleGiamDoc()
+        {
+            if (_userRole.RoleName == "GIAMDOC")
+            {
+                cbbChinhanhGD.DataSource = branchs;
+                cbbChinhanhGD.Visible = true;
+                lbChinhanhGD.Visible = true;
+            }
+        }
+
+        private void mnuDK_Click(object sender, EventArgs e)
+        {
+            if (ConfirmAction("Bạn muốn đăng xuất khỏi hệ thống?", "Đăng xuất!!"))
+            {
+                Login.LogoutSystem();
+                this.Hide();
+                var loginfrm = new LoginFrm();
+                loginfrm.Show();
+            }
+        }
+        private void mnuQuantri_Click(object sender, EventArgs e)
+        {
+            CheckPermissionRoleToGetData();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Core.Repository.Registers
 
         public bool Add(Register item)
         {
-            query = "dbo.Add_Register @studentId , @classId , @registerDate , @amount , @status";
+            query = "LINK.DatabaseEnglishCenter.dbo.Add_Register @studentId , @classId , @registerDate , @amount , @status";
             para = new object[] { item.StudentId, item.ClassId, item.PaymentDate, item.Amount, item.Status };
             return Command(query,para);
         }
@@ -93,7 +93,7 @@ namespace Core.Repository.Registers
                 };
                 var infoRegister = new InfoToRegister
                 {
-                    IdClass = int.Parse(row[5]),
+                    IdClass = int.Parse(row[6]),
                     InfoCaseStudy = caseStudy
                 };
                

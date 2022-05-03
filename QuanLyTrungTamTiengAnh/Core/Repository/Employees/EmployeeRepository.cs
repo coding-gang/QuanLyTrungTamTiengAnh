@@ -22,23 +22,8 @@ namespace Core.Repository.Employees
         public bool Add(Employee item)
         {
             var id = CreateIdEmp(item.Jobtitle);
-            query = $"[dbo].[Add_Employess] @id , @branch_id , @full_name , @dob "
-                                + ", @phone , @qualification "
-                                + ", @nation , @jobtitle "
-                                 + ", @salary";
-            para = new object[]
-            {
-                id,
-                item.BranhId,
-                item.FullName,
-                item.DOB,
-                item.Phone,
-                item.Qualification,
-                item.Nation,
-                item.Jobtitle,
-                item.Salary
-            };
-            return Command(query, para);
+            query = $" INSERT INTO Employees(id, branch_id, full_name, date_of_birth, phone, qualification, nation, jobtitle, salary) VALUES('{id}', '{item.BranhId}', N'{item.FullName}', '{item.DOB}', '{item.Phone}', N'{item.Qualification}', N'{item.Nation}', N'{item.Jobtitle}', '{item.Salary}')";
+            return Command(query);
         }
         private string handleRoleEmployee(string roleDetail)
         {
@@ -114,13 +99,29 @@ namespace Core.Repository.Employees
 
         public bool Update(object id, Employee item)
         {
-            query = $"update Employees set full_name = '{item.FullName}', date_of_birth = '{item.DOB}', phone = '{item.Phone}', qualification = '{item.Qualification}',nation = '{item.Nation}', jobtitle = '{item.Jobtitle}' , salary = '{item.Salary}' where id = '{id}'";
+            query = $"update Employees set full_name = N'{item.FullName}', date_of_birth = '{item.DOB}', phone = '{item.Phone}', qualification = N'{item.Qualification}',nation = N'{item.Nation}', jobtitle = N'{item.Jobtitle}' , salary = '{item.Salary}' where id = '{id}'";
             return Command(query);
         }
         public bool UpdateBranchEmployee(int idBranchCurrent, int idBranchExchange, string idEmployee)
         {
-            query = $"update Classes set teacher_id = null where branch_id = '{idBranchCurrent}' and teacher_id = '{idEmployee}' update Employees set branch_id = '{idBranchExchange}' where id = '{idEmployee}'";
+          
+            if(IsExistEmpInClass(idEmployee) > 0)
+            {
+                query = $"update Classes set teacher_id = null where branch_id = '{idBranchCurrent}' and teacher_id = '{idEmployee}' update LINK.DatabaseEnglishCenter.dbo.Employees set branch_id = '{idBranchExchange}' where id = '{idEmployee}'";
+            }
+            else
+            {
+                query = $"update LINK.DatabaseEnglishCenter.dbo.Employees set branch_id = '{idBranchExchange}' where id = '{idEmployee}'";
+            }
             return Command(query);
+
+        }
+
+        private int IsExistEmpInClass(string idEmployee)
+        {
+            query = $"select count(*) from Classes where teacher_id = '{idEmployee}'";
+            int total = DataProvider.Instance.ExcuteScalar(query);
+            return total;
         }
     };
 }

@@ -28,7 +28,24 @@ namespace Core.Repository.Branchs
 
         public IEnumerable<Branch> GetAll()
         {
-            query = "select * from LINK.DatabaseEnglishCenter.DBO.Branches";
+            query = "select * from branches";
+            var branches = new List<Branch>();
+            var dataTable = DataProvider.Instance.ExcuteDataReader(query);
+            var collectionRowData = dataTable.GetRows(listRow);
+            foreach (var row in collectionRowData)
+            {
+                var branch = new Branch();
+                branch.Id = int.Parse(row[0]);
+                branch.Name = row[1];
+                branch.Address = row[2];
+                branches.Add(branch);
+            }
+            return branches;
+        }
+
+        public IEnumerable<Branch> GetBranchLinkServer()
+        {
+            query = "select * from LINK.DatabaseEnglishCenter.dbo.branches";
             var branches = new List<Branch>();
             var dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var collectionRowData = dataTable.GetRows(listRow);

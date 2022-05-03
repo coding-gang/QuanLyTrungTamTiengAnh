@@ -10,6 +10,6 @@ namespace Core.Repository.Employees
 {
     public interface IBranchRepository : IGenericRepository<Branch>
     {
-
+        IEnumerable<Branch> GetBranchLinkServer();
     }
 }
