@@ -37,8 +37,9 @@ namespace UI
         private UserRole _userRole = null;
         private List<Employee> employees = new List<Employee>();
         private List<Branch> branches = new List<Branch>();
+        private Branch branchesMain = new Branch { Name = "Cả hai chi nhánh" };
         private string _branchCurrent;
-        
+        private List<DetailClassStudy> listClassSearch = null;
         private string[] branchs = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         private string[] TimeDayClass = new string[] { "7:00", "15:00","19:00" };
         private string[] DateStudy = new string[] { "Thứ 2 - Thứ 4", "Thứ 3 - Thứ 4","Thứ 3 - Thứ 5",
@@ -132,6 +133,7 @@ namespace UI
                 CheckRoleActionGiamDoc();
                 ShowBranchRoleGiamDoc();
                 LoadBranchThongKe();
+                LoadBranchXuatBaoCao();
             }
             //else
             //{
@@ -187,7 +189,9 @@ namespace UI
         {
             if(_userRole.RoleName == "GIAMDOC")
             {
-                cbbXuatBaoCaoGV.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                var branch = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                branch.Add(branchesMain);
+                cbbXuatBaoCaoGV.DataSource = branch; 
                 cbbXuatBaoCaoGV.DisplayMember = "Name";
                 cbbXuatBaoCaoGV.ValueMember = "Id";
                 cbbXuatBaoCaoGV.Visible = true;
@@ -199,7 +203,9 @@ namespace UI
         {
             if(_userRole.RoleName == "GIAMDOC")
             {
-                cbbThongketheoChiNhanh.DataSource = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                var branch = (List<Branch>)branchBLL._unitOfWork.branchRepository.GetBranchLinkServer();
+                branch.Add(branchesMain);
+                cbbThongketheoChiNhanh.DataSource = branch;
                 cbbThongketheoChiNhanh.DisplayMember = "Name";
                 cbbThongketheoChiNhanh.ValueMember = "Id";
                 cbbThongketheoChiNhanh.Visible = true;
@@ -254,7 +260,8 @@ namespace UI
 
         private void LoadClassStudy()
         {
-            dtgClassStudy.DataSource = _classBll._unitOfWork.classStudyRepository.GetAll();
+            listClassSearch = (List<DetailClassStudy>)_classBll._unitOfWork.classStudyRepository.GetAll();
+            dtgClassStudy.DataSource = listClassSearch;
             dtgClassStudy.Columns["CourseId"].Visible = false;
             dtgClassStudy.Columns["CaseId"].Visible = false;
             dtgClassStudy.Columns["EmpId"].Visible = false;
@@ -775,6 +782,7 @@ namespace UI
             this.frmReport.Show();
         }
 
+
         private void kryptonButton7_Click(object sender, EventArgs e)
         {
             var emp = cbbLopHocEmp.Text.Trim();
@@ -996,11 +1004,23 @@ namespace UI
 
         private void kryptonButton13_Click(object sender, EventArgs e)
         {
-          var total =  _reportBLL._unitOfWork.reportRepository.TotalByDate(dtpStart.Value, dtpEnd.Value);
-            if (total.Count > 0)
+            if(_userRole.RoleName == "GIAMDOC")
             {
-                lblTotal.Text = FormatCurrency(total[0].Cost);
+                var total = _reportBLL._unitOfWork.reportRepository.TotalByDate(dtpStart.Value, dtpEnd.Value,true,cbbThongketheoChiNhanh.Text);
+                if (total.Count > 0)
+                {
+                    lblTotal.Text = FormatCurrency(total[0].Cost);
+                }
             }
+            else
+            {
+                var total = _reportBLL._unitOfWork.reportRepository.TotalByDate(dtpStart.Value, dtpEnd.Value,false,null);
+                if (total.Count > 0)
+                {
+                    lblTotal.Text = FormatCurrency(total[0].Cost);
+                }
+            }
+       
            
         }
 
@@ -1120,6 +1140,37 @@ namespace UI
         private void mnuQuantri_Click(object sender, EventArgs e)
         {
             CheckPermissionRoleToGetData();
+        }
+
+        private void txtSearchFromClass_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<DetailClassStudy> listClassResult = new List<DetailClassStudy>();
+            foreach (var item in typeof(DetailClassStudy).GetProperties())
+            {
+
+                var listClassExist = listClassSearch.Where(classDetail =>
+                classDetail.GetType().GetProperty(item.Name).GetValue(classDetail) != null &&
+                          classDetail.GetType().GetProperty(item.Name).GetValue(classDetail).ToString().ToLower().Contains(txtSearchFromClass.Text.ToLower().Trim()));
+                if (listClassExist.ToList().Count > 0)
+                {
+                    foreach (var i in listClassExist)
+                    {
+                        if(!listClassResult.Any(emp => emp.Id == i.Id))
+                        {
+                            listClassResult.Add(i);
+                        }
+                       
+                    }
+                }
+            }
+            if (listClassResult.Count > 0)
+            {
+                dtgClassStudy.DataSource = listClassResult;
+            }
+            else
+            {
+                dtgClassStudy.DataSource = listClassSearch;
+            }
         }
     }
 }

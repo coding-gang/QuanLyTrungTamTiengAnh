@@ -22,6 +22,6 @@ namespace Core.Repository.Reports
         List<CaseStudyMaxStudent> ReportCaHocMax(bool isRoleGiamDoc, string nameServer);
 
         List<Employee> TeacherNotInClass(bool isRoleGiamDoc, string nameServer);
-        List<Total> TotalByDate(DateTime start, DateTime end);
+        List<Total> TotalByDate(DateTime start, DateTime end, bool isRoleGiamDoc, string nameServer);
     }
 }

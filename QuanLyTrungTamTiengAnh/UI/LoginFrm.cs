@@ -19,7 +19,7 @@ namespace UI
         {
             InitializeComponent();
             role = new Role();
-            cbbChinhNhanh.DataSource = new string[] { "Chi nhanh 1", "Chi nhanh 2" };
+            cbbChinhNhanh.DataSource = new string[] { "Chi nhánh 1", "Chi nhánh 2" };
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)

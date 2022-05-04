@@ -16,6 +16,9 @@ namespace Core.Repository.Reports
     {
         private string query;
         private object[] para;
+        private const string linkServer = "LINK1.DatabaseEnglishCenter.";
+        private const string linkServerMain = "LINK.DatabaseEnglishCenter.";
+        private const string nameBranchMain = "Cả hai chi nhánh";
         Dictionary<string, string> serverName = new Dictionary<string, string> {
             { "Chi nhánh 1", @"DESKTOP-6HQ6JE6\MSSQLSERVER02" },
             {"Chi nhánh 2", @"DESKTOP-6HQ6JE6\MSSQLSERVER01" }
@@ -47,14 +50,15 @@ namespace Core.Repository.Reports
             DataTable dataTable = null;
             query = "dbo.Xuat_DS_Lop_ByNameGV @nameGV";
             para = new object[] { name };
-            if (isRoleGiamDoc)
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer)
             {
-              dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query,serverName[nameServer],para);
-            }
-            else
+                query = linkServer + query;
+            }else if(isRoleGiamDoc && DataProvider.NameBranch == nameBranchMain)
             {
-                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+                query = linkServerMain + query;
             }
+           
+            dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
             var listClass = new List<DetailClassStudy>();
           
             var dataRows = dataTable.GetRows(listRow);
@@ -105,14 +109,15 @@ namespace Core.Repository.Reports
             DataTable dataTable = null;
             query = "dbo.Xuat_DS_HV_ByIdCourses @idCourses";
             para = new object[] { id };
-            if (isRoleGiamDoc)
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer &&  nameBranchMain != nameServer)
             {
-                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer], para);
+                query = linkServer + query;
             }
-            else
+            else if (isRoleGiamDoc && nameBranchMain == nameServer)
             {
-                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+                query = linkServerMain + query;
             }
+            dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
             var listStudent = new List<Student>();
           
             var dataRows = dataTable.GetRows(listRow);
@@ -136,14 +141,15 @@ namespace Core.Repository.Reports
         {
             DataTable dataTable = null;
             query = "dbo.CaHocCoLopHocNhieuNhat";
-            if (isRoleGiamDoc)
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer && nameBranchMain != nameServer)
             {
-                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer], para);
+                query = linkServer + query;
             }
-            else
+            else if (isRoleGiamDoc && nameBranchMain == nameServer)
             {
-                dataTable = DataProvider.Instance.ExcuteDataReader(query, para);
+                query = linkServerMain + query;
             }
+            dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var listMaxReport = new List<CaseStudyMaxStudent>();
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
@@ -170,6 +176,7 @@ namespace Core.Repository.Reports
         public List<ReportMaxClass> ReportMax(string typeReport,bool isRoleGiamDoc,string nameServer)
         {
             DataTable dataTable = null;
+
             if (typeReport == "GVMax")
             {
                 query = "dbo.GvDayNhieuLopNhat";
@@ -182,15 +189,17 @@ namespace Core.Repository.Reports
                 query = "dbo.KhoaHocCoHvHocNhieuNhat";
             }
             var listMaxReport = new List<ReportMaxClass>();
-            if (isRoleGiamDoc)
+
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer && nameBranchMain != nameServer)
             {
-                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer]);
+                query = linkServer + query;
             }
-            else
+            else if (isRoleGiamDoc && nameBranchMain == nameServer)
             {
-                dataTable = DataProvider.Instance.ExcuteDataReader(query);
+                query = linkServerMain + query;
             }
-          
+
+            dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var dataRows = dataTable.GetRows(listRow);
             foreach (var item in dataRows)
             {
@@ -209,14 +218,15 @@ namespace Core.Repository.Reports
         {
             DataTable dataTable = null;
             query = "dbo.GvChuaDuocPhanCong";
-            if (isRoleGiamDoc)
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer && nameBranchMain != nameServer)
             {
-                dataTable = DataProvider.Instance.ReportForRoleGiamDoc(query, serverName[nameServer]);
+                query = linkServer + query;
             }
-            else
+            else if (isRoleGiamDoc && nameBranchMain == nameServer)
             {
-                dataTable = DataProvider.Instance.ExcuteDataReader(query);
+                query = linkServerMain + query;
             }
+            dataTable = DataProvider.Instance.ExcuteDataReader(query);
             var listMaxReport = new List<Employee>();
             var dataRows = dataTable.GetRows(listRow);
             foreach (var row in dataRows)
@@ -238,10 +248,18 @@ namespace Core.Repository.Reports
             return listMaxReport;
         }
 
-        public List<Total> TotalByDate(DateTime start, DateTime end)
+        public List<Total> TotalByDate(DateTime start, DateTime end, bool isRoleGiamDoc, string nameServer)
         {
             query = "dbo.Report_Cost_By_Payment_Date @dateStart , @dateEnd";
             para = new object[] { start, end };
+            if (isRoleGiamDoc && DataProvider.NameBranch != nameServer && nameBranchMain != nameServer)
+            {
+                query = linkServer + query;
+            }
+            else if (isRoleGiamDoc && nameBranchMain == nameServer)
+            {
+                query = linkServerMain + query;
+            }
             var listMaxReport = new List<Total>();
             var dataTable = DataProvider.Instance.ExcuteDataReader(query,para);
             var dataRows = dataTable.GetRows(listRow);

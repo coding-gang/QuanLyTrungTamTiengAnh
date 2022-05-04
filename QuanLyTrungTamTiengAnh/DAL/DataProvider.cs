@@ -31,6 +31,7 @@ namespace DAL
             get { return SERVERNAME; }
             set { if (!isLogin) { SERVERNAME = value; } }
         }
+        public static string NameBranch { get; set; }
 
         public static DataProvider Instance
         {
